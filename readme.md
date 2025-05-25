@@ -105,15 +105,19 @@ let gameOver = false;
 ### 変数名
 変数には分かりやすい名前を付けることが重要
 
-`キャメルケース` (camelCase): 最初の単語は小文字で、後続の各単語の先頭を大文字にする。例: `currentYear` (JavaScriptで最も一般的)
+`キャメルケース` (camelCase): 最初の単語は小文字で、後続の各単語の先頭を大文字にする。例:`currentYear` (JavaScriptで最も一般的)
+
 `スネークケース` (snake_case): 単語間をアンダースコアでつなぐ。例: `current_year`
-`パスカルケース` (PascalCase): すべての単語の先頭を大文字にする。クラス名などによく使われ流。例: `CurrentYear`
+
+`パスカルケース` (PascalCase): すべての単語の先頭を大文字にする。クラス名などによく使われる。例: `CurrentYear`
+
 命名のヒント:`isLoggedInUser` のように is で始めると、Boolean型であることが分かりやすくなる。
 `hasHeader` のように has で始めると、何かを持っているかどうかの状態を表す変数であることが分かりやすくなる。
 
 ---
 
 `String` (文字列型)
+
 文字の並びを表すデータ型。シングルクォート (') またはダブルクォート (") で囲む
 
 ```javascript
@@ -150,14 +154,16 @@ hello.toUpperCase(); // "HELLO WORLD"
 // メソッドの後には必ず () をつけないと実行されない
 ```
 ---
-#### `.trim`(): 文字列の両端にある空白文字（スペース、タブ、改行など）を削除する
+#### `.trim`()
+文字列の両端にある空白文字（スペース、タブ、改行など）を削除する
 
 ```javascript
 let userNameInput = '      yamada      ';
 userNameInput.trim(); // "yamada"
 ```
 ---
-#### `メソッドチェーン`: 複数のメソッドを連続して呼び出すことができる。実行順序は記述した順
+#### `メソッドチェーン`
+複数のメソッドを連続して呼び出すことができる。実行順序は記述した順
 
 ```javascript
 let greeting = '      hello world!!!!      ';
@@ -240,7 +246,7 @@ const message = `今日の合計は${10 + 20}です。`;
 ```
 ---
 
-### `Null` 
+### Null
 意図的に値が存在しないことを表す
 undifindは、わからない
 nullは、意図的に存在しないことを明示
@@ -248,7 +254,7 @@ nullは、意図的に存在しないことを明示
 let loggedInUser = null;
 ```
 ---
-###　Mathオブジェクト
+### Mathオブジェクト
 `Math.randum()`は、0以上1未満のランダムな数字を返す
 ```javascript
 Math.randum() * 5　//0.5303477789849065
@@ -259,7 +265,7 @@ Math.floor(Math.random() * 3) + 20　//20~22のランダムな数字が出力さ
 ---
 
 ### 条件文
-`比較演算子`
+`比較演算子`  
 結果は全てBooleanになる
 （文字列を比較することもできる。平仮名（Unicodeのブロック）で表が載っているサイトを参照）
 
@@ -280,3 +286,148 @@ let age = 31;
 age >= 18;　//true
 ```
 ---
+
+```javascript
+1 == "1";　//true　(==は、値が等しいかチェックするが、肩が等しいかはチェックしない)
+1 != "1";　//false　(==の反対。等しくないかをチェックするので、1は2ではないのでtrue==と同様、型は関係なく、値のみを見る)
+
+1 === "1";　//false　(値と型の両方が一致するかチェックする)
+1 !== "1";　//true　(===の反対。値と型のt両方を見て、一致していなければtrue)
+```
+---
+
+### 条件分岐
+`IF`  
+条件がtrueの場合に処理を実行する
+```javascript
+console.log('条件分岐の前');
+let random = Math.random();
+if (random < 0.5){
+    console.log('数字は0.5より小さい');
+    console.log(random);
+}
+
+```
+---
+`else if`
+```javascript
+const dayOfweek = 'Friday';
+
+if (dayOfweek === 'Manday'){
+    console.log('月曜日は憂鬱');
+} else if (dayOfweek === 'Saturday'){
+    console.log('土曜日は最高');
+}else if (dayOfweek === 'Friday');{
+    console.log('仕事が終わってからの花金は最高')
+}　//仕事が終わってからの花金は最高
+```
+
+```javascript
+const age = 4;
+if (age < 5){
+    console.log('無料になります')
+}else if (age < 10){
+    console.log ('子供料金なので1000円になります');
+}else if (age < 65){
+    console.log ('大人料金なので2000円になります');
+}　//無料になります　(4は10や65未満でもあるが、上から実行されるため、最初に指定されたlogになる)
+```
+---
+
+`else if`  
+条件分岐の最後に登場する。「それ以外は」
+```javascript
+const dayOfweek = prompt('英語で曜日を入力してください').toLowerCase();
+
+if (dayOfweek === 'monday'){
+    console.log('月曜日は憂鬱');
+} else if (dayOfweek === 'saturday'){
+    console.log('土曜日は最高');
+}else if (dayOfweek === 'friday'){
+    console.log('仕事が終わってからの花金は最高')
+}else{
+    console.log ('はあ。。。');
+}　//promptで入力画面が表示され、入力された文字に合わせて出力される。monday、saturday、friday以外は全てelseである、「はあ。。。」が出力される。toLowerCase()を入れておくことで、入力が大文字でも小文字に統一される
+```
+
+```javascript
+console.log('条件分岐の前');
+let random = Math.random();
+if (random < 0.5){
+    console.log('数字は0.5より小さい');
+}else {
+    console.log('数字は0.5以上');
+}
+console.log(random);　//elseでは、ramdomが0.5より小さいもの以外(つまり0.5以上)を表示
+```
+
+```javascript
+const age = 64;
+if (age < 5){
+    console.log('無料になります')
+}else if (age < 10){
+    console.log ('子供料金なので1000円になります');
+}else if (age < 65){
+    console.log ('大人料金なので2000円になります');
+}else {
+    console.log('シニア料金なので、1000円になります');
+}　//elseでは、それ以外の人はシニアになるので上記の表示になる
+```
+---
+
+### if文のネスト
+if文の中にif文を入れる
+ネストした文章
+```javascript
+const password = prompt('パスワードを入力してください');
+//▼パスワードは6文字以上
+if (password.length >= 6) {
+    //▼パスワードには空白を含めてはいけない
+    if (password.indexOf(' ') === -1){
+        console.log('素晴らしいパスワードです')
+    }else{
+        console.log('パスワードは空白を含んではいけません')
+    }
+}else{
+    console.log('パスワードが短すぎます。6文字以上にしてください。')
+}
+
+//indexOfは、()内の単語の場所の位置(何文字目か)を教えてくれる。入っていなければ-1が出力されるため、('')で空白を調べ、-1によって空白が存在するかどうかを調べることができる
+```
+---
+
+### TRUTHY/FALSYな値
+falsyな値
+`faise`
+`0`
+`""(空文字)`
+`null`
+`undefined`
+`NaN`
+上記以外はtruthyな値
+
+```javascript
+if ('null'){
+    console.log('TRUTHY');
+}else{
+    console.log('FALSY');
+} //FALSY　(nullはFALSYである)
+```
+---
+
+### 論理演算子
+&&　且つ
+
+```javascript
+1 === 1 && 2 < 7 //true　(&&の左右どちらもtrueなのでtrueになる)
+
+const password = prompt('パスワードを入力してください');
+
+if(password.length >= 6 && password.indexOf(' ') === -1){
+    console.log('素晴らしいパスワードです！');
+}else{
+    console.log('パスワードのフォーマットが無効です');
+} //パスワードが6桁以上で且つ空白が含まれていないもののみ、素晴らしいパスワードです！が出力される
+```
+
+
