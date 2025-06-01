@@ -416,7 +416,7 @@ if ('null'){
 ---
 
 ### 論理演算子
-&&　且つ
+`&& (且つ)`
 
 ```javascript
 1 === 1 && 2 < 7 //true　(&&の左右どちらもtrueなのでtrueになる)
@@ -430,4 +430,99 @@ if(password.length >= 6 && password.indexOf(' ') === -1){
 } //パスワードが6桁以上で且つ空白が含まれていないもののみ、素晴らしいパスワードです！が出力される
 ```
 
+`||（OR）`
+片方がtrueならtrueとなる
+||
+〇〇か〇〇ならtrue
+```javascript
+const age = -10;
+if((age >= 0 && age< 5) || age >= 65){ //0歳以上且つ、5歳未満または65歳以上
+    console.log('無料です');
+}else if (age >= 5 && age < 10){ //5歳以上且つ、10歳未満
+    console.log('子供です');
+}else if (age >= 10 && age < 65){ //10歳以上且つ、65歳未満
+    console.log('大人料金です');
+} else{ //その他は「無効な年齢です」
+    console.log('無効な年齢です');
+}
+// 無効な年齢です（-がつくとあり得ない年齢なので、無効と出る。）
+```
 
+`!（NOT）`
+!は、trueとfalseを反転させる
+```javascript
+let username = prompt('ユーザーを入力してください');
+if (!username){//空文字はfalseyな値なので、!をつけてtrueにする。そのため以下が実行される
+    username = prompt('問題が起きました。ユーザー名を入力してください:');
+}//空白で入力した場合、問題が起きました。ユーザー名を入力してくださいと出力される
+```
+
+```javascript
+const age = 8;
+if(!(age >= 0 && age< 5 || age >= 65)){ //0歳以上且つ、5歳未満または65歳以上じゃない人(!がついているので否定形)
+    console.log('有料です');
+}//有料です
+```
+
+### SWITCH
+条件分岐の一種で、一つの値を基点とした場合わけに特化している
+
+```javascript
+const day = 1;
+
+switch(day){
+    case 1:
+    console.log('hello');
+}//const dayが1の場合console.logを実行
+```
+`break;`
+```javascript
+const day = 3;
+
+switch (day){
+    case 1:
+        console.log('月曜日');
+        break;
+    case 2:
+        console.log('火曜日');
+        break;
+    case 3:
+        console.log('水曜日');
+        break;
+    case 4:
+        console.log('木曜日');
+        break;
+    case 5:
+        console.log('金曜日');
+        break;
+}//水曜日　constの数字と同じものに入れ替わる。breakとは、そこで打ち切りを示す。switchには、仮に3が選ばれたら、後続の木曜日 金曜日も呼び出される特性があるので、breakを使用してそれ以降の呼び出しを止める。
+```
+
+`default`
+```javascript
+const day = 6;
+
+switch (day){
+    case 1:
+        console.log('月曜日');
+        break;
+    case 2:
+        console.log('火曜日');
+        break;
+    case 3:
+        console.log('水曜日');
+        break;
+    case 4:
+        console.log('木曜日');
+        break;
+    case 5:
+        console.log('金曜日');
+        break;
+    case 6:
+    case 7:
+        console.log('週末')
+        break;//breakがない限り後続を出力し続ける特性を利用し、6と7を共に同じ出力にしたい場合は、breakを用いず、続けて記載する。
+    default:
+        console.log('無効な数字です');//elseの役割。上記以外の数字が入力されると出力される
+}
+```
