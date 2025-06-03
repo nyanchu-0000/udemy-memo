@@ -91,30 +91,30 @@
 //     console.log('hello');
 // }//const dayが1の場合console.logを実行
 
-const day = 7;
+// const day = 7;
 
-switch (day) {
-    case 1:
-        console.log("月曜日");
-        break;
-    case 2:
-        console.log("火曜日");
-        break;
-    case 3:
-        console.log("水曜日");
-        break;
-    case 4:
-        console.log("木曜日");
-        break;
-    case 5:
-        console.log("金曜日");
-        break;
-    case 6:
-    case 7:
-        console.log("週末");
-        break; //breakがない限り後続を出力し続ける特性を利用し、6と7を共に同じ出力にしたい場合は、breakを用いず、続けて記載する。
-    default:
-        console.log("無効な数字です"); //elseの役割。上記以外の数字が入力されると出力される
-}
+// switch (day) {
+//     case 1:
+//         console.log("月曜日");
+//         break;
+//     case 2:
+//         console.log("火曜日");
+//         break;
+//     case 3:
+//         console.log("水曜日");
+//         break;
+//     case 4:
+//         console.log("木曜日");
+//         break;
+//     case 5:
+//         console.log("金曜日");
+//         break;
+//     case 6:
+//     case 7:
+        // console.log("週末");
+        // break; //breakがない限り後続を出力し続ける特性を利用し、6と7を共に同じ出力にしたい場合は、breakを用いず、続けて記載する。
+    // default:
+    //     console.log("無効な数字です"); //elseの役割。上記以外の数字が入力されると出力される
+// }
 
 //水曜日　constの数字と同じものに入れ替わる。breakとは、そこで打ち切りを示す。switchには、仮に3が選ばれたら、後続の木曜日 金曜日も呼び出される特性があるので、breakを使用してそれ以降の呼び出しを止める。
