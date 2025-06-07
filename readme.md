@@ -665,6 +665,8 @@ pop-末尾を取り除く
 shift-先頭を取り除く
 unshift-先頭に追加
 
+.〇〇()になる。追加する場合は()内に追加する文言を入力し、削除の場合は()のみで良い
+
 `.push()`末尾に追加
 
 ```javascript
@@ -682,7 +684,7 @@ movieLine; //['yamada', 'tanaka', 'suzuki', 'sato'] (pushメソッドを追加�
 
 ```javascript
 let movieLine = ["yamada", "tanaka", "suzuki", "sato"];
-movieLine.pop(); //'sato' (末尾の要素がが帰ってくる)
+movieLine.pop(); //'sato' (末尾の要素が返ってくる)
 movieLine; //['yamada', 'tanaka', 'suzuki'] (末尾の'sato'が取り除かれる)
 ```
 
@@ -691,4 +693,114 @@ let blocks = ["tumiki1", "tumiki2", "tumiki3"];
 blocks.pop(); //tumiki3
 blocks.pop(); //tumiki2
 blocks.pop(); //tumiki1
+```
+
+`shift()`先頭を取り除く
+
+```javascript
+let movieLine = ["yamada", "tanaka", "suzuki", "sato"];
+movieLine.shift(); //'yamada' (先頭のyamadaを取り除く)
+movieLine; //[ "tanaka", "suzuki", "sato"]
+```
+
+`.unshift()`先頭に追加
+
+```javascript
+let movieLine = ["yamada", "tanaka", "suzuki", "sato"];
+movieLine.unshift("vip"); //(先頭にvipを追加する)
+movieLine[("vip", "yamada", "tanaka", "suzuki", "sato")];
+```
+
+#### その他のメソッド
+
+`concat()`配列を融合
+二つの配列を結合して新しい配列を作る。（元の配列の中身は変わらない）
+
+```javascript
+let cats = ["tama", "tora"];
+let dogs = ["poch", "hach"];
+cats.concat(dogs); //['tama', 'tora', 'poch', 'hach'] (dogsに融合するため、先頭は猫の名前で後ろに犬が入る)
+dogs.concat(cats); //['poch', 'hach', 'tama', 'tora'] (この場合、catsに融合するため、先頭は犬の名前で後ろに猫が入る)
+```
+
+`includes()`boolian（true,false）を返すメソッド
+配列の中に、指定した値が含まれているかどうかをチェックする
+
+```javascript
+let cats = ["tama", "tora"];
+cats.includes("tama"); //true (catsの中にtamaが入っているため)
+cats.includes("Tama"); //false (完全一致をチェックするので、大文字はfalseになる)
+```
+
+`indexOf()`（index は、（）内の文字が何文字目にあるかを教えてくれるメソッド。ないものは-1 で返される）
+文字列だけでなく、配列の単語の位置も調べることができる
+
+```javascript
+let pets = ["poch", "hach", "tama", "tora"];
+pets.indexOf("pochi"); //0 (0番目にpochiがある)
+pets.indexOf("tama"); //2
+pets.indexOf("luna"); //-1 (存在しないものは-1)
+```
+
+```javascript
+let pets = ['poch', 'hach', 'tama', 'tora' 'tama']
+pets.indexOf('tama'); //2 (文字列の時と同じで、最初に登場した単語の位置になる)
+```
+
+`reverse()`配列を逆順に変更させる
+元々の配列自体の順番を変更する
+
+```javascript
+let pets = ["poch", "hach", "tama", "tora"];
+pets.reverse(); //['tora', 'tama', 'hach', 'poch']
+pets; //['tora', 'tama', 'hach', 'poch'] (新しい配列が逆順になったのではなく、pets自体が逆順になる)
+```
+
+`.slice()`配列の一部分を切り取って新しい配列を作ることができる
+元の配列は変わらない
+
+```javascript
+let colors = ["red", "orange", "yellow", "green", "blue", "black", "white"];
+colors.slice(); //['red', 'orange', 'yellow', 'green', 'blue', 'black', 'white']; (返答はそのままだが、新しい配列がコピーされる)
+colors.slice(1); //['orange', 'yellow', 'green', 'blue', 'black', 'white'] (コピーではなく、切り取りをしたい際には()内に開始地点を入れる。orange以降を切り取りたい場合は、orangeは1番目なので1を入れる)
+```
+
+```javascript
+let colors = ["red", "orange", "yellow", "green", "blue", "black", "white"];
+color.slice(2, 4); //['yellow, 'green'] (終わり一も指定できる。4はblueになるが、入力した値の位置は含まれず、一個前のものになるので注意)
+colors.slice(-1); //['white'] （-を入れると、後ろからカウントされる）
+```
+
+`.splice()`既存の要素を取り除いたり、置き換えたり、新しい要素を追加したりすることができる
+元の配列自体が変わる
+
+いくつ目以降いくつ消したいかを記載
+
+```javascript
+let colors = ["red", "orange", "yellow", "green", "blue", "black", "white"];
+colors.splice(5, 1); //['black'] (ブラックを削除する。5個目から1つを削除)
+colors; //['red', 'orange', 'yellow', 'green', 'blue', 'white'];
+```
+
+```javascript
+let days = ["Monday", "Tuesday", "Wednesday"];
+days.splice(1, 2); //['Tuesday', 'Wednesday'] (1つ目の単語移行2つ消す)
+days; //['Monday']
+```
+
+〇〇.splice(1, 0, '〇〇')
+1→index の位置(単語位置) 0→ 消す個数 〇〇 → 追加する単語
+
+```javascript
+let colors = ["red", "orange", "yellow", "green", "blue", "black", "white"];
+colors.splice(1, 0, "red-orange"); //1つ目のインデックスを0個削除し、'red-orangeを追加する'
+colors; //['red', 'red-orange', 'orange', 'yellow', 'green', 'blue', 'black', 'white']
+
+colors.splice(4, 0, "yellow-green", "frestgreen"); //複数追加することもできる
+colors; //['red', 'red-orange', 'orange', 'yellow', 'yellow-green', 'frestgreen' 'green', 'blue', 'black', 'white']
+```
+
+```javascript
+colors.splice(2, 2, "DELETED!!!"); //2つ目のインデックスから2つ削除し、DELETED!!!を追加する
+colors; //['red', 'red-orange', 'DELETED!!!', 'yellow-green', 'frestgreen' 'green', 'blue', 'black', 'white']
 ```
