@@ -836,14 +836,75 @@ myEggs.push('purple');
 myEggs[0] = 'green'; //メソッドを使用して同じ箱の中の中身を変えることはok
 
 myEggs = ['blue', 'pink']; //Error! 直接myEggsを再代入することは、違う箱を作っていることと同じになるのでNG
+```
 
+#### 多次元配列
+配列の中に配列を入れる
+```javascript
+const gameBoard = [['X', 'O', 'X'], ['O', null, 'X'], ['O', 'O, 'X'']];
+gameBoard[1] //['O', null, 'X']
+gameBoard[1][1] //null (2個目の配列の2目の単語はnull)
+```
+```javascript
+const airplaneSeats = [
+    ['Ruth', 'Anthony', 'Stevie'],
+    ['Amelia', 'Pedro', 'Maya'],
+    ['Xavier', 'Ananya', 'Luis'],
+    ['Luke', null, 'Deniz'],
+    ['Rin', 'Sakura', 'Francisco']
+];
+
+airplaneSeats[3][1] = 'Yumi' //airplaneSeatsの中のnullの値をYumiに代入する
+```
+
+### オブジェクト
+プロパティの集合体
+プロパティはキーと値のペア
+
+オブジェクトリテラル
+配列もBooloanでもなんでも入れられる
+```javascript
+const cat = {
+    name: 'Tama',
+    age: 2,
+    colors: ['orange', 'white'],
+    isHungry: true
+} //〇〇(キー)：〇〇((値)
+```
+
+#### オブジェクトからデータにアクセスする
+オブジェクトを作成するときは{}、データにアクセスするときは[]
+```javascript
+const person = {firstName: 'Taro', lastName: 'Yamada'}
+person['firstName'] //'Taro'
+person['lastName'] //'Yamada'
+```
+オブジェクトのキーはStringに変換される
+```javascript
+const years = {1999: 'good', 2020: 'bad'};
+years //{1999: 'good', 2020: 'bad'}
+years[1999] //'good'
+years['1999'] //'good' (stringでもstringじゃなくても大丈夫。ナンバー型はstringではないので、'1999'ではなく1999でもok（ナンバー型は変数にならない)
 ```
 
 ```javascript
+const person = {firstName: 'Taro', lastName: 'Yamada'}
+person.fistName //'Taro' (変数.キーはok。''なしでok)
+person['firstName'] //'Taro'
+person[firstName] //Error! (変数は必ずstring型なので''で囲う必要がある)
+person['first' + 'NAme'] //'Taro' (+で繋げてもok)
 ```
 
 ```javascript
-```
+const restaurant = {
+    name: 'Ichiran Ramen',
+    address: `${Math.floor(Math.random() * 100) + 1} Johnson Ave`,
+    city: 'Brooklyn',
+    state: 'NY',
+    zipcode: '11206',
+}
 
-```javascript
+//restaurantの情報を使ってfullAddressという変数に住所を代入する
+const fullAddress = restaurant['address'] + ',' + restaurant['city'] + ',' + restaurant['state'] + ',' + restaurant['zipcode'] 
+//'64 Johnson Ave, Brooklyn, NY 11206'
 ```
