@@ -804,3 +804,46 @@ colors; //['red', 'red-orange', 'orange', 'yellow', 'yellow-green', 'frestgreen'
 colors.splice(2, 2, "DELETED!!!"); //2つ目のインデックスから2つ削除し、DELETED!!!を追加する
 colors; //['red', 'red-orange', 'DELETED!!!', 'yellow-green', 'frestgreen' 'green', 'blue', 'black', 'white']
 ```
+
+`sort`並びかえる
+sortする際にstringに変換される
+```javascript
+let scores = [1, 70, 100, 2500, 9, 0, 34];
+scores.sort() //[-12, 0, 100, 2500, 34, 70, 9] (-は0より前、0以降、小さい順に並ぶが、1の次は9ではなく、数字の一文字目で判断されるため、100の1文字目が1なので前に来る。その次は2の2500)
+```
+
+#### 配列の等価性
+配列の中身が等しいかどうかではなく、全く同じ配列を指しているかどうかを確認している
+```javascript
+['hai', 'bye'] === ['hai', 'bye'] //false (配列の中身は同じでも配列の参照先（メモリ上のアドレス先が違うため)
+```
+```javascript
+let nums = [1, 2, 3];
+let numsCopy = naums;
+
+nums.push(4);
+nums //[1, 2, 3, 4]
+numsCopy //[1, 2, 3, 4]
+//この場合は、nums=「1, 2, 3, 4]=numsCopyのため、同じ住所を指していることになる
+```
+
+### 配列のconst
+中の値は変更できるが、変数への再代入はできない
+
+```javascript
+const myEggs = ['brown', 'brown'];
+myEggs.push('purple');
+myEggs[0] = 'green'; //メソッドを使用して同じ箱の中の中身を変えることはok
+
+myEggs = ['blue', 'pink']; //Error! 直接myEggsを再代入することは、違う箱を作っていることと同じになるのでNG
+
+```
+
+```javascript
+```
+
+```javascript
+```
+
+```javascript
+```
