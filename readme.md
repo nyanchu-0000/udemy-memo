@@ -908,3 +908,48 @@ const restaurant = {
 const fullAddress = restaurant['address'] + ',' + restaurant['city'] + ',' + restaurant['state'] + ',' + restaurant['zipcode'] 
 //'64 Johnson Ave, Brooklyn, NY 11206'
 ```
+
+#### データの参照方法
+```javascript
+const midterms = {taro: 96, jiro: 78};
+midterms.jiro //78
+midterms.jiro = 79; //jiroを79に変更
+midterms //{taro: 96, jiro: 79}
+
+midterms['jiro'] = 79 //[]での指定
+```
+```javascript
+midterms.saburo = 80;
+midterms //{taro: 96, jiro: 79, saburo: 80}
+
+midterms['saburo'] = 80; //[]での指定
+```
+
+#### 配列とオブジェクト
+```javascript
+const comments = [
+    {username: 'yamada', text: 'ああああ', votes: 9},
+    {username: 'tanaka', text: 'いいいい', votes: 123}
+]
+
+comments[1]['text'] //'いいいい' (インデックスが1の要素、その中のtextを見る)
+```
+
+### 繰り返し処理
+#### ループ
+'hello'を10回出力する、配列の中の全数字の和を求める など
+
+`for文`
+変数はiが主流。それぞれの箇所を;で分ける
+1〜10までの数字を出力する
+```javascript
+for(let i = 1; i <= 10; i++){ //1から設定したいので、1を設定。i++は増減式。この場合、1<=10までの間は一つずつ増加し続ける>
+    console.log(i);
+}
+```
+'Da ba dee da ba daa'を6回出力する
+```javascript
+for(let i = 1; i <= 6; i++){
+    console.log('Da ba dee da ba daa');
+} //console.log内に文字列を入れることで、特定の文字を繰り返すことができる
+```
