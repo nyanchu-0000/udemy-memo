@@ -953,3 +953,35 @@ for(let i = 1; i <= 6; i++){
     console.log('Da ba dee da ba daa');
 } //console.log内に文字列を入れることで、特定の文字を繰り返すことができる
 ```
+#### for文でループ
+0〜20までの偶数を出力させる
+
+```javascript
+for(let i 0; i <= 20; i += 2){ //2から始めたいときは、0のところを2に変更する。奇数を出力したいときは、0を1に変更すれば、1を2ずつ足していくので奇数になる
+    console.log(i);
+}
+```
+100から0まで10ずつ減らす
+```javascript
+for (let i = 100; i >= 0; i -= 10){
+    console.log(i);
+}
+```
+10から1000まで10ずつかける
+```javascript
+for (let i = 10; i <= 1000; i *= 10){
+    console.log(i);
+}
+```
+```javascript
+for (let i = 0; i < animals.lengs; i++>){
+    console.log(i,animals[i]);
+}
+```
+const people = ["Scooby", "Velma", "Daphne", "Shaggy", "Fred"];
+peopleという変数に人の名前を入れています。この配列の一つ一つの要素をfor文で処理して、名前を大文字でconsole.logしてください。
+```javascript
+for (let i =　0; i < people.length; i++){
+    console.log(people[i].toUpperCase());
+}
+```
