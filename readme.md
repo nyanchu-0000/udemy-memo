@@ -985,3 +985,16 @@ for (let i =　0; i < people.length; i++){
     console.log(people[i].toUpperCase());
 }
 ```
+#### ループのネスト
+
+```javascript
+for (let i = 1; i <= 10; i++){
+    console.log(`iは${i}`);
+    for (let j = 1; j < 4; j++>){
+        console.log(` jは${j}`);
+    }
+}
+//iが1〜10まで一つずつプラスされていく
+//jが1〜3まで一つずつプラスされていく
+//iが1を出力し、jが1 2 3 を出力。4は出力されないので、その時点で出力が中断され、iの出力に戻る。iが2を出力し、jが1 2 3を出力
+```
