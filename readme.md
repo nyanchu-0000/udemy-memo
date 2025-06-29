@@ -1030,3 +1030,88 @@ while(guess !== SECRET){
 }//入力したコードが一致するまでループされる
 console.log('正解！！おめでとう！！');
 ```
+####　breakについて
+```javascript
+let = input = prompt('何か入力してください');
+while(true){
+    input = prompt(input);
+    if (input === 'quit'){
+        break;
+    }
+}//quitとinputが一致したらbreakがかかって終了させる。
+```
+####　for...of
+配列の要素を順番に処理できる　　
+for (変数 of 列挙可能なオブジェクト){
+    //処理の内容
+}
+
+記述が長くなってしまう↓
+```javascript
+const subreddits = [
+    'cooking',
+    'books',
+    'lofe',
+    'pics',
+];
+
+for (let i = 0; i < subreddita.length; i++){
+    console.log(`Visit reddit.com/r/${subreddits[i]}`;)
+}
+```
+上と同じ出力でまとめることができる↓
+```javascript
+for (let subreddit of subreddits){
+    console.log(subreddit);
+}
+```
+
+#### オブジェクトの中をイテレート
+ループできるのは配列だけではない
+```javascript
+const testScores = {
+    ken: 80,
+    yuki: 70,
+    taro: 56,
+    mina: 78,
+    yuko: 76,
+}
+
+for (let student of Object.keys(testScores)){
+    console.log(`${student}さんは${testScores[student]}`);
+}
+//kenさんは80
+//VM63:2 yukiさんは70
+//VM63:2 taroさんは56
+//VM63:2 minaさんは78
+//VM63:2 yukoさんは76
+```
+同じ出力をfor...inで行う
+```javascript
+for (let student in testScores){
+    console.log(`${student}さんは${testScores[student]}`);
+}
+```
+#### todoアプリを作る
+・quitが来たらループを抜けさせる
+・ユーザーの入力はpromptを使用
+・todoの保存は配列を使用
+・spliceを使用して指定のインデックスを削除する
+
+```javascript
+let = input = prompt('コマンドを入力してください(new,list,delet,quit)');
+while(true){
+    input = prompt(input);
+    if (input === 'quit'){
+        break;
+    }
+}
+console.log('アプリを終了しました')
+
+let input = delet;
+list.splice(index); 
+console.log('${index}を削除しました')
+
+
+```
+
