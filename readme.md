@@ -998,3 +998,35 @@ for (let i = 1; i <= 10; i++){
 //jが1〜3まで一つずつプラスされていく
 //iが1を出力し、jが1 2 3 を出力。4は出力されないので、その時点で出力が中断され、iの出力に戻る。iが2を出力し、jが1 2 3を出力
 ```
+
+```javascript
+const seatingChart = [
+    ['伊藤', '松本', '鈴木'],
+    ['井上', '田中', '河野', '吉田'],
+    ['安部', '後藤', '橋本']
+];
+
+for (let i = 0; i < seatingChart.length; i++){
+    const row = seatingChart[i];//iは行
+    for (let j = 0; j < row.length; j++){//jは列
+        console.log(row[j]);
+    }
+}
+```
+
+####　whileでのループ
+```javascript
+let const = 0;
+while (count < 10){
+    console.log(count)
+    count++;
+}
+```
+```javascript
+const SECRET = 'supersecret';
+let guess = prompt('秘密のコードを入力してください');
+while(guess !== SECRET){
+    guess = prompt('秘密のコードを入力してください');
+}//入力したコードが一致するまでループされる
+console.log('正解！！おめでとう！！');
+```
