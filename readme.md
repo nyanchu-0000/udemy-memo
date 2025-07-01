@@ -1127,7 +1127,13 @@ funcName();
 関数の入力値
 
 ```javascript
-function greet(firstName){
+function greet(firstName){//定義するものの()内の言葉をパラメーターという
     console.log(`firstName: ${firstName}`);
 }
+
+//以下出力
+
+greet('taro')//firstNAme:taro
+greet();//undefined
+//実行する際の()内の言葉を引数という
 ```
