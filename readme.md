@@ -1111,7 +1111,23 @@ console.log('アプリを終了しました')
 let input = delet;
 list.splice(index); 
 console.log('${index}を削除しました')
-
+```
+### 関数
+再利用可能な処理
+▼定義
+function funcName(){
+    //なんらかの処理
+}
+▼実行
+funcName();
+```javascript
 
 ```
+#### 関数の引数
+関数の入力値
 
+```javascript
+function greet(firstName){
+    console.log(`firstName: ${firstName}`);
+}
+```
