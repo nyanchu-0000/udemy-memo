@@ -1114,14 +1114,22 @@ console.log('${index}を削除しました')
 ```
 ### 関数
 再利用可能な処理
-▼定義
-function funcName(){
-    //なんらかの処理
-}
-▼実行
-funcName();
-```javascript
 
+```javascript
+//▼定義
+function funcName(){
+    console.log('あああ');//なんらかの処理
+}
+//▼実行
+funcName();
+```
+printHeartという関数を定義して、'<3'を出力させる
+```javascript
+function printHeart(){
+    console.log('<3');
+}
+
+printHeart();
 ```
 #### 関数の引数
 関数の入力値
@@ -1130,10 +1138,40 @@ funcName();
 function greet(firstName){//定義するものの()内の言葉をパラメーターという
     console.log(`firstName: ${firstName}`);
 }
-
 //以下出力
-
 greet('taro')//firstNAme:taro
 greet();//undefined
 //実行する際の()内の言葉を引数という
+```
+3回console.logで、messageを大文字に変換した内容を出力
+```javascript
+function shout(message) {
+    const uppercasedMessage = message.toUpperCase(); 
+
+    console.log(uppercasedMessage);
+    console.log(uppercasedMessage);
+    console.log(uppercasedMessage);
+}
+```
+
+#### 複数の引数を渡せる関数
+Hi, Ken F.を出力する
+```javascript
+function greet(firstName, lastName){//定義するものの()内の言葉をパラメーターという
+    console.log(`Hi, ${firstName} ${lastName[0]}.`);
+}
+
+greet('Ken', 'Fukuyama'); //Hi, Ken F.
+```
+hihihiを出力する
+```javascript
+function repeat(str, numTimes){
+    let result = '';
+    for (let i = 0; i < numTimes; i++){
+        result += str;
+    }
+    console.log(result);
+}
+
+repeat('hi', 3)//hihihi
 ```
