@@ -806,185 +806,225 @@ colors; //['red', 'red-orange', 'DELETED!!!', 'yellow-green', 'frestgreen' 'gree
 ```
 
 `sort`並びかえる
-sortする際にstringに変換される
+sort する際に string に変換される
+
 ```javascript
 let scores = [1, 70, 100, 2500, 9, 0, 34];
-scores.sort() //[-12, 0, 100, 2500, 34, 70, 9] (-は0より前、0以降、小さい順に並ぶが、1の次は9ではなく、数字の一文字目で判断されるため、100の1文字目が1なので前に来る。その次は2の2500)
+scores.sort(); //[-12, 0, 100, 2500, 34, 70, 9] (-は0より前、0以降、小さい順に並ぶが、1の次は9ではなく、数字の一文字目で判断されるため、100の1文字目が1なので前に来る。その次は2の2500)
 ```
 
 #### 配列の等価性
+
 配列の中身が等しいかどうかではなく、全く同じ配列を指しているかどうかを確認している
+
 ```javascript
-['hai', 'bye'] === ['hai', 'bye'] //false (配列の中身は同じでも配列の参照先（メモリ上のアドレス先が違うため)
+["hai", "bye"] === ["hai", "bye"]; //false (配列の中身は同じでも配列の参照先（メモリ上のアドレス先が違うため)
 ```
+
 ```javascript
 let nums = [1, 2, 3];
 let numsCopy = naums;
 
 nums.push(4);
-nums //[1, 2, 3, 4]
-numsCopy //[1, 2, 3, 4]
+nums; //[1, 2, 3, 4]
+numsCopy; //[1, 2, 3, 4]
 //この場合は、nums=「1, 2, 3, 4]=numsCopyのため、同じ住所を指していることになる
 ```
 
-### 配列のconst
+### 配列の const
+
 中の値は変更できるが、変数への再代入はできない
 
 ```javascript
-const myEggs = ['brown', 'brown'];
-myEggs.push('purple');
-myEggs[0] = 'green'; //メソッドを使用して同じ箱の中の中身を変えることはok
+const myEggs = ["brown", "brown"];
+myEggs.push("purple");
+myEggs[0] = "green"; //メソッドを使用して同じ箱の中の中身を変えることはok
 
-myEggs = ['blue', 'pink']; //Error! 直接myEggsを再代入することは、違う箱を作っていることと同じになるのでNG
+myEggs = ["blue", "pink"]; //Error! 直接myEggsを再代入することは、違う箱を作っていることと同じになるのでNG
 ```
 
 #### 多次元配列
+
 配列の中に配列を入れる
+
 ```javascript
 const gameBoard = [['X', 'O', 'X'], ['O', null, 'X'], ['O', 'O, 'X'']];
 gameBoard[1] //['O', null, 'X']
 gameBoard[1][1] //null (2個目の配列の2目の単語はnull)
 ```
+
 ```javascript
 const airplaneSeats = [
-    ['Ruth', 'Anthony', 'Stevie'],
-    ['Amelia', 'Pedro', 'Maya'],
-    ['Xavier', 'Ananya', 'Luis'],
-    ['Luke', null, 'Deniz'],
-    ['Rin', 'Sakura', 'Francisco']
+    ["Ruth", "Anthony", "Stevie"],
+    ["Amelia", "Pedro", "Maya"],
+    ["Xavier", "Ananya", "Luis"],
+    ["Luke", null, "Deniz"],
+    ["Rin", "Sakura", "Francisco"],
 ];
 
-airplaneSeats[3][1] = 'Yumi' //airplaneSeatsの中のnullの値をYumiに代入する
+airplaneSeats[3][1] = "Yumi"; //airplaneSeatsの中のnullの値をYumiに代入する
 ```
 
 ### オブジェクト
+
 プロパティの集合体
 プロパティはキーと値のペア
 
 オブジェクトリテラル
-配列もBooloanでもなんでも入れられる
+配列も Booloan でもなんでも入れられる
+
 ```javascript
 const cat = {
-    name: 'Tama',
+    name: "Tama",
     age: 2,
-    colors: ['orange', 'white'],
-    isHungry: true
-} //〇〇(キー)：〇〇((値)
+    colors: ["orange", "white"],
+    isHungry: true,
+}; //〇〇(キー)：〇〇((値)
 ```
 
 #### オブジェクトからデータにアクセスする
+
 オブジェクトを作成するときは{}、データにアクセスするときは[]
+
 ```javascript
-const person = {firstName: 'Taro', lastName: 'Yamada'}
-person['firstName'] //'Taro'
-person['lastName'] //'Yamada'
+const person = { firstName: "Taro", lastName: "Yamada" };
+person["firstName"]; //'Taro'
+person["lastName"]; //'Yamada'
 ```
-オブジェクトのキーはStringに変換される
+
+オブジェクトのキーは String に変換される
+
 ```javascript
-const years = {1999: 'good', 2020: 'bad'};
-years //{1999: 'good', 2020: 'bad'}
-years[1999] //'good'
-years['1999'] //'good' (stringでもstringじゃなくても大丈夫。ナンバー型はstringではないので、'1999'ではなく1999でもok（ナンバー型は変数にならない)
+const years = { 1999: "good", 2020: "bad" };
+years; //{1999: 'good', 2020: 'bad'}
+years[1999]; //'good'
+years["1999"]; //'good' (stringでもstringじゃなくても大丈夫。ナンバー型はstringではないので、'1999'ではなく1999でもok（ナンバー型は変数にならない)
 ```
 
 ```javascript
-const person = {firstName: 'Taro', lastName: 'Yamada'}
-person.fistName //'Taro' (変数.キーはok。''なしでok)
-person['firstName'] //'Taro'
-person[firstName] //Error! (変数は必ずstring型なので''で囲う必要がある)
-person['first' + 'NAme'] //'Taro' (+で繋げてもok)
+const person = { firstName: "Taro", lastName: "Yamada" };
+person.fistName; //'Taro' (変数.キーはok。''なしでok)
+person["firstName"]; //'Taro'
+person[firstName]; //Error! (変数は必ずstring型なので''で囲う必要がある)
+person["first" + "NAme"]; //'Taro' (+で繋げてもok)
 ```
 
 ```javascript
 const restaurant = {
-    name: 'Ichiran Ramen',
+    name: "Ichiran Ramen",
     address: `${Math.floor(Math.random() * 100) + 1} Johnson Ave`,
-    city: 'Brooklyn',
-    state: 'NY',
-    zipcode: '11206',
-}
+    city: "Brooklyn",
+    state: "NY",
+    zipcode: "11206",
+};
 
 //restaurantの情報を使ってfullAddressという変数に住所を代入する
-const fullAddress = restaurant['address'] + ',' + restaurant['city'] + ',' + restaurant['state'] + ',' + restaurant['zipcode'] 
+const fullAddress =
+    restaurant["address"] +
+    "," +
+    restaurant["city"] +
+    "," +
+    restaurant["state"] +
+    "," +
+    restaurant["zipcode"];
 //'64 Johnson Ave, Brooklyn, NY 11206'
 ```
 
 #### データの参照方法
-```javascript
-const midterms = {taro: 96, jiro: 78};
-midterms.jiro //78
-midterms.jiro = 79; //jiroを79に変更
-midterms //{taro: 96, jiro: 79}
 
-midterms['jiro'] = 79 //[]での指定
+```javascript
+const midterms = { taro: 96, jiro: 78 };
+midterms.jiro; //78
+midterms.jiro = 79; //jiroを79に変更
+midterms; //{taro: 96, jiro: 79}
+
+midterms["jiro"] = 79; //[]での指定
 ```
+
 ```javascript
 midterms.saburo = 80;
-midterms //{taro: 96, jiro: 79, saburo: 80}
+midterms; //{taro: 96, jiro: 79, saburo: 80}
 
-midterms['saburo'] = 80; //[]での指定
+midterms["saburo"] = 80; //[]での指定
 ```
 
 #### 配列とオブジェクト
+
 ```javascript
 const comments = [
-    {username: 'yamada', text: 'ああああ', votes: 9},
-    {username: 'tanaka', text: 'いいいい', votes: 123}
-]
+    { username: "yamada", text: "ああああ", votes: 9 },
+    { username: "tanaka", text: "いいいい", votes: 123 },
+];
 
-comments[1]['text'] //'いいいい' (インデックスが1の要素、その中のtextを見る)
+comments[1]["text"]; //'いいいい' (インデックスが1の要素、その中のtextを見る)
 ```
 
 ### 繰り返し処理
+
 #### ループ
-'hello'を10回出力する、配列の中の全数字の和を求める など
+
+'hello'を 10 回出力する、配列の中の全数字の和を求める など
 
 `for文`
-変数はiが主流。それぞれの箇所を;で分ける
-1〜10までの数字を出力する
+変数は i が主流。それぞれの箇所を;で分ける
+1〜10 までの数字を出力する
+
 ```javascript
-for(let i = 1; i <= 10; i++){ //1から設定したいので、1を設定。i++は増減式。この場合、1<=10までの間は一つずつ増加し続ける>
+for (let i = 1; i <= 10; i++) {
+    //1から設定したいので、1を設定。i++は増減式。この場合、1<=10までの間は一つずつ増加し続ける>
     console.log(i);
 }
 ```
-'Da ba dee da ba daa'を6回出力する
+
+'Da ba dee da ba daa'を 6 回出力する
+
 ```javascript
-for(let i = 1; i <= 6; i++){
-    console.log('Da ba dee da ba daa');
+for (let i = 1; i <= 6; i++) {
+    console.log("Da ba dee da ba daa");
 } //console.log内に文字列を入れることで、特定の文字を繰り返すことができる
 ```
-#### for文でループ
-0〜20までの偶数を出力させる
+
+#### for 文でループ
+
+0〜20 までの偶数を出力させる
 
 ```javascript
 for(let i 0; i <= 20; i += 2){ //2から始めたいときは、0のところを2に変更する。奇数を出力したいときは、0を1に変更すれば、1を2ずつ足していくので奇数になる
     console.log(i);
 }
 ```
-100から0まで10ずつ減らす
+
+100 から 0 まで 10 ずつ減らす
+
 ```javascript
-for (let i = 100; i >= 0; i -= 10){
+for (let i = 100; i >= 0; i -= 10) {
     console.log(i);
 }
 ```
-10から1000まで10ずつかける
+
+10 から 1000 まで 10 ずつかける
+
 ```javascript
-for (let i = 10; i <= 1000; i *= 10){
+for (let i = 10; i <= 1000; i *= 10) {
     console.log(i);
 }
 ```
+
 ```javascript
 for (let i = 0; i < animals.lengs; i++>){
     console.log(i,animals[i]);
 }
 ```
+
 const people = ["Scooby", "Velma", "Daphne", "Shaggy", "Fred"];
-peopleという変数に人の名前を入れています。この配列の一つ一つの要素をfor文で処理して、名前を大文字でconsole.logしてください。
+people という変数に人の名前を入れています。この配列の一つ一つの要素を for 文で処理して、名前を大文字で console.log してください。
+
 ```javascript
-for (let i =　0; i < people.length; i++){
+for (let i = 0; i < people.length; i++) {
     console.log(people[i].toUpperCase());
 }
 ```
+
 #### ループのネスト
 
 ```javascript
@@ -1001,20 +1041,22 @@ for (let i = 1; i <= 10; i++){
 
 ```javascript
 const seatingChart = [
-    ['伊藤', '松本', '鈴木'],
-    ['井上', '田中', '河野', '吉田'],
-    ['安部', '後藤', '橋本']
+    ["伊藤", "松本", "鈴木"],
+    ["井上", "田中", "河野", "吉田"],
+    ["安部", "後藤", "橋本"],
 ];
 
-for (let i = 0; i < seatingChart.length; i++){
-    const row = seatingChart[i];//iは行
-    for (let j = 0; j < row.length; j++){//jは列
+for (let i = 0; i < seatingChart.length; i++) {
+    const row = seatingChart[i]; //iは行
+    for (let j = 0; j < row.length; j++) {
+        //jは列
         console.log(row[j]);
     }
 }
 ```
 
-####　whileでのループ
+####　 while でのループ
+
 ```javascript
 let const = 0;
 while (count < 10){
@@ -1022,31 +1064,36 @@ while (count < 10){
     count++;
 }
 ```
+
 ```javascript
-const SECRET = 'supersecret';
-let guess = prompt('秘密のコードを入力してください');
-while(guess !== SECRET){
-    guess = prompt('秘密のコードを入力してください');
-}//入力したコードが一致するまでループされる
-console.log('正解！！おめでとう！！');
+const SECRET = "supersecret";
+let guess = prompt("秘密のコードを入力してください");
+while (guess !== SECRET) {
+    guess = prompt("秘密のコードを入力してください");
+} //入力したコードが一致するまでループされる
+console.log("正解！！おめでとう！！");
 ```
-####　breakについて
+
+####　 break について
+
 ```javascript
-let = input = prompt('何か入力してください');
-while(true){
+let = input = prompt("何か入力してください");
+while (true) {
     input = prompt(input);
-    if (input === 'quit'){
+    if (input === "quit") {
         break;
     }
-}//quitとinputが一致したらbreakがかかって終了させる。
+} //quitとinputが一致したらbreakがかかって終了させる。
 ```
-####　for...of
+
+####　 for...of
 配列の要素を順番に処理できる　　
 for (変数 of 列挙可能なオブジェクト){
-    //処理の内容
+//処理の内容
 }
 
-記述が長くなってしまう↓
+記述が長くなってしまう ↓
+
 ```javascript
 const subreddits = [
     'cooking',
@@ -1059,15 +1106,19 @@ for (let i = 0; i < subreddita.length; i++){
     console.log(`Visit reddit.com/r/${subreddits[i]}`;)
 }
 ```
-上と同じ出力でまとめることができる↓
+
+上と同じ出力でまとめることができる ↓
+
 ```javascript
-for (let subreddit of subreddits){
+for (let subreddit of subreddits) {
     console.log(subreddit);
 }
 ```
 
 #### オブジェクトの中をイテレート
+
 ループできるのは配列だけではない
+
 ```javascript
 const testScores = {
     ken: 80,
@@ -1075,9 +1126,9 @@ const testScores = {
     taro: 56,
     mina: 78,
     yuko: 76,
-}
+};
 
-for (let student of Object.keys(testScores)){
+for (let student of Object.keys(testScores)) {
     console.log(`${student}さんは${testScores[student]}`);
 }
 //kenさんは80
@@ -1086,67 +1137,97 @@ for (let student of Object.keys(testScores)){
 //VM63:2 minaさんは78
 //VM63:2 yukoさんは76
 ```
-同じ出力をfor...inで行う
+
+同じ出力を for...in で行う
+
 ```javascript
-for (let student in testScores){
+for (let student in testScores) {
     console.log(`${student}さんは${testScores[student]}`);
 }
 ```
-#### todoアプリを作る
-・quitが来たらループを抜けさせる
-・ユーザーの入力はpromptを使用
-・todoの保存は配列を使用
-・spliceを使用して指定のインデックスを削除する
+
+#### todo アプリを作る
+
+・quit が来たらループを抜けさせる
+・ユーザーの入力は prompt を使用
+・todo の保存は配列を使用
+・splice を使用して指定のインデックスを削除する
 
 ```javascript
-let = input = prompt('コマンドを入力してください(new,list,delet,quit)');
-while(true){
-    input = prompt(input);
-    if (input === 'quit'){
-        break;
+let = input = prompt("コマンドを入力してください(new,list,delete,quit)");
+const todos = ["水やりをする", "掃除をする"];
+while (input !== "quit" && input !== "q") {
+    //quitでもなくqでもない間は処理を続ける
+    if (input === "list") {
+        console.log("**********");
+        for (let i = 0; i < todos.length; i++) {
+            console.log(`${i}: ${todos[i]}`);
+        }
+        console.log("**********");
+    } else if (input === "new") {
+        const newTodo = prompt("新しいTodoを入力してください");
+        todos.push(newTodo);
+        console.log(`「${newTodo}」を追加しました`);
+    } else if (input === "delete") {
+        const index = parseInt(
+            prompt("削除するインデックスを入力してください")
+        );
+        if (!Number.isNaN(index)) {
+            //not a naumberじゃない時は削除
+            const deleted = todos.splice(index, 1);
+            console.log(`「${deleted[0]}」を削除しました`);
+        } else {
+            console.log("有効なインデックスを入力してください");
+        }
     }
+    input = prompt("コマンドを入力してください(new,list,delete,quit)");
 }
-console.log('アプリを終了しました')
-
-let input = delet;
-list.splice(index); 
-console.log('${index}を削除しました')
+console.log("アプリを終了しました");
 ```
+
 ### 関数
+
 再利用可能な処理
 
 ```javascript
 //▼定義
-function funcName(){
-    console.log('あああ');//なんらかの処理
+function funcName() {
+    console.log("あああ"); //なんらかの処理
 }
 //▼実行
 funcName();
 ```
-printHeartという関数を定義して、'<3'を出力させる
+
+printHeart という関数を定義して、'<3'を出力させる
+
 ```javascript
-function printHeart(){
-    console.log('<3');
+function printHeart() {
+    console.log("<3");
 }
 
 printHeart();
 ```
+
 #### 関数の引数
+
 関数の入力値
 
 ```javascript
-function greet(firstName){//定義するものの()内の言葉をパラメーターという
+function greet(firstName) {
+    //定義するものの()内の言葉をパラメーターという
     console.log(`firstName: ${firstName}`);
 }
 //以下出力
-greet('taro')//firstNAme:taro
-greet();//undefined
+greet("taro"); //firstNAme:taro
+greet(); //undefined
 //実行する際の()内の言葉を引数という
 ```
-3回console.logで、messageを大文字に変換した内容を出力
+
+3 回 console.log で、message を大文字に変換した内容を出力
+
 ```javascript
 function shout(message) {
-    const uppercasedMessage = message.toUpperCase(); 
+    const uppercasedMessage = message.toUpperCase();
 
     console.log(uppercasedMessage);
     console.log(uppercasedMessage);
@@ -1155,23 +1236,83 @@ function shout(message) {
 ```
 
 #### 複数の引数を渡せる関数
+
 Hi, Ken F.を出力する
+
 ```javascript
-function greet(firstName, lastName){//定義するものの()内の言葉をパラメーターという
+function greet(firstName, lastName) {
+    //定義するものの()内の言葉をパラメーターという
     console.log(`Hi, ${firstName} ${lastName[0]}.`);
 }
 
-greet('Ken', 'Fukuyama'); //Hi, Ken F.
+greet("Ken", "Fukuyama"); //Hi, Ken F.
 ```
-hihihiを出力する
+
+hihihi を出力する
+
 ```javascript
-function repeat(str, numTimes){
-    let result = '';
-    for (let i = 0; i < numTimes; i++){
+function repeat(str, numTimes) {
+    let result = "";
+    for (let i = 0; i < numTimes; i++) {
         result += str;
     }
     console.log(result);
 }
+//出力
+repeat("hi", 3); //hihihi
+```
 
-repeat('hi', 3)//hihihi
+#### RETURN
+組み込みメソッドは実行すると値が返ってくる。この値を保持しておける
+
+```javascript
+function add(x, y) {
+    return x + y; //returnに到達した時点で関数がそこで終わる性質がある。returnの後にコードを書いても意味がない
+}
+
+const sum = add(10, 16);
+sum; //26
+
+const answer = add(100, 200);
+answer; //300
+```
+
+```javascript
+function add(x, y) {//addは関数名
+    if (typeof x !== "number" || typeof y !== "number") {
+        return false;
+    }//returnの時点で関数が終わるから、elseifで定義しなくて良い
+    return x + y;
+}
+```
+multiplyという関数を作理、2つの数字を受け取って、その数字の乗算した値をreturnする。
+```javascript
+function multiply(x, y){
+    return x * y;
+}
+
+const answer = add(x, y);
+answer;
+```
+短パンででかけても良いような気温かどうかを判断するisShortsWeatherという関数を作ってください。
+パラメータは一つ受け取る関数にしてください。例えばtemperatureなど。
+temperatureが25以上であれば、trueをreturnしてください。
+そうでなければfalseをreturnしてください
+```javascript
+function isShortsWeather(temperature){
+    if (temperature >= 25){
+        return true;
+    }
+    return false;
+}
+```
+lastElementという関数を作ってください。関数は一つの配列を引数として受け取ります。そして、受け取った配列の最後の要素を返してください。もし配列が空の場合は、関数はnullを返してください。
+```javascript
+function lastElement(x) {
+    if (x.length === 0) {
+
+        return null;
+    }
+    return x[x.length - 1];
+}
 ```
