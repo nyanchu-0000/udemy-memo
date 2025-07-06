@@ -1,9 +1,3 @@
-function lastElement(x) {
-    if (x.length === 0) {
+function sumArray(x){
 
-        return null;
-    }
-    return x[x.length - 1];
 }
-
-

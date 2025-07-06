@@ -1316,3 +1316,29 @@ function lastElement(x) {
     return x[x.length - 1];
 }
 ```
+capitalizeという関数を作ってください。この関数は一つのStringを引数として受け取り、そのStringの最初の文字を大文字にした値を返します。
+```javascript
+function capitalize(x){
+    return x[0].toUpperCase()+ x.slice(1);
+}
+```
+sumArrayという関数を定義してください。数字で構成された一つの配列を引数として受け取ります。そして、配列内の数字の和を返してください。
+```javascript
+function sumArray(num){
+    let sum = 0;
+    for(let i = 0; i < num.length; i++){
+        sum += num[i];
+    }
+    return sum;
+}
+```
+returnDayという関数を作ってください。この関数は一つの数字を引数として受け取ります（1から7の値）。そして、1から7に対応した曜日を返します（1ならMonday、2ならTuesday、etc.）もし数字が1より小さい、あるいは7より大きい場合はnullを返します。
+```javascript
+function returnDay(num){
+    const day =['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+    if (num > 7 || num <= 0){
+        return null
+    }
+    return day[num - 1];
+}
+```
