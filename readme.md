@@ -1342,3 +1342,86 @@ function returnDay(num){
     return day[num - 1];
 }
 ```
+#### 関数のスコープ
+変数が参照できるかどうか
+▼msgはhelpMe関数内でしか参照できない(関数ないで宣言したものは関数内でしか使えない)
+```javascript
+function helpMe(){
+    let msg = "I'm on fire!";
+    msg; //"I'm on fire!";
+}
+msg; //NOT DEFINED!
+```
+関数の外と中の両方で同じ変数を宣言した場合、関数の中では直近の変数の宣言が優先される。
+外からは中の変数にはアクセスできない
+（同じ宣言があってもエラーにはならない。）
+```javascript
+let bird = 'アオサギ';
+
+function birdWatch(){
+    let bird = 'ムクドリ';　//←{}内に関数の宣言がされていたらムクドリが優先される。{}内に宣言がなければの外にあるアオサギになる
+    console.log(bird);
+}
+
+birdWatch();//ムクドリ
+```
+'カサゴ'
+'ヒョウモンダコ'
+を出力させる
+```javascript
+let deadlyAnimal = "ヒョウモンダコ";
+ 
+function handleAnimal() {
+    let deadlyAnimal = "カサゴ";
+    console.log(deadlyAnimal);
+}
+ 
+handleAnimal();
+console.log(deadlyAnimal)
+```
+
+#### ブロックスコープ
+{}で囲まれている部分をブロックという。
+PIとcircはブロック内でしか参照できない
+```javascript
+let radius = 8;
+//ブロックここから
+if(radius > 0){
+    const PI = 3.14;
+    let circ = 2 * PI * radius;
+}
+//ブロックここまで
+console.log(radius); //8
+console.log(PI); //NOT DEFINED
+console.log(circ); //NOT DEFINED
+```
+
+#### レキシカルスコープ
+コード上のどこで定義されたかでスコープが決まる
+```javascript
+function bankRobbery(){
+    const heroes = ['スパイダーマン', 'スーパーマン', 'ブラックパンサー'];
+    function help(){
+        for (let hero of heroes){
+            console.log(`助けて、${hero}!!!`);
+        }
+    }
+    help();
+}
+```
+
+```javascript
+let x = 'あいうえお';
+function hoge(){
+    console.log(x);
+}
+function moge(){
+    let moge(){
+        let x = 'かきくけこ';
+        hoge();
+    }
+}
+
+hoge()//あいうえお
+moge()//あいうえお
+```
