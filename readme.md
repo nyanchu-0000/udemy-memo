@@ -1544,4 +1544,135 @@ const hen = {
 };
 ```
 
+#### tryとcatch
+tryの中で問題が発生したときに、catchの中で問題が起きたときの処理をかく
+```javascript
+try {
+    hello.toUpperCase();
+}catch {
+    console.log('エラーが起きました！！！');
+}
+
+console.log('実行！！！');
+```
+### 配列のコールバックを使ったメソッド
+#### forEach
+コールバック関数を受け取り、配列の要素毎に関数が呼ばれる
+```javascript
+const numbers = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
+
+numbers.forEach(function (element) {
+    const.log(element);
+});
+```
+#### map
+与えられた関数の配列全ての要素に対して呼び出し、その結果からなる新しい配列を生成する
+
+```javascript
+const text = ['rofl', 'lol', 'omg', 'ttyl'];
+const caps = texts.map(function (t){
+    return t.toUpperCase();
+})
+texts; //['rofl', 'lol', 'omg', 'ttyl']
+caps; //['ROFL', 'LOL', 'OMG', 'TTYL']
+```
+```javascript
+const numbers = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
+
+const doubles = numbers.map(function (num) {
+    return num * 2;
+});
+```
+mapメソッドの練習をしましょう！firstNamesという変数を定義してください。fullNamesにmapをかけて、名前（first）だけを取り出してfirstNamesに代入してください。
+```javascript
+const fullNames = [{first: 'Albus', last: 'Dumbledore'}, {first: 'Harry', last: 'Potter'}, {first: 'Hermione', last: 'Granger'}, {first: 'Ron', last: 'Weasley'}, {first: 'Rubeus', last: 'Hagrid'}, {first: 'Minerva', last: 'McGonagall'}, {first: 'Severus', last: 'Snape'}];
+
+
+const firstNames = fullNames.map(function(name){
+    return name.first;
+});
+```
+#### アロー関数
+通常の間数式の簡潔な代替構文（ただし制限がある）
+```javascript
+const square = (x) => {
+    return x * x;
+}
+
+const sum = (x, y) => {
+    return x + y;
+}
+```
+```javascript
+const add = (x, y) => {　//パラメータが2個以上の時は()を省略できない
+    return x + y;
+}
+
+const square = num => { //パラメータが1つの時は(num)の()を省略できる
+    return num * num;
+}
+
+const rollDie = () => { //パラメータがない時は()を省略できない
+    return Math.floor(Math.random() * 6) + 1;
+}
+```
+アロー関数の関数式をgreetという変数に代入してください。人の名前を表すStringを引数として一つ受け取って、英語の挨拶のStringを以下のように返してください：
+
+greet("Hagrid") //"Hey Hagrid!" 
+greet("Luna") //"Hey Luna!"
+```javascript
+const greet = name => {
+    return (`Hey ${name}!`);
+}
+```
+より省略する
+```javascript
+const add = (x, y) => {
+    return x + y;
+}
+
+//以下に省略して一文にすることができる
+
+const add = (x, y) => x + y;
+```
+暗黙的なreturnまとめ
+```javascript
+const isEven = function(num) { //通常の関数式
+    return num % 2 === 0;
+}
+const isEven = (num) => { //引数にカッコを使ったアロー関数
+    return num % 2 === 0;
+}
+const isEven = num => { //引数のカッコを省略
+    return num % 2 === 0;
+}
+const isEven = num => ( //暗黙的return
+    num % 2 === 0;
+);
+const  isEven = num => num % 2 === 0; //暗黙的return(1行版)
+```
+#### setTimeoutとsetInterval
+setTimeoutで3秒後に出力する
+```javascript
+setTimeout(() => {
+    console.log('やっほー');
+}, 3000);
+```
+```javascript
+console.log('やっほー')
+setTimeout(() => {
+    console.log('おーい');
+}, 3000);//setTimeoutはそこで出力を止めておくのではなく、秒後に出力する命令をして次に行くので、ばいばいが先に出力される
+console.log('ばいばい');
+//やっほー ばいばい おーいの順番で出力される
+```
+setIntervalで2秒ごとに指定の関数を呼ばせる
+clearIntervalで繰り返し処理を止める
+```javascript
+setInterval(() => {
+    console.log(Math.random());
+},2000);
+
+clearInterval();
+```
 
