@@ -1425,3 +1425,123 @@ function moge(){
 hoge()//あいうえお
 moge()//あいうえお
 ```
+
+#### 関数の定義
+```javascript
+const add = function (x, y){
+    return x + y;
+}
+```
+```javascript
+const square = function (num) {
+    return num * num;
+}
+square(7); //49
+```
+
+#### 高階関数
+関数を受け取ったり関数を返す関数
+高階関数は：
+・引数として関数を受け取る
+・戻り値に関数を指定する
+```javascript
+function callTwice(func){
+    func();
+    func();
+}
+
+function rollDie(){
+    const roll = Math.floor(Math.random() * 6) + 1;
+    console.log(roll);
+}
+```
+
+#### 関数をリピートする
+```javascript
+function makeRandomFunc() {
+    const rand = Math.random();
+    if(rand > 0.5){
+        return function(){
+            console.log('おめでとう！！！');
+        }
+    }else{
+        return function(){
+            alert('ウィルスに感染しました！！！');
+            alert('閉じないで');
+            alert('閉じないで');
+            alert('閉じないで');
+        }
+    }
+}
+```
+#### メソッド
+オブジェクトのプロパティに関数を定義できる
+```javascript
+const math = {
+    multiply : function(x, y) {
+        return x * y;
+    },
+    divide   : function(x, y) {
+        return x / y;
+    },
+    square   : function(x){
+        return x * x;
+    }
+};
+```
+squareというオブジェクトを定義して、areaとperimeterというメソッドをもたせてください。
+
+areaはsideという引数を一つ受け取って、sideを2乗した値を返します
+perimeterはsideを受け取って、4を乗算した値を返します
+```javascript
+const square = {
+    area :function(side) {
+        return side * side;
+    },
+    perimeter : function(area) {
+        return area * 4;
+    }
+};
+```
+#### this
+同じオジェクト内の他のプロパティを使いたい時にthisを活用する
+```javascript
+const cat = {
+    name: 'タマ',
+    color: 'grey',
+    breed: 'アメリカンショートヘア',
+    cry(){
+        console.log('にゃー');
+    }
+}
+```
+```javascript
+const cat = {
+    name: 'タマ',
+    color: 'grey',
+    breed: 'アメリカンショートヘア',
+    cry(){
+        console.log(this);
+        console.log(`${this.name}がにゃーと泣きました`);
+    }
+}
+```
+henというオブジェクトを定義してください。2つのプロパティと、1つのメソッドを定義してください：
+
+nameは'Helen'にしてください
+
+eggCountは0にしてください
+
+layAnEggというメソッドを定義してください。このメソッドは、自分のeggCountを1加算して、'EGG'という文字列をreturnしてください。（thisを使う必要があります）
+```javascript
+const hen = {
+    name: "Helen",
+    eggCount: 0,
+    layAnEgg() {
+        this.eggCount = this.eggCount + 1;
+        return "EGG";
+    }
+};
+```
+
+
