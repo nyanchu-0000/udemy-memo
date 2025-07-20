@@ -1675,4 +1675,136 @@ setInterval(() => {
 
 clearInterval();
 ```
+#### filter
+提供されたテスト関数を満たす要素からなる新しい配列を生成する
+```javascript
+{
+    title: 'Notting Hill',
+    score: 77,
+    year: 1999
+},
+{
+    title: 'Alien',
+    score:907,
+    year: 1979
+}
+
+const goodMovies = movies.filter(movie => {
+    return movie.score > 80;
+});
+```
+暗黙的リターンに変換
+```javascript
+const goodMovies = movies.filter(movie => movie.score > 80);
+```
+filterとmapを組み合わせる
+```javascript
+const goodMovies = movies.filter(movie => movie.score > 80).map(movie => movie.title); //titleだけの配列が出力される
+```
+改行で見やすく整理する
+```javascript
+const goodMovies = movies
+    .filter(movie => movie.score > 80)
+    .map(movie => movie.title);
+```
+filterメソッドの練習をしましょう。validUserNamesという関数を作ってください。この関数はStringの配列を引数として受け取って、Stringの長さが10文字未満の値だけが入っている新しい配列を返してください。以下が実行例です：
+
+validUserNames(['tanaka', 'suzuki1979', 'q29832128238983', 'hogemoge', 'kimetsu']);
+// => ["tanaka", "hogemoge", "kimetsu"]
+// 'suzuki1979'と'q29832128238983'は10文字以上なので、返ってきた配列には含まれない
+```javascript
+const validUserNames = (name) => {
+    return name.filter(name => name.length < 10);
+}
+```
+#### every
+配列ないの全ての要素が指定されたテスト関数を満たすかそうかをtrueかfalseで返す
+```javascript
+const exams = [80, 98, 92, 78, 77, 90, 89, 81, 77]
+
+exam.every(exam => exam >= 75); //全員が75点以上かをチェックする
+//true
+```
+#### some
+everyに似ているが、「一つでも」テスト関数を満たす要素があればtrueを返す
+```javascript
+exam.some(exam => exam >= 90); //90以上が1人以上いるかをチェックする
+//true
+```
+allEvensという関数を定義してください。この関数は配列を一つ引数として受け取って、その配列の中身がすべて偶数であればtrueを返してください。そうでない場合はfalseを返してください。someあるいはeveryメソッドを使いましょう！（どちらを使うかは自分で決めてください）
+
+allEvens([2,4,6,8]) //true（すべて偶数）
+allEvens([1,4,6,8]) //false（奇数が含まれている）
+allEvens([1,2,3]) //false（奇数が含まれている）
+```javascript
+const allEvens = (numbers) => {
+    return numbers.every(num => num % 2 === 0);
+}
+```
+#### reduce
+配列の各要素に対して（引数で与えられた）reducer関数を実行して、「単一の出力値」を生成する
+
+```javascript
+const prices = [980, 1500, 1980, 4980, 2980];
+
+let total = 0;
+for (let price of prices) {
+    total += price;
+}
+console.log(total); //12420
+```
+reduceを用いて書く
+```javascript
+prices.reduce((total, price) => {
+    return total + price;
+}) //12420 同じ結果が出る
+```
+配列の中の最小値を求める
+```javascript
+const minPrice = prices.reduce((min, price) =>{
+    if (min > price){
+        return price;
+    }
+    return min;
+})//呼ばれたものがminに入り、再度priceと比較し、、を繰り返すことで最小値が出る
+```
+```javascript
+const highestMovie = movies.reduce((bestMovie, currMovie) =>{
+    if (bestMovie.score < currMovie.score){
+        return currMovie;
+    }
+    return bestMovie;
+})
+```
+### モダンなjavascriptの機能
+#### デフォルトパラメータ
+```javascript
+function rollDie(numSides) {
+    if (typeof numSides === 'undefined') {
+        numSides = 6;
+    }
+    return Math.floor(Math.random() * numSides) + 1;
+}
+
+rollDie() //デフォルトでは6までの数字がランダムに出力
+rollDie(20) //数字を入れると()内の数字までの数字がランダムに出力
+```
+今時のやり方
+```javascript
+function rollDie(numSide = 6) {
+    return Math.floor(Math.random() * numSides) + 1;
+}
+
+rollDie() //デフォルトでは6までの数字がランダムに出力
+rollDie(20) //数字を入れると()内の数字までの数字がランダムに出力
+```
+```javascript
+function greet(person, msg = 'こんにちは', suffix = '!！'){
+    console.log (`${msg}、${person} さん`);
+}
+
+greet('やまだ', 'やっほー') //やっほー、やまださん！！
+greet('やまだ') //こんにちは、やまださん！！
+```
+
 
