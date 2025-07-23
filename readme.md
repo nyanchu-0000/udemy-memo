@@ -1806,5 +1806,64 @@ function greet(person, msg = 'こんにちは', suffix = '!！'){
 greet('やまだ', 'やっほー') //やっほー、やまださん！！
 greet('やまだ') //こんにちは、やまださん！！
 ```
+#### スプレッド構文
+```javascript
+Math.max(13,4,5,6,21,9,21,2222) //2222(最大値を出力することができる)
+
+const nums = [13,4,5,6,21,9,21,2222]
+MAth.max(nums) //NaN (カンマ区切りの数字を渡さないとNaNになってしまう)出力不可能
+```
+スプレッド構文を用いて配列の中身を展開する
+```javascript
+const nums = [13,4,5,6,21,9,21,2222]
+Math.max(...nums) //2222(出力できる)
+```
+```javascript
+console.log('sadf', 'sdaf', 'asdf', 'asdfa')
+console.log(nums) //[13,4,5,6,21,9,21,2222]
+console.log(...nums) //13 4 5 6 21 9 21 2222
+```
+```javascript
+console.log('あいうえお') //あいうえお
+console.log(...'あいうえお') //あ い う え お
+```
+#### 配列リテラルにおけるスプレッド構文
+既存の配列から新しい配列を作成する。配列の要素を新しい配列にそれぞれ展開する。
+```javascript
+const cats = ['Tama', 'Tora', 'Momo'];
+cost dogs = ['Hachi', 'Pochi'];
+
+const allPets = [...cats, ...dogs]; //['Tama', 'Tora', 'Momo', 'Hachi', 'Pochi']
+```
+結合するだけでなく、追加することもできる
+```javascript
+const allPets = [...cats, ...dogs, 'Sakura'] //['Tama', 'Tora', 'Momo', 'Hachi', 'Pochi', 'Sakura']
+
+const allPets = [...cats, 'Sakura', ...dogs] //['Tama', 'Tora', 'Momo', 'Sakura', 'Hachi', 'Pochi'](真ん中に持ってくることもできる)
+```
+#### オブジェクトにおけるスプレッド構文
+オブジェクトからオブジェクトにプロパティをコピーする
+```javascript
+const fwline = {legs: 4, family: 'ネコ科'};
+const canine = {family: 'イヌ科', bark: true};
+
+{...feline} //{legs: 4, family: 'ネコ科'}
+{...feline, color: 'black'} //{legs: 4, family: 'ネコ科', color: 'black'}
+const catDog = {...feline, ...canine};
+catDog //{family: 'イヌ科', bark: true}(同じfamilyという値が呼び出された際は、後に定義された方がうわかぶせして出力される)
+```
+```javascript
+const forDate = {
+    email: 'hoge@example.com',
+    password: 'secret',
+    username: 'hoge'
+}
+
+const newUser = {...forData, id: 123, isVerified: false}
+```
+#### レスト構文
+
+
+
 
 
