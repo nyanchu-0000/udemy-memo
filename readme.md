@@ -1861,7 +1861,87 @@ const forDate = {
 
 const newUser = {...forData, id: 123, isVerified: false}
 ```
-#### レスト構文
+#### レスト構文（残余引数）
+その位置にある残りの引数を配列の中に入れることができる
+
+▼argumenntsオブジェクト
+・アロー関数以外の全ての関数で使える
+・配列みたいなオブジェクト
+　・lengthプロパティがある
+　・pushやpopのようなメソッドは使えない
+・関数に渡された引数を全て含んでいる
+
+```javascript
+function sum() {
+    console.log(arguments);
+}
+
+sum(1, 2, 3) 
+//0:1
+//1:2 
+//2:3
+```
+```javascript
+function sum() {
+    return arguments.reduce((total, num) => total + num);
+}
+
+sum(1, 2, 3) //Error
+```
+↓レストを使用する
+```javascript
+function sum(...nums) {
+    console.log(nums);
+}
+
+sum(1, 2, 3) //[1, 2, 3] 配列として入ってくる
+```
+```javascript
+function sum(...num) {
+    return nums.reduce((total, num) => total + num);
+}
+
+sum(1, 2, 3) //6 (合計の6が出力される)
+```
+3個以降のものが全部restの中に残りの引数として配列に入る
+```javascript
+function raceResults(gold, silver, ...rest) { 
+    console.log(`金：${gold}`);
+    console.log(`銀：${silver}`);
+    console.log(`その他：${rest}`);
+}
+
+raceResults('太郎', '次郎', '三郎', '四郎', '五郎');
+//金：太郎
+//銀：次郎
+//その他：三郎,四郎,五郎
+```
+#### 分割代入
+・配列の要素
+・オブジェクトのプロパティを、別個の変数に割り当てるすっきりと書ける構文
+```javascript
+const scores = [929321, 456827, 3287376, 328763, 98732]
+
+const [ gold, silver ] = scores;
+gold //929321 (1個目の値)
+silver //456827 (2個目の値)
+```
+```javascript
+const raceResults = ['エリウド', 'フェイサ', 'ゲーレン'];
+
+const [gold, silver, bronze] = raceResults;
+gold; //エリウド
+silver; //フェイサ
+bronze; //ゲーレン
+```
+restを使う
+```javascript
+const raceResults = ['エリウド', 'フェイサ', 'ゲーレン'];
+
+const [fastest, ...rest] = raceResults;
+gold; //エリウド
+rest; //['フェイサ', 'ゲーレン']
+```
 
 
 
