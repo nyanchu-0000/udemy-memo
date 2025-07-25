@@ -1942,6 +1942,60 @@ const [fastest, ...rest] = raceResults;
 gold; //エリウド
 rest; //['フェイサ', 'ゲーレン']
 ```
+#### オブジェクトの分割代入
+```javascript
+const user = {
+    email: 'haevey@example.com',
+    password: 'aTsjdbh',
+    firstName: 'Harvey',
+    lastName: 'Milk'
+    born: 1930,
+    died: 1978,
+    bio: 'Harvey Berbard Milk was an American politician and the first'
+}
+const { firstName, lastName, email } = user;
+```
+```javascript
+const { born: birthYear } = user;//bornのプロパティをbirthYearという変数に入れる
+
+birthYear //1930
+```
+仮にdiedがなかった場合は以下でデフォルト値を指定できる
+（diedがあるユーザーに使用したら、デフォルト値を設定してもちゃんとuserにはdiedのプロパティがあるので呼び出すことができる）
+```javascript
+const { born: birthYear , died = 'N/A'} = user2;
+died //N/A
+```
+#### パラメーターの分割代入
+```javascript
+const user = {
+    email: 'haevey@example.com',
+    password: 'aTsjdbh',
+    firstName: 'Harvey',
+    lastName: 'Milk'
+    born: 1930,
+    died: 1978,
+    bio: 'Harvey Berbard Milk was an American politician and the first'
+}
+
+function fullName({firstName, lastNAme}) {
+    return `${firstName} ${lastName}`; 
+}
+
+fullName //'Harvey Milk' (firstNameとlastNAmeが結合されて返ってくる)
+```
+```javascript
+movie.filter(movie => movie.score >= 90);
+movie.filter(({score}) => score >= 90); //↑と同様　(分割代入を使用する)
+```
+mapを使用する
+```javascript
+movie.map(({title, year, score}) => {
+    return `${title}(${year}): ${score}/100`;
+})
+```
+
+
 
 
 
