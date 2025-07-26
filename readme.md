@@ -1994,7 +1994,69 @@ movie.map(({title, year, score}) => {
     return `${title}(${year}): ${score}/100`;
 })
 ```
+### DOM入門
+Document Object Model  
+Document：DocumentオブジェクトがDOMの世界へのエントリーポイント。Webページのあらゆるコンテンツを表していて、便利なプロパティやメソッドも多数用意されている
 
+・ウェブページをJavaScriptで表現したもの
+・ウェブページとJavaScriptを接続するもの
+・いっててしまえばJavaScriptで使えるオブジェクトの集まり
+
+#### getElementByld
+要素の取得
+・getElementById
+・getElementsByTagName
+・getElementByClassName
+```javascript
+document.getElementById('banner')
+//バナーのIDが返ってくる(IDなのでクラス名を入れても返ってこない)
+```
+```javascript
+document.getElementById('toc')
+const toc = document.getElementById('toc') //tocという変数に入れる
+console.dir(toc)//オブジェクトが見れる
+```
+img要素をIDで取得してimageという変数に代入してください
+h1要素をIDで取得してheadingという変数に代入してください
+```javascript
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <title>Unicorn</title>
+</head>
+
+<body>
+    <!--このファイルは編集しないでください-->
+    <h1 id="mainheading">I &hearts; Unicorns</h1>
+    <img id="unicorn" src="https://devsprouthosting.com/images/unicorn.jpg" alt="" width="200px">
+    <!-- Photo by Hello I'm Nik on unsplash.com -->
+
+</body>
+
+</html>
+```
+app.js
+```javascript
+document.getElementById('unicorn')
+const image = document.getElementById('unicorn')
+document.getElementById('mainheading')
+const heading = document.getElementById('mainheading')
+```
+
+#### getElementsByTagNameとgetElementByClassName
+タグネームの中身は大文字でも小文字でもok
+```javascript
+document.getElementsByTagName('IMG')
+```
+```javascript
+const allImages = document.getElementsByTagName('img');
+
+for (let img of allImages){
+    console.log(img.src);
+}//4つの画像のurlを取得することができる(配列ではないけど配列っぽくループを回す事もできる)
+```
 
 
 
