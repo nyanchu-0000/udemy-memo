@@ -2045,7 +2045,7 @@ document.getElementById('mainheading')
 const heading = document.getElementById('mainheading')
 ```
 
-#### getElementsByTagNameとgetElementByClassName
+#### getElementsByTagNameとgetElementsByClassName
 タグネームの中身は大文字でも小文字でもok
 ```javascript
 document.getElementsByTagName('IMG')
@@ -2056,6 +2056,60 @@ const allImages = document.getElementsByTagName('img');
 for (let img of allImages){
     console.log(img.src);
 }//4つの画像のurlを取得することができる(配列ではないけど配列っぽくループを回す事もできる)
+```
+getElementByClassName
+```javascript
+document.getElementsByClassName('square')
+
+//HTMLCollection(3) [img.square, img.square, img.square]
+
+const squareImages =document.getElementsByClassName('square');
+
+for (let img of squareImages) {
+    img.src = 'https://xxxxxxxx'
+}//squareクラスのついた画像をとってきて三つ全て同じ画像にする
+```
+#### querySelector
+単一の要素を取得できるセレクターメソッド
+```javascript
+docment.querySelector('p') //最初に見つけた一つが出力される
+```
+IDの場合
+```javascript
+document.querySelector('#banner')
+```
+クラス名の場合
+```javascript
+document.querySelector('.banner')
+```
+擬似クラス（何番目の画像という指定ができる）
+```javascript
+document.querySelector('img:nth-of-type(3)')
+```
+タイトル属性の場合
+```javascript
+document.querySelector('a[title=ヒツジ]')
+```
+#### querySelectorAll
+querySelector同様だが、対象となる要素全てを取得するセレクターメソッド
+```javascript
+const links document.querySelectorAll('p a');
+
+for (let link of links) {
+    console.log(link.href)
+}
+```
+'done'クラスが設定されている要素をすべて取得して、doneTodosという変数に代入してください
+
+チェックボックスを一つ取得して、checkboxという変数に代入してください。
+
+input要素は複数あるので注意しましょう！type属性を使って選択する必要があります
+```javascript
+document.querySelectorAll(".done");
+const doneTodos = document.querySelectorAll(".done");
+
+document.querySelector("input[type=checkbox]");
+const checkbox = document.querySelector("input[type=checkbox]");
 ```
 
 
