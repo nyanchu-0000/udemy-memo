@@ -2111,7 +2111,71 @@ const doneTodos = document.querySelectorAll(".done");
 document.querySelector("input[type=checkbox]");
 const checkbox = document.querySelector("input[type=checkbox]");
 ```
+#### 240. innerHTML, textContentとinnerText
+textContent
+全ての要素の内容を取得して表示
+innerText
+ページ上で見えてるものだけが表示される
+innerHTML
+要素ないのHTMLまたはXMLのマークアップを取得したり設定したりする
+```javascript
+const allLinks = document.querySelectorAll('a');
 
+for (let link of allLinks) {
+    lonk.innerText = '私はリンクです！！！！';
+}
+```
+```javascript
+document.querySelector('h1')
+//<h1>ニワトリ</h1>
+document.querySelector('h1').innerText
+//'ニワトリ'
+document.querySelector('h1').innerText = '<i>ABCD</i>'
+//<h1>ABCD</h1>（とそのまま出力されてしまう）
+
+document.querySelector('h1').innerHTML = '<i>ABCD</i>'
+//ABCD（斜体）(HTMLを設定できるので、<i></i>をそのまま出力するのでなく、HTMLに書き込むため、ちゃんと斜体で出力される)
+```
++=を使用することで、今あるものに追加することができる
+```javascript
+document.querySelector('h1').innerHTML = '<i>ABCD</i>'
+//ABCD（斜体）
+document.querySelector('h1').innerHTML += '<i>ABCD</i>'
+//ABCDABCD（斜体）
+```
+index.htmlにHTMLを用意しました。以下を実現するためにapp.jsを完成させてください：
+
+JavaScriptで「おいしい」を含んでいる<span>要素を取得してください
+
+「おいしい」というテキストを「まずい」にJavaScriptで変更してください
+```javascript
+document.querySelector('span').innerHTML
+document.querySelector('span').innerHTML = '<span>まずい</span>'
+```
+#### プロパティとメソッド
+```javascript
+document.querySelectorAll('input')[1]
+```
+hrefの編集
+```javascript
+document.querySelector('#banner').src
+//https://xxxxxxxx
+
+firstLink.getAttribute('href')
+///wiki/%xxxxxxx
+
+firstLink.getAttribute('href', 'https://google.com')
+```
+DOM要素の属性を操作しましょう。あらかじめindex.htmlでHTMLを用意しています。img要素をJavaScriptで取得して：
+
+srcをhttps://devsprouthosting.com/images/chicken.jpg に更新してください
+
+altの内容も"chicken"に更新してください
+```javascript
+document.querySelector('img').src='https://devsprouthosting.com/images/chicken.jpg'
+
+document.querySelector('img').alt="chicken"
+```
 
 
 

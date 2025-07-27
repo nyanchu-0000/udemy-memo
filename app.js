@@ -1,6 +1,7 @@
-// ここにコードを書いてください
-document.querySelectorAll(".done");
-const doneTodos = document.querySelectorAll(".done");
+const img = document.querySelector("img");
+// img.getAttribute("src", "https://devsprouthosting.com/images/chicken.jpg");
 
-docment.querySelector("input[type=checkbox]");
-const checkbox = docment.querySelector("input[type=checkbox]");
+// img.getAttribute("alt", "chicken");
+
+img.src = "https://devsprouthosting.com/images/chicken.jpg";
+img.alt = "chiken";
