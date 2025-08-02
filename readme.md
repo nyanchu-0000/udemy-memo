@@ -2256,8 +2256,62 @@ for(let i = 0; i< listItems.length; i++){
     listItems[i].classList.toggle('highlight');
 }
 ```
+#### 親・子・兄弟要素
+親要素
+```javascript
+firstBold.parentElement.parentElement.parentElement
+```
+子要素
+```javascript
+paragraph.children[0].parenrElement
+```
+兄弟要素
+この要素の次の要素が欲しいとき
+```javascript
+squareImg.nextElementSibling
 
+squareImg.previousElementSibling
+```
+#### appendとappendChild
+append
+段落要素の最後に追加する
+```javascript
+document.body.appendChild(newImg)
+```
+```javascript
+const p =document.querySelector('p')
+p.append('あああああああ')
+```
+prepend
+先頭に追加する
+```javascript
+const newB = document.createElement('b')
+new.append('やっほー');
+newB//<b>やっほー</b>
+p.prepend(newB)//先頭に追加される
+```
+insertAdjacentelement
+ポジションを指定
+```javascript
+const h1 = document.querySelector('h1')
+h1.insertAdjacentelement('afterend', h2);
+//<h2>可愛らしい烏骨鶏</h2>
+h1.nextElementSibring
+//<h2>可愛らしい烏骨鶏</h2>
+```
+100個のボタンを作る
+```javascript
+const container = document.querySelector('#container');
 
+for (let i = 1; i <= 100; i++) {
+    const newButton = document.createElement('button');
+    newButton.innerText = `ボタン${i}`;
+    container.appendChild(newButton);
+}
+```
+#### removeCildとremove
+```javascript
+```
 
 
 
