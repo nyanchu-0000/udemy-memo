@@ -1,7 +1,6 @@
-const img = document.querySelector("img");
-// img.getAttribute("src", "https://devsprouthosting.com/images/chicken.jpg");
+//この下にコードを書いてください:
+const listItems = document.querySelectorAll("li");
+for(let i = 0; i< listItems.length; i++){
+    listItems[i].classList.toggle('highlight');
+}
 
-// img.getAttribute("alt", "chicken");
-
-img.src = "https://devsprouthosting.com/images/chicken.jpg";
-img.alt = "chiken";

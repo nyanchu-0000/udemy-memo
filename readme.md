@@ -2176,6 +2176,87 @@ document.querySelector('img').src='https://devsprouthosting.com/images/chicken.j
 
 document.querySelector('img').alt="chicken"
 ```
+#### スタイルを変える
+
+```javascript
+h1.style.color = 'green'
+
+h1.style.fontSize = '3em'
+
+getComputedStyle(h1).color
+//rgb(128,0,128)
+
+getComputedStyle(h1).fontSize
+//32px
+```
+index.htmlをあらかじめ用意しています。index.htmlには変更を加えずに、JavaScript以下の変更を行ってください：
+
+containerというIDのdivを取得して、JavaScriptでtext-alignをcenterに更新してください
+
+画像を取得して、JavaScriptでwidthを150pxに更新し、border-radiusを50%に更新してください
+
+```javascript
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Forest</title>
+    <!--このファイルは編集しないでください！-->
+    <script src="node_modules/babel-polyfill/dist/polyfill.js" type="text/javascript"> </script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+
+<body>
+   <div id="container">
+        <h1>I &hearts; Trees</h1>
+        <img src="https://images.unsplash.com/photo-1596328546171-77e37b5e8b3d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80" alt="">
+    </div>
+</body>
+
+</html>
+```
+```javascript
+    const containerDiv = document.getElementById("container");
+    
+    containerDiv.style.textAlign = "center";
+    
+    const image = document.querySelector("img");
+    image.style.width = "150px";
+    image.style.borderRadius = "50%";
+```
+#### classList
+```javascript
+h2.setAttribute('class', 'purple')
+
+h2.setAttribute('class', `${currentClasses}purple`)
+```
+addを呼ぶことで今の状態にクラスを追加することができる
+```javascript
+h2.classList.add('purple')
+h2.classsList.add('border')
+```
+remove　クラスを外すことができる
+```javascript
+h2.classsList.remove('border')
+//boderを外す
+```
+toggle　切り替える
+同じコードでもつけていたら外す外れていたらつけるという動作をする。
+アコーディオンの開け閉じなどで使われている
+```javascript
+h2.classList.toggle('purple')
+//purpleをつける
+h2.classList.toggle('purple')
+//purpleを外す
+```
+```javascript
+const listItems = document.querySelectorAll("li");
+for(let i = 0; i< listItems.length; i++){
+    listItems[i].classList.toggle('highlight');
+}
+```
+
 
 
 
