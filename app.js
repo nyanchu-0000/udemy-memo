@@ -1,10 +1,18 @@
 //この下にコードを書いてください:
-const container = document.querySelector('#container');
+const btn = document.querySelector('#v2');
 
-
-for (let i = 1; i <= 100; i++) {
-    const newButton = document.createElement('button');
-    newButton.innerText = `ボタン${i}`;
-    container.appendChild(newButton);
+btn.onclick = function() {
+    console.log('クリックした！');
+    console.log('ほげほげ');
 }
 
+function scream(){
+    console.log('あああああああ');
+    console.log('いやーーー');
+}
+
+btn.onmouseenter = scream;
+
+document.querySelector('h1').onclick = () => {
+    alert('h1をクリック');
+}

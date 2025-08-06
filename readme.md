@@ -2309,10 +2309,50 @@ for (let i = 1; i <= 100; i++) {
     container.appendChild(newButton);
 }
 ```
-#### removeCildとremove
+#### DOMイベント
+#### インラインイベント
+HTML内にクリック時の処理を書き込める
 ```javascript
+    <body>
+        <!-- ここにHTMLを入れて！！！ -->
+        <h1>Event</h1>
+        <button onclick="alert('クリックした！'); alert('hogehoge')">クリックして！</button>
+        <button>こっちもクリック</button>
+        <!-- ここまでに入れて！！！ -->
+        <script src="app.js"></script>
+    </body>
 ```
+ダブルクリックされたときだけ出力される
+```javascript
+        <button ondblclick="alert('クリックした！'); alert('hogehoge')">クリックして！</button>
+```
+#### onclickプロパティ
+```javascript
+<body>
+        <!-- ここにHTMLを入れて！！！ -->
+        <h1>Event</h1>
+        <button ondblclick="alert('クリックした！'); alert('hogehoge')">クリックして！</button>
+        <button id="v2">クリックして（v2）</button>
+        <!-- ここまでに入れて！！！ -->
+        <script src="app.js"></script>
+    </body>
+```
+```javascript
+const btn = document.querySelector('#v2');
 
+btn.onclick = function() { //クリックで実行
+    console.log('クリックした！');
+    console.log('ほげほげ');
+}
 
+function scream(){ //ホバーで実行
+    console.log('あああああああ');
+    console.log('いやーーー');
+}
 
+btn.onmouseenter = scream; //ホバーで実行
 
+document.querySelector('h1').onclick = () => { //h1をクリックしたときにアラートを出力(アロー関数を使用)
+    alert('h1をクリック');
+}
+```
