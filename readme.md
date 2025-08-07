@@ -2356,3 +2356,26 @@ document.querySelector('h1').onclick = () => { //h1をクリックしたとき�
     alert('h1をクリック');
 }
 ```
+#### addEventListener
+複数の処理を一つのイベントに簡単に追加していける
+（第一引数にイベント名、第二引数に実行したい関数）
+```javascript
+dblclick //ダブルクリックで発火
+mouseup //クリックで離したときに発火
+```
+```javascript
+const hogemogeButton = document.querySelector('#hogemoge');
+hogemogeButton.onclick = hoge;
+hogemogeButton.onclick = moge; //上書きしている状態なので、ボタンをクリックしたときにhogeは出力されない
+```
+▼addEventListenerを使用する
+```javascript
+const hogemogeButton = document.querySelector('#hogemoge');
+hogemogeButton.addEventListener('click', hoge);
+hogemogeButton.addEventListener('click', moge); //ボタンを押したときにhogeもmogeも出力される
+```
+onceのオプション
+```javascript
+hogemogeButton.addEventListener('click', hoge, {once:true});
+hogemogeButton.addEventListener('click', moge, {once:true}); //一度のみhogeとmogeが出力される。その後ボタンを押しても出力されない once=一度のみ
+```
