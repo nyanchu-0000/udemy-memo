@@ -1,38 +1,24 @@
 //この下にコードを書いてください:
-const btn = document.querySelector('#v2');
+const tweetForm = document.querySelector("#tweetForm");
+const tweetsContainer = document.querySelector("#tweets");
 
-btn.onclick = function() {
-    console.log('クリックした！');
-    console.log('ほげほげ');
-}
+tweetForm.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-function scream(){
-    console.log('あああああああ');
-    console.log('いやーーー');
-}
+    const usernameInput = tweetForm.elements.username;
+    const tweetInput = tweetForm.elements.tweet;
+    addTweet(usernameInput.value, tweetInput.value);
 
-btn.onmouseenter = scream;
-
-document.querySelector('h1').onclick = () => {
-    alert('h1をクリック');
-}
-
-const btn3 = document.querySelector('#v3');
-btn3.addEventListener('mouseup', function() {
-    alert('クリック！！！');
+    usernameInput.value = "";
+    tweetInput.value = "";
 });
 
-function hoge() {
-    console.log('hoge');
-}
+const addTweet = (username, tweet) => {
+    const newTweet = document.createElement("li");
+    const bTag = document.createElement("b");
+    bTag.append(username);
+    newTweet.append(bTag);
+    newTweet.append(` - ${tweet}`);
 
-function moge() {
-    console.log('moge');
-}
-
-const hogemogeButton = document.querySelector('#hogemoge');
-// hogemogeButton.onclick = hoge;
-// hogemogeButton.onclick = moge;
-
-hogemogeButton.addEventListener('click', hoge, {once:true});
-hogemogeButton.addEventListener('click', moge, {once:true});
+    tweetsContainer.append(newTweet);
+};

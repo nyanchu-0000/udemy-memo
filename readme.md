@@ -2379,3 +2379,86 @@ onceのオプション
 hogemogeButton.addEventListener('click', hoge, {once:true});
 hogemogeButton.addEventListener('click', moge, {once:true}); //一度のみhogeとmogeが出力される。その後ボタンを押しても出力されない once=一度のみ
 ```
+#### ランダムカラー
+ボタンをクリックするごとに背景色が変わる
+```javascript
+//HTML
+<h1>ようこそ！</h1>
+<button>クリックしてね</button>
+```
+```javascript
+//javascript
+const button = document.querySelector('button');
+const h1 = document.querySelector('h1')
+
+button.addEventListener('click', () => {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+
+    const newColor = `rgb(${r}, ${g}, ${b})`;
+    document.body.style.backgroundColor = newColor;
+    h1.innerText = newColor
+});
+```
+#### キーボードイベントとイベントオブジェクト
+```javascript
+//HTML
+<button>クリック</button>
+<input type="text">
+```
+```javascript
+//javascript
+document.querySelector('button').addEventListener('click', function(evt){
+    console.log(evt);
+});
+
+const input = document.querySelector('input');
+input.addEventListener('keydown', function (e) {
+    console.log('e');
+});
+```
+#### フォームイベントとpreventDefault
+```javascript
+//HTML
+<h1>Form Event</h1>
+
+        <form id="tweetForm" action="/hoge">
+           <input type="text" name="username" placeholder="ユーザー名">
+           <input type="text" name="tweet" placeholder="今どうしてる">
+           <button>ツイートする</button>
+        </form>
+        <h2>ツイート一覧</h2>
+        <ul id="tweets">
+
+        </ul>
+```
+```javascript
+//javascript
+const tweetForm = document.querySelector("#tweetForm");
+const tweetsContainer = document.querySelector("#tweets");
+
+tweetForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const usernameInput = tweetForm.elements.username;
+    const tweetInput = tweetForm.elements.tweet;
+    addTweet(usernameInput.value, tweetInput.value);
+
+    usernameInput.value = "";
+    tweetInput.value = "";
+});
+
+const addTweet = (username, tweet) => {
+    const newTweet = document.createElement("li");
+    const bTag = document.createElement("b");
+    bTag.append(username);
+    newTweet.append(bTag);
+    newTweet.append(` - ${tweet}`);
+
+    tweetsContainer.append(newTweet);
+};
+```
+
+
+
