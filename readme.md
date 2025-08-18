@@ -2459,6 +2459,18 @@ const addTweet = (username, tweet) => {
     tweetsContainer.append(newTweet);
 };
 ```
-
+#### イベントのバブリング
+バブリング：以下の場合、ボタンをクリックしたときに、ボタンクリックのアラートの後、再度クリックすると段落クリックのアラートも表示される。上に上がっていく感じ
+```javascript
+<body>
+        <!-- ここにHTMLを入れて！！！ -->
+        <p onclick="alert('段落クリック')">
+            ここは段落：
+            <button onclick="alert('ボタンクリック')"></button>
+        </p>
+        <!-- ここまでに入れて！！！ -->
+        <script src="app.js"></script>
+    </body>
+```
 
 
