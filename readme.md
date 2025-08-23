@@ -2472,5 +2472,142 @@ const addTweet = (username, tweet) => {
         <script src="app.js"></script>
     </body>
 ```
+### 卓球得点表
+卓球得点表を作る
+余談：!＋タブキーでHTMLのテンプレ作れる
+```javascript
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <style>
+            /* ここにCSSを入れて！！！ */
+            .winner {
+                color: green;
+            }
+            .loser {
+                color:red;
+            }
+            /* ここまで！！！ */
+        </style>
+    </head>
+    <body>
+        <!-- ここにHTMLを入れて！！！ -->
+        <h1><span id="p1Display">0</span> 対 <span id="p2Display">0</span></h1>
+
+        <select name="" id="winningScore">
+            <option value="3">3</option>
+            <option value="3">4</option>
+            <option value="3">5</option>
+            <option value="3">6</option>
+            <option value="3">7</option>
+            <option value="3">8</option>
+            <option value="3">9</option>
+            <option value="3">10</option>
+            <option value="3">11</option>
+        </select>
+
+        <button id="p1Button">+1 プレイヤー1</button>
+        <button id="p2Button">+1 プレイヤー2</button>
+        <button id="reset">リセット</button>
+        <!-- ここまでに入れて！！！ -->
+        <script src="app.js"></script>
+    </body>
+    
+</html>
+
+```
+```javascript
+//この下にコードを書いてください:
+const p1Button = document.querySelector('#p1Button');
+const p2Button = document.querySelector('#p2Button');
+const resetButton = document.querySelector('#reset');
+const winningScoreSelect = document.querySelector('#winningScore');
+const p1Display = document.querySelector('#p1Display');
+const p2Display = document.querySelector('#p2Display');
+
+let p1Score = 0;
+let p2Score = 0;
+let winningScore = 5;
+let isGameover = false;
+
+p1Button.addEventListener('click', function() {
+    if (!isGameover){
+        p1Score += 1;
+        p1Display.textContent = p1Score;
+        if (p1Score === winningScore) {
+            isGameover = true;
+            p1Display.classList.add('winner');
+            p2Display.classList.add('loser');
+
+        }
+    }
+});
+
+p2Button.addEventListener('click', function() {
+    if (!isGameover){
+        p2Score += 1;
+        p2Display.textContent = p2Score;
+        if (p2Score === winningScore) {
+            isGameover = true;
+            p2Display.classList.add('winner');
+            p1Display.classList.add('loser');
+        }
+    }
+});
+
+winningScoreSelect.addEventListener('change', function () {
+    winningScore = parseInt(this.value);
+    reset();
+});
+
+resetButton.addEventListener('click', reset);
+    
+function reset() {
+    isGameover = false;
+    p1Score = 0;
+    p2Score = 0;
+    p1Display.textContent = 0;
+    p2Display.textContent = 0;
+    p1Display.classList.remove('winner', 'loser');
+    p2Display.classList.remove('winner', 'loser');
+
+}
+
+
+```
+### 非同期なJavaScript
+#### コールスタック
+インタープリター（ウェブブラウザ内のJavaScriptインタープリターなど）の仕組みの一つで、複数階層の関数を呼び出したスクリプト内の位置を追跡し続けること。
+どの関数が現在実行されているのか、その関数の中でどの関数が呼び出されたかなど。
+#### JavaScriptはシングルスレッド
+JavaScriptでは一度に一つの作業しかできない
+処理に長時間かかってしまうとどうなるか
+```javascript
+const newTodo = input.value //ユーザーの入力値を取得
+saveTodoDatabace(new Todo); //長時間かかるかもしれない
+input.value = ''; //フォームをクリア
+```
+コールバックを使って回避する
+```javascript
+console.log('サーバーにリクエストを送信');
+setTimeout(() => {
+    console.log('サーバーからレスポンスが来ました！！');
+}, 3000);
+console.log('ここがファイルの末端');
+```
+・ブラウザはWeb APIと呼ばれるバックグラウンドで処理を実行してくれる機能（リクエストだったりsetTimeout）を提供してくれる
+・JavaScriptのコールスタックはこのWeb APIを認識すると、ブラウザに処理を依頼します
+・ブラウザが処理を終えると、コールバックとしてスタックに積まれる
+```javascript
+console.log('私が一番！');
+setTimeout(() => {
+    console.log('私は3秒後！');
+}, 3000);
+console.log('私は2番！')
+```
+
 
 
