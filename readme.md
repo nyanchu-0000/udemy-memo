@@ -2608,6 +2608,105 @@ setTimeout(() => {
 }, 3000);
 console.log('私は2番！')
 ```
+#### コールバックを使ったダミーリクエスト
+```javascript
+const fakeRequestCallback = (url, succes, faulue) =>{ //fakeRequestCallbackの役割は、urlと成功した時用のコールバック、失敗した時用のコールバックを受け取るようになっている
+    const delay = Math.floor(Math.random() * 4500) + 500;
+    setTimeout(() => {
+        if(delay > 4000) {
+        } else {
+                succes(`ダミーデータ(${url})`)
+        }
+    }, delay)
+}
+```
+#### Promiseを使ったダミーリクエスト
+Promiseは非同期処理の最終的な完了もしくは失敗を表すオブジェクト。
+Promiseはコールバックを「関数に渡す」代わりに、関数が返したオブジェクトに対してコールバックを「登録する」ようにする、というもの。
+#### Promiseの真の力
+```javascript
+fakeRequestPromise('yelp.com/api/coffee/page1')
+    .then(() => {
+        console.log('成功1！！！');
+        return fakeRequestPromise('yelp.com/api/coffee/page2')
+    })
+    .then(() => {
+        console.log('成功2！！！');
+        return fakeRequestPromise('yelp.com/api/coffee/page3')
+    })
+    .then(() => {
+        console.log('成功3！！！');
+    })
+    .catch(() => {
+        console.log(`失敗！！！！`);
+    }) //1回目で失敗しても、2回目で失敗しても3回目で失敗しても、失敗した場合は必ずcatchの中の関数に入ってくる
+```
+Promiseが成功or失敗した時の値を用意する。
+then:それから何をするかを指示できる
+```javascript
+fakeRequestPromise('yelp.com/api/coffee/page1')
+    .then((data) => {
+        console.log('成功1！！！');
+        console.log(data);
+        return fakeRequestPromise('yelp.com/api/coffee/page2')
+    })
+    .then((data) => {
+        console.log('成功2！！！');
+        console.log(data);
+        return fakeRequestPromise('yelp.com/api/coffee/page3')
+    })
+    .then((data) => {
+        console.log('成功3！！！');
+        console.log(data);
+    })
+    .catch((err) => {
+        console.log(`失敗！！！！`);
+        console.log(err);
+    }) //1回目で失敗しても、2回目で失敗しても3回目で失敗しても、失敗した場合は必ずcatchの中の関数に入ってくる
+```
+#### asyncキーワード
+・asyncな関数は必ずPromiseを返す
+・関数が値を返せば、Promiseはその値でresolveする
+・関数がエラーをthrowした場合、Promiseはそのエラーでrejectする
+```javascript
+async function hello () { //asyncをつけることで必ずpromiseを返す
+
+}
+
+const sing = async () => {
+    throw new Error('問題が起きました！！'); //throwの後にわたしたものをエラーとして投げることができる
+    return 'ららららら';
+}
+
+sing()
+.then((data) => {
+    console.log('成功:', data);
+}); //成功：ららららら
+.catch(()err => {
+soncole.log('エラー！！')
+console.log(err);
+}); //Error：問題が起きました！！
+```
+#### awaitキーワード
+awaitはasync関数の中でしか使えない
+・awaitはPromiseがresolveまたはrejectするまでasync関数の実行を一時的に停止する
+```javascript
+async function rainbow() {
+    await delauedColorChange('red', 1000); //Promiseがresolveまたはrejectするまで待ってくれる。一気に反映されない
+    await delauedColorChange('orange', 1000);
+    await delauedColorChange('yellow', 1000);
+    await delauedColorChange('green', 1000);
+    await delauedColorChange('orange', 1000);
+    await delauedColorChange('indigo', 1000);
+    await delauedColorChange('violet', 1000);
+    // 1秒ごとに次の背景カラーが実行される
+}
+
+rainbow()
+.then(() => {
+    console.log('rainbow完了！');
+}); //全てのカラーが反映されてから、rainbow完了！のログが出力される
+```
 
 
 
