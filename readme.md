@@ -2707,6 +2707,127 @@ rainbow()
     console.log('rainbow完了！');
 }); //全てのカラーが反映されてから、rainbow完了！のログが出力される
 ```
+### AJAXとAPI
+#### ajax入門
+Webサイトを表示している裏側でリクエストを投げて情報を取得したり、情報を送信したりする
+・ASYNCHRONOUS
+・JavaScript
+・AND
+・XML→JSON
+#### JSONとは
+ソフトウェア同士でデータのやり取りをするためのテキストベースの共通のフォーマット
+JSONにもキーと値があるが、キーは必ず””（ダブルクォート）で囲む必要がある。シングルはNG。
+```javascript
+ {
+    "squadName" : "Super hero squad" ,
+    "homeTown" : "Metro City"
+ }
+```
+JSONとは、以下の略
+・Java
+・Script
+・Object
+・Notation
+#### HTTPメソッド
+GET：情報を取得してくるときに主に使うメソッド
+POST：何かしらのデータを送信するときに使うメソッド
+DELETE：何かを削除したいときに使うメソッド
+#### HTTPステータスコード
+2から始まるものは成功の際のステータスコード
+201 Created：ポストなどした時に、作成が成功したことを表すステータスコード
+
+3から始まるものはリダイレクトメッセージ
+別の場所に移動させてくれる
+
+4から始まるものはクライアントエラーレスポンス
+クライアントエラーレスポンス：ユーザー側が、何か間違ったことをしていますよということを表すもの
+404 Not Found：サーバーがリクエストされたリソースを発見できないことを示す。
+405 Method Not Allowed：サーバーがリクエストメソッドを理解しているものの、無効にされており使用することができない。
+
+5から始まるものはサーバーエラーレスポンス
+#### クエリストリングについて
+どんなキーと値のペアでも大丈夫で、それぞれが&でくっつけられている
+エンドポイントはリクエストするときに、どんな時でもつけて良い
+?sort=desc&color=blue
+#### fetchを使ってみよう
+Fetch API
+・JavaScriptでリクエストを投げるモダンなやり方
+・Promiseをサポートしている
+・Internet Explorerでは使えない
+```javascript
+fetch("https://swapi.tech/api/people/1/") //これだけでリクエストが投げられる
+  .then((res) => {
+    console.log("RESOLVE!!!", res);　//この時点ではまだボディが読み込まれていない
+    return res.json();
+  })
+  .then((data) => {
+    console.log(data.result.properties);
+  })
+  .catch((e) => {
+    console.log("エラー！！！", e);
+  });
+ 
+// fetch("https://swapi.tech/api/people/1/")
+//   .then((res) => {
+//     console.log("RESOLVE!!!", res);
+//     return res.json();
+//   })
+//   .then((data) => {
+//     console.log(data.result.properties);
+//     return fetch("https://swapi.tech/api/people/2/");
+//   })
+//   .then((res) => {
+//     console.log("2個目のリクエストがRESOLVE!!!");
+//     return res.json();
+//   })
+//   .then((data) => {
+//     console.log(data.result.properties);
+//   })
+//   .catch((e) => {
+//     console.log("エラー！！！", e);
+//   });
+ 
+const loadStarWarsPeople = async () => {
+  try {
+    const res = await fetch("https://swapi.tech/api/people/1/");
+    const data = await res.json();
+    console.log(data.result.properties);
+    const res2 = await fetch("https://swapi.tech/api/people/2/");
+    const data2 = await res2.json();
+    console.log(data2.result.properties);
+  } catch (e) {
+    console.log("エラー！！！", e);
+  }
+};
+ 
+loadStarWarsPeople();
+```
+#### Axios入門
+axios：HTTPリクエスト用のライブラリ
+```javascript
+// axios
+//   .get("https://swapi.tech/api/people/1/")
+//   .then((res) => {
+//     console.log("RESPONSE!", res);
+//   })
+//   .catch((e) => {
+//     console.log("ERROR!!!", e);
+//   });
+ 
+const getStarWarsPerson = async (id) => {
+  try {
+    const res = await axios.get(`https://swapi.tech/api/people/${id}/`);
+    console.log(res.data.result.properties);
+  } catch (e) {
+    console.log("ERROR", e);
+  }
+};
+ 
+getStarWarsPerson(5);
+getStarWarsPerson(10);
+```
+
+
 
 
 
