@@ -2826,8 +2826,86 @@ const getStarWarsPerson = async (id) => {
 getStarWarsPerson(5);
 getStarWarsPerson(10);
 ```
+### プロトタイプ・クラス・オブジェクト指向プログラミング
+#### プロトタイプとは
+JavaScriptオブジェクトが互いに機能を継承するメカニズム
+継承機能を提供するため、オブジェクトはprotoptypeオブジェクトを持つことができる
+#### ファクトリ関数
+基準とした色からrgbや16進数の表記を作れるオブジェクトが生成できるようになる
+ファクトリ関数を使うことで色を変換する機能を持ったオブジェクトを簡単に量産することができる
+#### JavaScriptのクラス
 
+```javascript
+class Color {
+    constructor(r, g, b) {
+        this.r =r ;
+        this.g =g ;
+        this.b =b ;
+        this.name = name;
+    }
 
+    greet() {
+        return `${this.name}からこんにちは！`;
+    }
+}
+
+const c1 = new Color(255, 67, 89, 'tomato');　//c1.greet() //tomatoからこんにちは！
+const c1 = new Color(255, 255, 255, 'white'); //c2.greet() //whiteからこんにちは！
+```
+#### 続・JavaScriptのクラス
+H：色相　S：彩度　L:明度
+hsl(130, 50%, 80%)
+Hを使って180度足せば補色になる（色相環をもとに）
+#### 続・JavaScriptのクラス
+extends
+extendsで継承することができる。自分がconstructor関数を定義していなくても親クラスのconstructor関数が自動で呼ばれるようになっている。
+```javascript
+class Pet {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    eat() {
+        return `${this.name}がご飯を食べている`;
+    }
+}
+
+class Cat extends Pet {
+    meow() {
+        return 'にゃー！！';
+    }
+}
+
+class Dog extends Pet {
+    bark() {
+        return 'わんわん！！';
+    }
+    eat() {
+        return `${this.name}がご飯を食い散らかしている`;
+    }
+}
+```
+### ターミナルを使いこなそう
+####  ターミナルについて
+GUI：グラフィカルユーザーインターフェース
+CUI：キャラクターユーザーインターフェース
+####  ターミナルを覚えた方がいい理由
+・スピード　作業効率が上がる。マウスでいちいちドラッグ&ドロップするのとではスピードが全然違う
+・アクセス範囲　普段見ることのない領域にアクセスすることもできる
+・ツール　開発のためのツールのほとんどがターミナルを使う必要がある
+
+ターミナル：コンピュータを操作するためのテキストベースを操作するためのテキストベースなインターフェース。昔は物理的な端末だったが、今はターミナルソフトを使用するのが一般的。
+シェル：ユーザーから入力を受け取ってコマンドを実行するプログラムの一種。ターミナル上で動作する。
+例：　ターミナル→ここでATMの端末がターミナルを言える。　シェル→ATM上で動いているソフトウェアがシェルと言える
+BASH：広く使われているシェルの一種（少し前までMac標準のシェルだった）zshなど
+####  lsとpwd
+ターミナルを開くとデフォルトではホームディレクトリにいる。ホームディレクトリ→ユーザーアカウントのディレクトリ
+```javascript
+ls //List 自分がアクセスしているディレクトリ内のファイル一覧を表示する
+```
+```javascript
+pwd //自分が今いるディレクトリのパスを表示する
+```
 
 
 
