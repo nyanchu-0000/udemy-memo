@@ -3065,8 +3065,58 @@ imgタグ：終了タグがない
 `<sup>2</sup>`：上付き文字要素（二乗の数字など）
 `<sub>2</sub>`：下付き文字要素（化学式などで使用）
 `<h2>私はH<sub>2</sub>Oが好きです</h2>`
+### HTMLフォームとテーブル
 
-
+#### テーブルのtr,td,th要素について
+#### テーブルのthead,tbody,tfootについて
+`<td>`:テーブルデータ
+`<tr>`:セルの行を定義する
+`<th>`:テーブルヘッダー
 ```javascript
-```
+        <h1>世界一重い鳥一覧</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Animal</th>
+                    <th>Average mass [kg (lb)]</th>
+                    <th>Flighted</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Ostrick</td>
+                    <td>104 (230)</td>
+                    <td>No</td>
+                </tr>
 
+                <tr>
+                    <td>Somali ostrich</td>
+                    <td>90 (200)</td>
+                    <td>No</td>
+                </tr>
+            </tbody>
+        </table>
+</table>
+```
+#### テーブルのcolspanとrowspanについて
+rowspan：指定行分使用する（2の場合、2行分として扱う）
+colspan：指定列分使用する（2の場合、2列分として扱う）
+```javascript
+<tr>
+                    <th rowspan="2">Animal</th>
+                    <th colspan="2">Average mass [kg (lb)]</th>
+                    <th rowspan="2">Flighted</th>
+                </tr>
+```
+#### よく使われるinput要素の種類
+text:文字列の入力
+password:画面には・・・・と表示されるパスワードの入力欄になる
+number:数値のみ入力される
+placeholder：入力前に何を入力するか明示できる
+```javascript
+<form action="/tacos">
+    <input type="text" placeholder="ユーザー名">
+    <input type="password" placeholder="パスワード">
+    <input type="number">
+</form>
+```
