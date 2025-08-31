@@ -1263,6 +1263,7 @@ repeat("hi", 3); //hihihi
 ```
 
 #### RETURN
+
 組み込みメソッドは実行すると値が返ってくる。この値を保持しておける
 
 ```javascript
@@ -1278,115 +1279,144 @@ answer; //300
 ```
 
 ```javascript
-function add(x, y) {//addは関数名
+function add(x, y) {
+    //addは関数名
     if (typeof x !== "number" || typeof y !== "number") {
         return false;
-    }//returnの時点で関数が終わるから、elseifで定義しなくて良い
+    } //returnの時点で関数が終わるから、elseifで定義しなくて良い
     return x + y;
 }
 ```
-multiplyという関数を作理、2つの数字を受け取って、その数字の乗算した値をreturnする。
+
+multiply という関数を作理、2 つの数字を受け取って、その数字の乗算した値を return する。
+
 ```javascript
-function multiply(x, y){
+function multiply(x, y) {
     return x * y;
 }
 
 const answer = add(x, y);
 answer;
 ```
-短パンででかけても良いような気温かどうかを判断するisShortsWeatherという関数を作ってください。
-パラメータは一つ受け取る関数にしてください。例えばtemperatureなど。
-temperatureが25以上であれば、trueをreturnしてください。
-そうでなければfalseをreturnしてください
+
+短パンででかけても良いような気温かどうかを判断する isShortsWeather という関数を作ってください。
+パラメータは一つ受け取る関数にしてください。例えば temperature など。
+temperature が 25 以上であれば、true を return してください。
+そうでなければ false を return してください
+
 ```javascript
-function isShortsWeather(temperature){
-    if (temperature >= 25){
+function isShortsWeather(temperature) {
+    if (temperature >= 25) {
         return true;
     }
     return false;
 }
 ```
-lastElementという関数を作ってください。関数は一つの配列を引数として受け取ります。そして、受け取った配列の最後の要素を返してください。もし配列が空の場合は、関数はnullを返してください。
+
+lastElement という関数を作ってください。関数は一つの配列を引数として受け取ります。そして、受け取った配列の最後の要素を返してください。もし配列が空の場合は、関数は null を返してください。
+
 ```javascript
 function lastElement(x) {
     if (x.length === 0) {
-
         return null;
     }
     return x[x.length - 1];
 }
 ```
-capitalizeという関数を作ってください。この関数は一つのStringを引数として受け取り、そのStringの最初の文字を大文字にした値を返します。
+
+capitalize という関数を作ってください。この関数は一つの String を引数として受け取り、その String の最初の文字を大文字にした値を返します。
+
 ```javascript
-function capitalize(x){
-    return x[0].toUpperCase()+ x.slice(1);
+function capitalize(x) {
+    return x[0].toUpperCase() + x.slice(1);
 }
 ```
-sumArrayという関数を定義してください。数字で構成された一つの配列を引数として受け取ります。そして、配列内の数字の和を返してください。
+
+sumArray という関数を定義してください。数字で構成された一つの配列を引数として受け取ります。そして、配列内の数字の和を返してください。
+
 ```javascript
-function sumArray(num){
+function sumArray(num) {
     let sum = 0;
-    for(let i = 0; i < num.length; i++){
+    for (let i = 0; i < num.length; i++) {
         sum += num[i];
     }
     return sum;
 }
 ```
-returnDayという関数を作ってください。この関数は一つの数字を引数として受け取ります（1から7の値）。そして、1から7に対応した曜日を返します（1ならMonday、2ならTuesday、etc.）もし数字が1より小さい、あるいは7より大きい場合はnullを返します。
+
+returnDay という関数を作ってください。この関数は一つの数字を引数として受け取ります（1 から 7 の値）。そして、1 から 7 に対応した曜日を返します（1 なら Monday、2 なら Tuesday、etc.）もし数字が 1 より小さい、あるいは 7 より大きい場合は null を返します。
+
 ```javascript
-function returnDay(num){
-    const day =['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
-    if (num > 7 || num <= 0){
-        return null
+function returnDay(num) {
+    const day = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+    ];
+    if (num > 7 || num <= 0) {
+        return null;
     }
     return day[num - 1];
 }
 ```
+
 #### 関数のスコープ
+
 変数が参照できるかどうか
-▼msgはhelpMe関数内でしか参照できない(関数ないで宣言したものは関数内でしか使えない)
+▼msg は helpMe 関数内でしか参照できない(関数ないで宣言したものは関数内でしか使えない)
+
 ```javascript
-function helpMe(){
+function helpMe() {
     let msg = "I'm on fire!";
     msg; //"I'm on fire!";
 }
 msg; //NOT DEFINED!
 ```
+
 関数の外と中の両方で同じ変数を宣言した場合、関数の中では直近の変数の宣言が優先される。
 外からは中の変数にはアクセスできない
 （同じ宣言があってもエラーにはならない。）
-```javascript
-let bird = 'アオサギ';
 
-function birdWatch(){
-    let bird = 'ムクドリ';　//←{}内に関数の宣言がされていたらムクドリが優先される。{}内に宣言がなければの外にあるアオサギになる
+```javascript
+let bird = "アオサギ";
+
+function birdWatch() {
+    let bird = "ムクドリ"; //←{}内に関数の宣言がされていたらムクドリが優先される。{}内に宣言がなければの外にあるアオサギになる
     console.log(bird);
 }
 
-birdWatch();//ムクドリ
+birdWatch(); //ムクドリ
 ```
+
 'カサゴ'
 'ヒョウモンダコ'
 を出力させる
+
 ```javascript
 let deadlyAnimal = "ヒョウモンダコ";
- 
+
 function handleAnimal() {
     let deadlyAnimal = "カサゴ";
     console.log(deadlyAnimal);
 }
- 
+
 handleAnimal();
-console.log(deadlyAnimal)
+console.log(deadlyAnimal);
 ```
 
 #### ブロックスコープ
+
 {}で囲まれている部分をブロックという。
-PIとcircはブロック内でしか参照できない
+PI と circ はブロック内でしか参照できない
+
 ```javascript
 let radius = 8;
 //ブロックここから
-if(radius > 0){
+if (radius > 0) {
     const PI = 3.14;
     let circ = 2 * PI * radius;
 }
@@ -1397,12 +1427,14 @@ console.log(circ); //NOT DEFINED
 ```
 
 #### レキシカルスコープ
+
 コード上のどこで定義されたかでスコープが決まる
+
 ```javascript
-function bankRobbery(){
-    const heroes = ['スパイダーマン', 'スーパーマン', 'ブラックパンサー'];
-    function help(){
-        for (let hero of heroes){
+function bankRobbery() {
+    const heroes = ["スパイダーマン", "スーパーマン", "ブラックパンサー"];
+    function help() {
+        for (let hero of heroes) {
             console.log(`助けて、${hero}!!!`);
         }
     }
@@ -1427,112 +1459,128 @@ moge()//あいうえお
 ```
 
 #### 関数の定義
+
 ```javascript
-const add = function (x, y){
+const add = function (x, y) {
     return x + y;
-}
+};
 ```
+
 ```javascript
 const square = function (num) {
     return num * num;
-}
+};
 square(7); //49
 ```
 
 #### 高階関数
+
 関数を受け取ったり関数を返す関数
 高階関数は：
 ・引数として関数を受け取る
 ・戻り値に関数を指定する
+
 ```javascript
-function callTwice(func){
+function callTwice(func) {
     func();
     func();
 }
 
-function rollDie(){
+function rollDie() {
     const roll = Math.floor(Math.random() * 6) + 1;
     console.log(roll);
 }
 ```
 
 #### 関数をリピートする
+
 ```javascript
 function makeRandomFunc() {
     const rand = Math.random();
-    if(rand > 0.5){
-        return function(){
-            console.log('おめでとう！！！');
-        }
-    }else{
-        return function(){
-            alert('ウィルスに感染しました！！！');
-            alert('閉じないで');
-            alert('閉じないで');
-            alert('閉じないで');
-        }
+    if (rand > 0.5) {
+        return function () {
+            console.log("おめでとう！！！");
+        };
+    } else {
+        return function () {
+            alert("ウィルスに感染しました！！！");
+            alert("閉じないで");
+            alert("閉じないで");
+            alert("閉じないで");
+        };
     }
 }
 ```
+
 #### メソッド
+
 オブジェクトのプロパティに関数を定義できる
+
 ```javascript
 const math = {
-    multiply : function(x, y) {
+    multiply: function (x, y) {
         return x * y;
     },
-    divide   : function(x, y) {
+    divide: function (x, y) {
         return x / y;
     },
-    square   : function(x){
+    square: function (x) {
         return x * x;
-    }
+    },
 };
 ```
-squareというオブジェクトを定義して、areaとperimeterというメソッドをもたせてください。
 
-areaはsideという引数を一つ受け取って、sideを2乗した値を返します
-perimeterはsideを受け取って、4を乗算した値を返します
+square というオブジェクトを定義して、area と perimeter というメソッドをもたせてください。
+
+area は side という引数を一つ受け取って、side を 2 乗した値を返します
+perimeter は side を受け取って、4 を乗算した値を返します
+
 ```javascript
 const square = {
-    area :function(side) {
+    area: function (side) {
         return side * side;
     },
-    perimeter : function(area) {
+    perimeter: function (area) {
         return area * 4;
-    }
+    },
 };
 ```
+
 #### this
-同じオジェクト内の他のプロパティを使いたい時にthisを活用する
+
+同じオジェクト内の他のプロパティを使いたい時に this を活用する
+
 ```javascript
 const cat = {
-    name: 'タマ',
-    color: 'grey',
-    breed: 'アメリカンショートヘア',
-    cry(){
-        console.log('にゃー');
-    }
-}
+    name: "タマ",
+    color: "grey",
+    breed: "アメリカンショートヘア",
+    cry() {
+        console.log("にゃー");
+    },
+};
 ```
+
 ```javascript
 const cat = {
-    name: 'タマ',
-    color: 'grey',
-    breed: 'アメリカンショートヘア',
-    cry(){
+    name: "タマ",
+    color: "grey",
+    breed: "アメリカンショートヘア",
+    cry() {
         console.log(this);
         console.log(`${this.name}がにゃーと泣きました`);
-    }
-}
+    },
+};
 ```
-henというオブジェクトを定義してください。2つのプロパティと、1つのメソッドを定義してください：
 
-nameは'Helen'にしてください
+hen というオブジェクトを定義してください。2 つのプロパティと、1 つのメソッドを定義してください：
 
-eggCountは0にしてください
+name は'Helen'にしてください
 
-layAnEggというメソッドを定義してください。このメソッドは、自分のeggCountを1加算して、'EGG'という文字列をreturnしてください。（thisを使う必要があります）
+eggCount は 0 にしてください
+
+layAnEgg というメソッドを定義してください。このメソッドは、自分の eggCount を 1 加算して、'EGG'という文字列を return してください。（this を使う必要があります）
+
 ```javascript
 const hen = {
     name: "Helen",
@@ -1540,24 +1588,30 @@ const hen = {
     layAnEgg() {
         this.eggCount = this.eggCount + 1;
         return "EGG";
-    }
+    },
 };
 ```
 
-#### tryとcatch
-tryの中で問題が発生したときに、catchの中で問題が起きたときの処理をかく
+#### try と catch
+
+try の中で問題が発生したときに、catch の中で問題が起きたときの処理をかく
+
 ```javascript
 try {
     hello.toUpperCase();
-}catch {
-    console.log('エラーが起きました！！！');
+} catch {
+    console.log("エラーが起きました！！！");
 }
 
-console.log('実行！！！');
+console.log("実行！！！");
 ```
+
 ### 配列のコールバックを使ったメソッド
+
 #### forEach
+
 コールバック関数を受け取り、配列の要素毎に関数が呼ばれる
+
 ```javascript
 const numbers = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
 
@@ -1565,77 +1619,102 @@ numbers.forEach(function (element) {
     const.log(element);
 });
 ```
+
 #### map
+
 与えられた関数の配列全ての要素に対して呼び出し、その結果からなる新しい配列を生成する
 
 ```javascript
-const text = ['rofl', 'lol', 'omg', 'ttyl'];
-const caps = texts.map(function (t){
+const text = ["rofl", "lol", "omg", "ttyl"];
+const caps = texts.map(function (t) {
     return t.toUpperCase();
-})
+});
 texts; //['rofl', 'lol', 'omg', 'ttyl']
 caps; //['ROFL', 'LOL', 'OMG', 'TTYL']
 ```
+
 ```javascript
-const numbers = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
 
 const doubles = numbers.map(function (num) {
     return num * 2;
 });
 ```
-mapメソッドの練習をしましょう！firstNamesという変数を定義してください。fullNamesにmapをかけて、名前（first）だけを取り出してfirstNamesに代入してください。
+
+map メソッドの練習をしましょう！firstNames という変数を定義してください。fullNames に map をかけて、名前（first）だけを取り出して firstNames に代入してください。
+
 ```javascript
-const fullNames = [{first: 'Albus', last: 'Dumbledore'}, {first: 'Harry', last: 'Potter'}, {first: 'Hermione', last: 'Granger'}, {first: 'Ron', last: 'Weasley'}, {first: 'Rubeus', last: 'Hagrid'}, {first: 'Minerva', last: 'McGonagall'}, {first: 'Severus', last: 'Snape'}];
+const fullNames = [
+    { first: "Albus", last: "Dumbledore" },
+    { first: "Harry", last: "Potter" },
+    { first: "Hermione", last: "Granger" },
+    { first: "Ron", last: "Weasley" },
+    { first: "Rubeus", last: "Hagrid" },
+    { first: "Minerva", last: "McGonagall" },
+    { first: "Severus", last: "Snape" },
+];
 
-
-const firstNames = fullNames.map(function(name){
+const firstNames = fullNames.map(function (name) {
     return name.first;
 });
 ```
+
 #### アロー関数
+
 通常の間数式の簡潔な代替構文（ただし制限がある）
+
 ```javascript
 const square = (x) => {
     return x * x;
-}
+};
 
 const sum = (x, y) => {
     return x + y;
-}
+};
 ```
+
 ```javascript
-const add = (x, y) => {　//パラメータが2個以上の時は()を省略できない
+const add = (x, y) => {
+    //パラメータが2個以上の時は()を省略できない
     return x + y;
-}
+};
 
-const square = num => { //パラメータが1つの時は(num)の()を省略できる
+const square = (num) => {
+    //パラメータが1つの時は(num)の()を省略できる
     return num * num;
-}
+};
 
-const rollDie = () => { //パラメータがない時は()を省略できない
+const rollDie = () => {
+    //パラメータがない時は()を省略できない
     return Math.floor(Math.random() * 6) + 1;
-}
+};
 ```
-アロー関数の関数式をgreetという変数に代入してください。人の名前を表すStringを引数として一つ受け取って、英語の挨拶のStringを以下のように返してください：
 
-greet("Hagrid") //"Hey Hagrid!" 
+アロー関数の関数式を greet という変数に代入してください。人の名前を表す String を引数として一つ受け取って、英語の挨拶の String を以下のように返してください：
+
+greet("Hagrid") //"Hey Hagrid!"
 greet("Luna") //"Hey Luna!"
+
 ```javascript
-const greet = name => {
-    return (`Hey ${name}!`);
-}
+const greet = (name) => {
+    return `Hey ${name}!`;
+};
 ```
+
 より省略する
+
 ```javascript
 const add = (x, y) => {
     return x + y;
-}
+};
 
 //以下に省略して一文にすることができる
 
 const add = (x, y) => x + y;
 ```
-暗黙的なreturnまとめ
+
+暗黙的な return まとめ
+
 ```javascript
 const isEven = function(num) { //通常の関数式
     return num % 2 === 0;
@@ -1651,32 +1730,41 @@ const isEven = num => ( //暗黙的return
 );
 const  isEven = num => num % 2 === 0; //暗黙的return(1行版)
 ```
-#### setTimeoutとsetInterval
-setTimeoutで3秒後に出力する
+
+#### setTimeout と setInterval
+
+setTimeout で 3 秒後に出力する
+
 ```javascript
 setTimeout(() => {
-    console.log('やっほー');
+    console.log("やっほー");
 }, 3000);
 ```
+
 ```javascript
-console.log('やっほー')
+console.log("やっほー");
 setTimeout(() => {
-    console.log('おーい');
-}, 3000);//setTimeoutはそこで出力を止めておくのではなく、秒後に出力する命令をして次に行くので、ばいばいが先に出力される
-console.log('ばいばい');
+    console.log("おーい");
+}, 3000); //setTimeoutはそこで出力を止めておくのではなく、秒後に出力する命令をして次に行くので、ばいばいが先に出力される
+console.log("ばいばい");
 //やっほー ばいばい おーいの順番で出力される
 ```
-setIntervalで2秒ごとに指定の関数を呼ばせる
-clearIntervalで繰り返し処理を止める
+
+setInterval で 2 秒ごとに指定の関数を呼ばせる
+clearInterval で繰り返し処理を止める
+
 ```javascript
 setInterval(() => {
     console.log(Math.random());
-},2000);
+}, 2000);
 
 clearInterval();
 ```
+
 #### filter
+
 提供されたテスト関数を満たす要素からなる新しい配列を生成する
+
 ```javascript
 {
     title: 'Notting Hill',
@@ -1693,56 +1781,76 @@ const goodMovies = movies.filter(movie => {
     return movie.score > 80;
 });
 ```
+
 暗黙的リターンに変換
+
 ```javascript
-const goodMovies = movies.filter(movie => movie.score > 80);
+const goodMovies = movies.filter((movie) => movie.score > 80);
 ```
-filterとmapを組み合わせる
-```javascript
-const goodMovies = movies.filter(movie => movie.score > 80).map(movie => movie.title); //titleだけの配列が出力される
-```
-改行で見やすく整理する
+
+filter と map を組み合わせる
+
 ```javascript
 const goodMovies = movies
-    .filter(movie => movie.score > 80)
-    .map(movie => movie.title);
+    .filter((movie) => movie.score > 80)
+    .map((movie) => movie.title); //titleだけの配列が出力される
 ```
-filterメソッドの練習をしましょう。validUserNamesという関数を作ってください。この関数はStringの配列を引数として受け取って、Stringの長さが10文字未満の値だけが入っている新しい配列を返してください。以下が実行例です：
+
+改行で見やすく整理する
+
+```javascript
+const goodMovies = movies
+    .filter((movie) => movie.score > 80)
+    .map((movie) => movie.title);
+```
+
+filter メソッドの練習をしましょう。validUserNames という関数を作ってください。この関数は String の配列を引数として受け取って、String の長さが 10 文字未満の値だけが入っている新しい配列を返してください。以下が実行例です：
 
 validUserNames(['tanaka', 'suzuki1979', 'q29832128238983', 'hogemoge', 'kimetsu']);
 // => ["tanaka", "hogemoge", "kimetsu"]
-// 'suzuki1979'と'q29832128238983'は10文字以上なので、返ってきた配列には含まれない
+// 'suzuki1979'と'q29832128238983'は 10 文字以上なので、返ってきた配列には含まれない
+
 ```javascript
 const validUserNames = (name) => {
-    return name.filter(name => name.length < 10);
-}
+    return name.filter((name) => name.length < 10);
+};
 ```
-#### every
-配列ないの全ての要素が指定されたテスト関数を満たすかそうかをtrueかfalseで返す
-```javascript
-const exams = [80, 98, 92, 78, 77, 90, 89, 81, 77]
 
-exam.every(exam => exam >= 75); //全員が75点以上かをチェックする
-//true
-```
-#### some
-everyに似ているが、「一つでも」テスト関数を満たす要素があればtrueを返す
+#### every
+
+配列ないの全ての要素が指定されたテスト関数を満たすかそうかを true か false で返す
+
 ```javascript
-exam.some(exam => exam >= 90); //90以上が1人以上いるかをチェックする
+const exams = [80, 98, 92, 78, 77, 90, 89, 81, 77];
+
+exam.every((exam) => exam >= 75); //全員が75点以上かをチェックする
 //true
 ```
-allEvensという関数を定義してください。この関数は配列を一つ引数として受け取って、その配列の中身がすべて偶数であればtrueを返してください。そうでない場合はfalseを返してください。someあるいはeveryメソッドを使いましょう！（どちらを使うかは自分で決めてください）
+
+#### some
+
+every に似ているが、「一つでも」テスト関数を満たす要素があれば true を返す
+
+```javascript
+exam.some((exam) => exam >= 90); //90以上が1人以上いるかをチェックする
+//true
+```
+
+allEvens という関数を定義してください。この関数は配列を一つ引数として受け取って、その配列の中身がすべて偶数であれば true を返してください。そうでない場合は false を返してください。some あるいは every メソッドを使いましょう！（どちらを使うかは自分で決めてください）
 
 allEvens([2,4,6,8]) //true（すべて偶数）
 allEvens([1,4,6,8]) //false（奇数が含まれている）
 allEvens([1,2,3]) //false（奇数が含まれている）
+
 ```javascript
 const allEvens = (numbers) => {
-    return numbers.every(num => num % 2 === 0);
-}
+    return numbers.every((num) => num % 2 === 0);
+};
 ```
+
 #### reduce
-配列の各要素に対して（引数で与えられた）reducer関数を実行して、「単一の出力値」を生成する
+
+配列の各要素に対して（引数で与えられた）reducer 関数を実行して、「単一の出力値」を生成する
 
 ```javascript
 const prices = [980, 1500, 1980, 4980, 2980];
@@ -1753,96 +1861,121 @@ for (let price of prices) {
 }
 console.log(total); //12420
 ```
-reduceを用いて書く
+
+reduce を用いて書く
+
 ```javascript
 prices.reduce((total, price) => {
     return total + price;
-}) //12420 同じ結果が出る
+}); //12420 同じ結果が出る
 ```
+
 配列の中の最小値を求める
+
 ```javascript
-const minPrice = prices.reduce((min, price) =>{
-    if (min > price){
+const minPrice = prices.reduce((min, price) => {
+    if (min > price) {
         return price;
     }
     return min;
-})//呼ばれたものがminに入り、再度priceと比較し、、を繰り返すことで最小値が出る
+}); //呼ばれたものがminに入り、再度priceと比較し、、を繰り返すことで最小値が出る
 ```
+
 ```javascript
-const highestMovie = movies.reduce((bestMovie, currMovie) =>{
-    if (bestMovie.score < currMovie.score){
+const highestMovie = movies.reduce((bestMovie, currMovie) => {
+    if (bestMovie.score < currMovie.score) {
         return currMovie;
     }
     return bestMovie;
-})
+});
 ```
-### モダンなjavascriptの機能
+
+### モダンな javascript の機能
+
 #### デフォルトパラメータ
+
 ```javascript
 function rollDie(numSides) {
-    if (typeof numSides === 'undefined') {
+    if (typeof numSides === "undefined") {
         numSides = 6;
     }
     return Math.floor(Math.random() * numSides) + 1;
 }
 
-rollDie() //デフォルトでは6までの数字がランダムに出力
-rollDie(20) //数字を入れると()内の数字までの数字がランダムに出力
+rollDie(); //デフォルトでは6までの数字がランダムに出力
+rollDie(20); //数字を入れると()内の数字までの数字がランダムに出力
 ```
+
 今時のやり方
+
 ```javascript
 function rollDie(numSide = 6) {
     return Math.floor(Math.random() * numSides) + 1;
 }
 
-rollDie() //デフォルトでは6までの数字がランダムに出力
-rollDie(20) //数字を入れると()内の数字までの数字がランダムに出力
+rollDie(); //デフォルトでは6までの数字がランダムに出力
+rollDie(20); //数字を入れると()内の数字までの数字がランダムに出力
 ```
+
 ```javascript
-function greet(person, msg = 'こんにちは', suffix = '!！'){
-    console.log (`${msg}、${person} さん`);
+function greet(person, msg = "こんにちは", suffix = "!！") {
+    console.log(`${msg}、${person} さん`);
 }
 
-greet('やまだ', 'やっほー') //やっほー、やまださん！！
-greet('やまだ') //こんにちは、やまださん！！
+greet("やまだ", "やっほー"); //やっほー、やまださん！！
+greet("やまだ"); //こんにちは、やまださん！！
 ```
-#### スプレッド構文
-```javascript
-Math.max(13,4,5,6,21,9,21,2222) //2222(最大値を出力することができる)
 
-const nums = [13,4,5,6,21,9,21,2222]
-MAth.max(nums) //NaN (カンマ区切りの数字を渡さないとNaNになってしまう)出力不可能
+#### スプレッド構文
+
+```javascript
+Math.max(13, 4, 5, 6, 21, 9, 21, 2222); //2222(最大値を出力することができる)
+
+const nums = [13, 4, 5, 6, 21, 9, 21, 2222];
+MAth.max(nums); //NaN (カンマ区切りの数字を渡さないとNaNになってしまう)出力不可能
 ```
+
 スプレッド構文を用いて配列の中身を展開する
+
 ```javascript
-const nums = [13,4,5,6,21,9,21,2222]
-Math.max(...nums) //2222(出力できる)
+const nums = [13, 4, 5, 6, 21, 9, 21, 2222];
+Math.max(...nums); //2222(出力できる)
 ```
+
 ```javascript
-console.log('sadf', 'sdaf', 'asdf', 'asdfa')
-console.log(nums) //[13,4,5,6,21,9,21,2222]
-console.log(...nums) //13 4 5 6 21 9 21 2222
+console.log("sadf", "sdaf", "asdf", "asdfa");
+console.log(nums); //[13,4,5,6,21,9,21,2222]
+console.log(...nums); //13 4 5 6 21 9 21 2222
 ```
+
 ```javascript
-console.log('あいうえお') //あいうえお
-console.log(...'あいうえお') //あ い う え お
+console.log("あいうえお"); //あいうえお
+console.log(..."あいうえお"); //あ い う え お
 ```
+
 #### 配列リテラルにおけるスプレッド構文
+
 既存の配列から新しい配列を作成する。配列の要素を新しい配列にそれぞれ展開する。
+
 ```javascript
 const cats = ['Tama', 'Tora', 'Momo'];
 cost dogs = ['Hachi', 'Pochi'];
 
 const allPets = [...cats, ...dogs]; //['Tama', 'Tora', 'Momo', 'Hachi', 'Pochi']
 ```
-結合するだけでなく、追加することもできる
-```javascript
-const allPets = [...cats, ...dogs, 'Sakura'] //['Tama', 'Tora', 'Momo', 'Hachi', 'Pochi', 'Sakura']
 
-const allPets = [...cats, 'Sakura', ...dogs] //['Tama', 'Tora', 'Momo', 'Sakura', 'Hachi', 'Pochi'](真ん中に持ってくることもできる)
+結合するだけでなく、追加することもできる
+
+```javascript
+const allPets = [...cats, ...dogs, "Sakura"]; //['Tama', 'Tora', 'Momo', 'Hachi', 'Pochi', 'Sakura']
+
+const allPets = [...cats, "Sakura", ...dogs]; //['Tama', 'Tora', 'Momo', 'Sakura', 'Hachi', 'Pochi'](真ん中に持ってくることもできる)
 ```
+
 #### オブジェクトにおけるスプレッド構文
+
 オブジェクトからオブジェクトにプロパティをコピーする
+
 ```javascript
 const fwline = {legs: 4, family: 'ネコ科'};
 const canine = {family: 'イヌ科', bark: true};
@@ -1852,23 +1985,26 @@ const canine = {family: 'イヌ科', bark: true};
 const catDog = {...feline, ...canine};
 catDog //{family: 'イヌ科', bark: true}(同じfamilyという値が呼び出された際は、後に定義された方がうわかぶせして出力される)
 ```
+
 ```javascript
 const forDate = {
-    email: 'hoge@example.com',
-    password: 'secret',
-    username: 'hoge'
-}
+    email: "hoge@example.com",
+    password: "secret",
+    username: "hoge",
+};
 
-const newUser = {...forData, id: 123, isVerified: false}
+const newUser = { ...forData, id: 123, isVerified: false };
 ```
+
 #### レスト構文（残余引数）
+
 その位置にある残りの引数を配列の中に入れることができる
 
-▼argumenntsオブジェクト
+▼argumennts オブジェクト
 ・アロー関数以外の全ての関数で使える
 ・配列みたいなオブジェクト
-　・lengthプロパティがある
-　・pushやpopのようなメソッドは使えない
+　・length プロパティがある
+　・push や pop のようなメソッドは使えない
 ・関数に渡された引数を全て含んでいる
 
 ```javascript
@@ -1876,73 +2012,87 @@ function sum() {
     console.log(arguments);
 }
 
-sum(1, 2, 3) 
+sum(1, 2, 3);
 //0:1
-//1:2 
+//1:2
 //2:3
 ```
+
 ```javascript
 function sum() {
     return arguments.reduce((total, num) => total + num);
 }
 
-sum(1, 2, 3) //Error
+sum(1, 2, 3); //Error
 ```
-↓レストを使用する
+
+↓ レストを使用する
+
 ```javascript
 function sum(...nums) {
     console.log(nums);
 }
 
-sum(1, 2, 3) //[1, 2, 3] 配列として入ってくる
+sum(1, 2, 3); //[1, 2, 3] 配列として入ってくる
 ```
+
 ```javascript
 function sum(...num) {
     return nums.reduce((total, num) => total + num);
 }
 
-sum(1, 2, 3) //6 (合計の6が出力される)
+sum(1, 2, 3); //6 (合計の6が出力される)
 ```
-3個以降のものが全部restの中に残りの引数として配列に入る
+
+3 個以降のものが全部 rest の中に残りの引数として配列に入る
+
 ```javascript
-function raceResults(gold, silver, ...rest) { 
+function raceResults(gold, silver, ...rest) {
     console.log(`金：${gold}`);
     console.log(`銀：${silver}`);
     console.log(`その他：${rest}`);
 }
 
-raceResults('太郎', '次郎', '三郎', '四郎', '五郎');
+raceResults("太郎", "次郎", "三郎", "四郎", "五郎");
 //金：太郎
 //銀：次郎
 //その他：三郎,四郎,五郎
 ```
+
 #### 分割代入
+
 ・配列の要素
 ・オブジェクトのプロパティを、別個の変数に割り当てるすっきりと書ける構文
-```javascript
-const scores = [929321, 456827, 3287376, 328763, 98732]
 
-const [ gold, silver ] = scores;
-gold //929321 (1個目の値)
-silver //456827 (2個目の値)
-```
 ```javascript
-const raceResults = ['エリウド', 'フェイサ', 'ゲーレン'];
+const scores = [929321, 456827, 3287376, 328763, 98732];
+
+const [gold, silver] = scores;
+gold; //929321 (1個目の値)
+silver; //456827 (2個目の値)
+```
+
+```javascript
+const raceResults = ["エリウド", "フェイサ", "ゲーレン"];
 
 const [gold, silver, bronze] = raceResults;
 gold; //エリウド
 silver; //フェイサ
 bronze; //ゲーレン
 ```
-restを使う
+
+rest を使う
+
 ```javascript
-const raceResults = ['エリウド', 'フェイサ', 'ゲーレン'];
+const raceResults = ["エリウド", "フェイサ", "ゲーレン"];
 
 const [fastest, ...rest] = raceResults;
 gold; //エリウド
 rest; //['フェイサ', 'ゲーレン']
 ```
+
 #### オブジェクトの分割代入
+
 ```javascript
 const user = {
     email: 'haevey@example.com',
@@ -1955,18 +2105,23 @@ const user = {
 }
 const { firstName, lastName, email } = user;
 ```
-```javascript
-const { born: birthYear } = user;//bornのプロパティをbirthYearという変数に入れる
 
-birthYear //1930
-```
-仮にdiedがなかった場合は以下でデフォルト値を指定できる
-（diedがあるユーザーに使用したら、デフォルト値を設定してもちゃんとuserにはdiedのプロパティがあるので呼び出すことができる）
 ```javascript
-const { born: birthYear , died = 'N/A'} = user2;
-died //N/A
+const { born: birthYear } = user; //bornのプロパティをbirthYearという変数に入れる
+
+birthYear; //1930
 ```
+
+仮に died がなかった場合は以下でデフォルト値を指定できる
+（died があるユーザーに使用したら、デフォルト値を設定してもちゃんと user には died のプロパティがあるので呼び出すことができる）
+
+```javascript
+const { born: birthYear, died = "N/A" } = user2;
+died; //N/A
+```
+
 #### パラメーターの分割代入
+
 ```javascript
 const user = {
     email: 'haevey@example.com',
@@ -1979,45 +2134,55 @@ const user = {
 }
 
 function fullName({firstName, lastNAme}) {
-    return `${firstName} ${lastName}`; 
+    return `${firstName} ${lastName}`;
 }
 
 fullName //'Harvey Milk' (firstNameとlastNAmeが結合されて返ってくる)
 ```
-```javascript
-movie.filter(movie => movie.score >= 90);
-movie.filter(({score}) => score >= 90); //↑と同様　(分割代入を使用する)
-```
-mapを使用する
-```javascript
-movie.map(({title, year, score}) => {
-    return `${title}(${year}): ${score}/100`;
-})
-```
-### DOM入門
-Document Object Model  
-Document：DocumentオブジェクトがDOMの世界へのエントリーポイント。Webページのあらゆるコンテンツを表していて、便利なプロパティやメソッドも多数用意されている
 
-・ウェブページをJavaScriptで表現したもの
-・ウェブページとJavaScriptを接続するもの
-・いっててしまえばJavaScriptで使えるオブジェクトの集まり
+```javascript
+movie.filter((movie) => movie.score >= 90);
+movie.filter(({ score }) => score >= 90); //↑と同様　(分割代入を使用する)
+```
+
+map を使用する
+
+```javascript
+movie.map(({ title, year, score }) => {
+    return `${title}(${year}): ${score}/100`;
+});
+```
+
+### DOM 入門
+
+Document Object Model  
+Document：Document オブジェクトが DOM の世界へのエントリーポイント。Web ページのあらゆるコンテンツを表していて、便利なプロパティやメソッドも多数用意されている
+
+・ウェブページを JavaScript で表現したもの
+・ウェブページと JavaScript を接続するもの
+・いっててしまえば JavaScript で使えるオブジェクトの集まり
 
 #### getElementByld
+
 要素の取得
 ・getElementById
 ・getElementsByTagName
 ・getElementByClassName
+
 ```javascript
-document.getElementById('banner')
+document.getElementById("banner");
 //バナーのIDが返ってくる(IDなのでクラス名を入れても返ってこない)
 ```
+
 ```javascript
-document.getElementById('toc')
-const toc = document.getElementById('toc') //tocという変数に入れる
-console.dir(toc)//オブジェクトが見れる
+document.getElementById("toc");
+const toc = document.getElementById("toc"); //tocという変数に入れる
+console.dir(toc); //オブジェクトが見れる
 ```
-img要素をIDで取得してimageという変数に代入してください
-h1要素をIDで取得してheadingという変数に代入してください
+
+img 要素を ID で取得して image という変数に代入してください
+h1 要素を ID で取得して heading という変数に代入してください
+
 ```javascript
 <!DOCTYPE html>
 <html>
@@ -2037,61 +2202,82 @@ h1要素をIDで取得してheadingという変数に代入してください
 
 </html>
 ```
+
 app.js
+
 ```javascript
-document.getElementById('unicorn')
-const image = document.getElementById('unicorn')
-document.getElementById('mainheading')
-const heading = document.getElementById('mainheading')
+document.getElementById("unicorn");
+const image = document.getElementById("unicorn");
+document.getElementById("mainheading");
+const heading = document.getElementById("mainheading");
 ```
 
-#### getElementsByTagNameとgetElementsByClassName
-タグネームの中身は大文字でも小文字でもok
-```javascript
-document.getElementsByTagName('IMG')
-```
-```javascript
-const allImages = document.getElementsByTagName('img');
+#### getElementsByTagName と getElementsByClassName
 
-for (let img of allImages){
+タグネームの中身は大文字でも小文字でも ok
+
+```javascript
+document.getElementsByTagName("IMG");
+```
+
+```javascript
+const allImages = document.getElementsByTagName("img");
+
+for (let img of allImages) {
     console.log(img.src);
-}//4つの画像のurlを取得することができる(配列ではないけど配列っぽくループを回す事もできる)
+} //4つの画像のurlを取得することができる(配列ではないけど配列っぽくループを回す事もできる)
 ```
+
 getElementByClassName
+
 ```javascript
-document.getElementsByClassName('square')
+document.getElementsByClassName("square");
 
 //HTMLCollection(3) [img.square, img.square, img.square]
 
-const squareImages =document.getElementsByClassName('square');
+const squareImages = document.getElementsByClassName("square");
 
 for (let img of squareImages) {
-    img.src = 'https://xxxxxxxx'
-}//squareクラスのついた画像をとってきて三つ全て同じ画像にする
+    img.src = "https://xxxxxxxx";
+} //squareクラスのついた画像をとってきて三つ全て同じ画像にする
 ```
+
 #### querySelector
+
 単一の要素を取得できるセレクターメソッド
+
 ```javascript
-docment.querySelector('p') //最初に見つけた一つが出力される
+docment.querySelector("p"); //最初に見つけた一つが出力される
 ```
-IDの場合
+
+ID の場合
+
 ```javascript
-document.querySelector('#banner')
+document.querySelector("#banner");
 ```
+
 クラス名の場合
+
 ```javascript
-document.querySelector('.banner')
+document.querySelector(".banner");
 ```
+
 擬似クラス（何番目の画像という指定ができる）
+
 ```javascript
-document.querySelector('img:nth-of-type(3)')
+document.querySelector("img:nth-of-type(3)");
 ```
+
 タイトル属性の場合
+
 ```javascript
-document.querySelector('a[title=ヒツジ]')
+document.querySelector("a[title=ヒツジ]");
 ```
+
 #### querySelectorAll
-querySelector同様だが、対象となる要素全てを取得するセレクターメソッド
+
+querySelector 同様だが、対象となる要素全てを取得するセレクターメソッド
+
 ```javascript
 const links document.querySelectorAll('p a');
 
@@ -2099,11 +2285,13 @@ for (let link of links) {
     console.log(link.href)
 }
 ```
-'done'クラスが設定されている要素をすべて取得して、doneTodosという変数に代入してください
 
-チェックボックスを一つ取得して、checkboxという変数に代入してください。
+'done'クラスが設定されている要素をすべて取得して、doneTodos という変数に代入してください
 
-input要素は複数あるので注意しましょう！type属性を使って選択する必要があります
+チェックボックスを一つ取得して、checkbox という変数に代入してください。
+
+input 要素は複数あるので注意しましょう！type 属性を使って選択する必要があります
+
 ```javascript
 document.querySelectorAll(".done");
 const doneTodos = document.querySelectorAll(".done");
@@ -2111,89 +2299,106 @@ const doneTodos = document.querySelectorAll(".done");
 document.querySelector("input[type=checkbox]");
 const checkbox = document.querySelector("input[type=checkbox]");
 ```
-#### 240. innerHTML, textContentとinnerText
+
+#### 240. innerHTML, textContent と innerText
+
 textContent
 全ての要素の内容を取得して表示
 innerText
 ページ上で見えてるものだけが表示される
 innerHTML
-要素ないのHTMLまたはXMLのマークアップを取得したり設定したりする
+要素ないの HTML または XML のマークアップを取得したり設定したりする
+
 ```javascript
-const allLinks = document.querySelectorAll('a');
+const allLinks = document.querySelectorAll("a");
 
 for (let link of allLinks) {
-    lonk.innerText = '私はリンクです！！！！';
+    lonk.innerText = "私はリンクです！！！！";
 }
 ```
+
 ```javascript
-document.querySelector('h1')
+document.querySelector("h1");
 //<h1>ニワトリ</h1>
-document.querySelector('h1').innerText
+document.querySelector("h1").innerText;
 //'ニワトリ'
-document.querySelector('h1').innerText = '<i>ABCD</i>'
+document.querySelector("h1").innerText = "<i>ABCD</i>";
 //<h1>ABCD</h1>（とそのまま出力されてしまう）
 
-document.querySelector('h1').innerHTML = '<i>ABCD</i>'
+document.querySelector("h1").innerHTML = "<i>ABCD</i>";
 //ABCD（斜体）(HTMLを設定できるので、<i></i>をそのまま出力するのでなく、HTMLに書き込むため、ちゃんと斜体で出力される)
 ```
+
 +=を使用することで、今あるものに追加することができる
+
 ```javascript
-document.querySelector('h1').innerHTML = '<i>ABCD</i>'
+document.querySelector("h1").innerHTML = "<i>ABCD</i>";
 //ABCD（斜体）
-document.querySelector('h1').innerHTML += '<i>ABCD</i>'
+document.querySelector("h1").innerHTML += "<i>ABCD</i>";
 //ABCDABCD（斜体）
 ```
-index.htmlにHTMLを用意しました。以下を実現するためにapp.jsを完成させてください：
 
-JavaScriptで「おいしい」を含んでいる<span>要素を取得してください
+index.html に HTML を用意しました。以下を実現するために app.js を完成させてください：
 
-「おいしい」というテキストを「まずい」にJavaScriptで変更してください
+JavaScript で「おいしい」を含んでいる<span>要素を取得してください
+
+「おいしい」というテキストを「まずい」に JavaScript で変更してください
+
 ```javascript
-document.querySelector('span').innerHTML
-document.querySelector('span').innerHTML = '<span>まずい</span>'
+document.querySelector("span").innerHTML;
+document.querySelector("span").innerHTML = "<span>まずい</span>";
 ```
+
 #### プロパティとメソッド
+
 ```javascript
-document.querySelectorAll('input')[1]
+document.querySelectorAll("input")[1];
 ```
-hrefの編集
+
+href の編集
+
 ```javascript
-document.querySelector('#banner').src
+document.querySelector("#banner").src;
 //https://xxxxxxxx
 
-firstLink.getAttribute('href')
+firstLink.getAttribute("href");
 ///wiki/%xxxxxxx
 
-firstLink.getAttribute('href', 'https://google.com')
+firstLink.getAttribute("href", "https://google.com");
 ```
-DOM要素の属性を操作しましょう。あらかじめindex.htmlでHTMLを用意しています。img要素をJavaScriptで取得して：
 
-srcをhttps://devsprouthosting.com/images/chicken.jpg に更新してください
+DOM 要素の属性を操作しましょう。あらかじめ index.html で HTML を用意しています。img 要素を JavaScript で取得して：
 
-altの内容も"chicken"に更新してください
+src をhttps://devsprouthosting.com/images/chicken.jpg に更新してください
+
+alt の内容も"chicken"に更新してください
+
 ```javascript
-document.querySelector('img').src='https://devsprouthosting.com/images/chicken.jpg'
+document.querySelector("img").src =
+    "https://devsprouthosting.com/images/chicken.jpg";
 
-document.querySelector('img').alt="chicken"
+document.querySelector("img").alt = "chicken";
 ```
+
 #### スタイルを変える
 
 ```javascript
-h1.style.color = 'green'
+h1.style.color = "green";
 
-h1.style.fontSize = '3em'
+h1.style.fontSize = "3em";
 
-getComputedStyle(h1).color
+getComputedStyle(h1).color;
 //rgb(128,0,128)
 
-getComputedStyle(h1).fontSize
+getComputedStyle(h1).fontSize;
 //32px
 ```
-index.htmlをあらかじめ用意しています。index.htmlには変更を加えずに、JavaScript以下の変更を行ってください：
 
-containerというIDのdivを取得して、JavaScriptでtext-alignをcenterに更新してください
+index.html をあらかじめ用意しています。index.html には変更を加えずに、JavaScript 以下の変更を行ってください：
 
-画像を取得して、JavaScriptでwidthを150pxに更新し、border-radiusを50%に更新してください
+container という ID の div を取得して、JavaScript で text-align を center に更新してください
+
+画像を取得して、JavaScript で width を 150px に更新し、border-radius を 50%に更新してください
 
 ```javascript
 <!DOCTYPE html>
@@ -2216,102 +2421,133 @@ containerというIDのdivを取得して、JavaScriptでtext-alignをcenterに�
 
 </html>
 ```
-```javascript
-    const containerDiv = document.getElementById("container");
-    
-    containerDiv.style.textAlign = "center";
-    
-    const image = document.querySelector("img");
-    image.style.width = "150px";
-    image.style.borderRadius = "50%";
-```
-#### classList
-```javascript
-h2.setAttribute('class', 'purple')
 
-h2.setAttribute('class', `${currentClasses}purple`)
-```
-addを呼ぶことで今の状態にクラスを追加することができる
 ```javascript
-h2.classList.add('purple')
-h2.classsList.add('border')
+const containerDiv = document.getElementById("container");
+
+containerDiv.style.textAlign = "center";
+
+const image = document.querySelector("img");
+image.style.width = "150px";
+image.style.borderRadius = "50%";
 ```
-remove　クラスを外すことができる
+
+#### classList
+
 ```javascript
-h2.classsList.remove('border')
+h2.setAttribute("class", "purple");
+
+h2.setAttribute("class", `${currentClasses}purple`);
+```
+
+add を呼ぶことで今の状態にクラスを追加することができる
+
+```javascript
+h2.classList.add("purple");
+h2.classsList.add("border");
+```
+
+remove 　クラスを外すことができる
+
+```javascript
+h2.classsList.remove("border");
 //boderを外す
 ```
-toggle　切り替える
+
+toggle 　切り替える
 同じコードでもつけていたら外す外れていたらつけるという動作をする。
 アコーディオンの開け閉じなどで使われている
+
 ```javascript
-h2.classList.toggle('purple')
+h2.classList.toggle("purple");
 //purpleをつける
-h2.classList.toggle('purple')
+h2.classList.toggle("purple");
 //purpleを外す
 ```
+
 ```javascript
 const listItems = document.querySelectorAll("li");
-for(let i = 0; i< listItems.length; i++){
-    listItems[i].classList.toggle('highlight');
+for (let i = 0; i < listItems.length; i++) {
+    listItems[i].classList.toggle("highlight");
 }
 ```
+
 #### 親・子・兄弟要素
+
 親要素
+
 ```javascript
-firstBold.parentElement.parentElement.parentElement
+firstBold.parentElement.parentElement.parentElement;
 ```
+
 子要素
+
 ```javascript
-paragraph.children[0].parenrElement
+paragraph.children[0].parenrElement;
 ```
+
 兄弟要素
 この要素の次の要素が欲しいとき
-```javascript
-squareImg.nextElementSibling
 
-squareImg.previousElementSibling
+```javascript
+squareImg.nextElementSibling;
+
+squareImg.previousElementSibling;
 ```
-#### appendとappendChild
+
+#### append と appendChild
+
 append
 段落要素の最後に追加する
+
 ```javascript
-document.body.appendChild(newImg)
+document.body.appendChild(newImg);
 ```
+
 ```javascript
-const p =document.querySelector('p')
-p.append('あああああああ')
+const p = document.querySelector("p");
+p.append("あああああああ");
 ```
+
 prepend
 先頭に追加する
+
 ```javascript
 const newB = document.createElement('b')
 new.append('やっほー');
 newB//<b>やっほー</b>
 p.prepend(newB)//先頭に追加される
 ```
+
 insertAdjacentelement
 ポジションを指定
+
 ```javascript
-const h1 = document.querySelector('h1')
-h1.insertAdjacentelement('afterend', h2);
+const h1 = document.querySelector("h1");
+h1.insertAdjacentelement("afterend", h2);
 //<h2>可愛らしい烏骨鶏</h2>
-h1.nextElementSibring
+h1.nextElementSibring;
 //<h2>可愛らしい烏骨鶏</h2>
 ```
-100個のボタンを作る
+
+100 個のボタンを作る
+
 ```javascript
-const container = document.querySelector('#container');
+const container = document.querySelector("#container");
 
 for (let i = 1; i <= 100; i++) {
-    const newButton = document.createElement('button');
+    const newButton = document.createElement("button");
     newButton.innerText = `ボタン${i}`;
     container.appendChild(newButton);
 }
 ```
-#### DOMイベント
+
+#### DOM イベント
+
 #### インラインイベント
-HTML内にクリック時の処理を書き込める
+
+HTML 内にクリック時の処理を書き込める
+
 ```javascript
     <body>
         <!-- ここにHTMLを入れて！！！ -->
@@ -2322,11 +2558,17 @@ HTML内にクリック時の処理を書き込める
         <script src="app.js"></script>
     </body>
 ```
+
 ダブルクリックされたときだけ出力される
+
 ```javascript
-        <button ondblclick="alert('クリックした！'); alert('hogehoge')">クリックして！</button>
+<button ondblclick="alert('クリックした！'); alert('hogehoge')">
+    クリックして！
+</button>
 ```
-#### onclickプロパティ
+
+#### onclick プロパティ
+
 ```javascript
 <body>
         <!-- ここにHTMLを入れて！！！ -->
@@ -2337,88 +2579,109 @@ HTML内にクリック時の処理を書き込める
         <script src="app.js"></script>
     </body>
 ```
+
 ```javascript
-const btn = document.querySelector('#v2');
+const btn = document.querySelector("#v2");
 
-btn.onclick = function() { //クリックで実行
-    console.log('クリックした！');
-    console.log('ほげほげ');
-}
+btn.onclick = function () {
+    //クリックで実行
+    console.log("クリックした！");
+    console.log("ほげほげ");
+};
 
-function scream(){ //ホバーで実行
-    console.log('あああああああ');
-    console.log('いやーーー');
+function scream() {
+    //ホバーで実行
+    console.log("あああああああ");
+    console.log("いやーーー");
 }
 
 btn.onmouseenter = scream; //ホバーで実行
 
-document.querySelector('h1').onclick = () => { //h1をクリックしたときにアラートを出力(アロー関数を使用)
-    alert('h1をクリック');
-}
+document.querySelector("h1").onclick = () => {
+    //h1をクリックしたときにアラートを出力(アロー関数を使用)
+    alert("h1をクリック");
+};
 ```
+
 #### addEventListener
+
 複数の処理を一つのイベントに簡単に追加していける
 （第一引数にイベント名、第二引数に実行したい関数）
+
 ```javascript
-dblclick //ダブルクリックで発火
-mouseup //クリックで離したときに発火
+dblclick; //ダブルクリックで発火
+mouseup; //クリックで離したときに発火
 ```
+
 ```javascript
-const hogemogeButton = document.querySelector('#hogemoge');
+const hogemogeButton = document.querySelector("#hogemoge");
 hogemogeButton.onclick = hoge;
 hogemogeButton.onclick = moge; //上書きしている状態なので、ボタンをクリックしたときにhogeは出力されない
 ```
-▼addEventListenerを使用する
+
+▼addEventListener を使用する
+
 ```javascript
-const hogemogeButton = document.querySelector('#hogemoge');
-hogemogeButton.addEventListener('click', hoge);
-hogemogeButton.addEventListener('click', moge); //ボタンを押したときにhogeもmogeも出力される
+const hogemogeButton = document.querySelector("#hogemoge");
+hogemogeButton.addEventListener("click", hoge);
+hogemogeButton.addEventListener("click", moge); //ボタンを押したときにhogeもmogeも出力される
 ```
-onceのオプション
+
+once のオプション
+
 ```javascript
-hogemogeButton.addEventListener('click', hoge, {once:true});
-hogemogeButton.addEventListener('click', moge, {once:true}); //一度のみhogeとmogeが出力される。その後ボタンを押しても出力されない once=一度のみ
+hogemogeButton.addEventListener("click", hoge, { once: true });
+hogemogeButton.addEventListener("click", moge, { once: true }); //一度のみhogeとmogeが出力される。その後ボタンを押しても出力されない once=一度のみ
 ```
+
 #### ランダムカラー
+
 ボタンをクリックするごとに背景色が変わる
+
 ```javascript
 //HTML
 <h1>ようこそ！</h1>
 <button>クリックしてね</button>
 ```
+
 ```javascript
 //javascript
-const button = document.querySelector('button');
-const h1 = document.querySelector('h1')
+const button = document.querySelector("button");
+const h1 = document.querySelector("h1");
 
-button.addEventListener('click', () => {
+button.addEventListener("click", () => {
     const r = Math.floor(Math.random() * 256);
     const g = Math.floor(Math.random() * 256);
     const b = Math.floor(Math.random() * 256);
 
     const newColor = `rgb(${r}, ${g}, ${b})`;
     document.body.style.backgroundColor = newColor;
-    h1.innerText = newColor
+    h1.innerText = newColor;
 });
 ```
+
 #### キーボードイベントとイベントオブジェクト
+
 ```javascript
 //HTML
 <button>クリック</button>
 <input type="text">
 ```
+
 ```javascript
 //javascript
-document.querySelector('button').addEventListener('click', function(evt){
+document.querySelector("button").addEventListener("click", function (evt) {
     console.log(evt);
 });
 
-const input = document.querySelector('input');
-input.addEventListener('keydown', function (e) {
-    console.log('e');
+const input = document.querySelector("input");
+input.addEventListener("keydown", function (e) {
+    console.log("e");
 });
 ```
-#### フォームイベントとpreventDefault
+
+#### フォームイベントと preventDefault
+
 ```javascript
 //HTML
 <h1>Form Event</h1>
@@ -2433,6 +2696,7 @@ input.addEventListener('keydown', function (e) {
 
         </ul>
 ```
+
 ```javascript
 //javascript
 const tweetForm = document.querySelector("#tweetForm");
@@ -2459,8 +2723,11 @@ const addTweet = (username, tweet) => {
     tweetsContainer.append(newTweet);
 };
 ```
+
 #### イベントのバブリング
+
 バブリング：以下の場合、ボタンをクリックしたときに、ボタンクリックのアラートの後、再度クリックすると段落クリックのアラートも表示される。上に上がっていく感じ
+
 ```javascript
 <body>
         <!-- ここにHTMLを入れて！！！ -->
@@ -2472,9 +2739,12 @@ const addTweet = (username, tweet) => {
         <script src="app.js"></script>
     </body>
 ```
+
 ### 卓球得点表
+
 卓球得点表を作る
-余談：!＋タブキーでHTMLのテンプレ作れる
+余談：!＋タブキーで HTML のテンプレ作れる
+
 ```javascript
 <!DOCTYPE html>
 <html>
@@ -2515,159 +2785,178 @@ const addTweet = (username, tweet) => {
         <!-- ここまでに入れて！！！ -->
         <script src="app.js"></script>
     </body>
-    
+
 </html>
 
 ```
+
 ```javascript
 //この下にコードを書いてください:
-const p1Button = document.querySelector('#p1Button');
-const p2Button = document.querySelector('#p2Button');
-const resetButton = document.querySelector('#reset');
-const winningScoreSelect = document.querySelector('#winningScore');
-const p1Display = document.querySelector('#p1Display');
-const p2Display = document.querySelector('#p2Display');
+const p1Button = document.querySelector("#p1Button");
+const p2Button = document.querySelector("#p2Button");
+const resetButton = document.querySelector("#reset");
+const winningScoreSelect = document.querySelector("#winningScore");
+const p1Display = document.querySelector("#p1Display");
+const p2Display = document.querySelector("#p2Display");
 
 let p1Score = 0;
 let p2Score = 0;
 let winningScore = 5;
 let isGameover = false;
 
-p1Button.addEventListener('click', function() {
-    if (!isGameover){
+p1Button.addEventListener("click", function () {
+    if (!isGameover) {
         p1Score += 1;
         p1Display.textContent = p1Score;
         if (p1Score === winningScore) {
             isGameover = true;
-            p1Display.classList.add('winner');
-            p2Display.classList.add('loser');
-
+            p1Display.classList.add("winner");
+            p2Display.classList.add("loser");
         }
     }
 });
 
-p2Button.addEventListener('click', function() {
-    if (!isGameover){
+p2Button.addEventListener("click", function () {
+    if (!isGameover) {
         p2Score += 1;
         p2Display.textContent = p2Score;
         if (p2Score === winningScore) {
             isGameover = true;
-            p2Display.classList.add('winner');
-            p1Display.classList.add('loser');
+            p2Display.classList.add("winner");
+            p1Display.classList.add("loser");
         }
     }
 });
 
-winningScoreSelect.addEventListener('change', function () {
+winningScoreSelect.addEventListener("change", function () {
     winningScore = parseInt(this.value);
     reset();
 });
 
-resetButton.addEventListener('click', reset);
-    
+resetButton.addEventListener("click", reset);
+
 function reset() {
     isGameover = false;
     p1Score = 0;
     p2Score = 0;
     p1Display.textContent = 0;
     p2Display.textContent = 0;
-    p1Display.classList.remove('winner', 'loser');
-    p2Display.classList.remove('winner', 'loser');
-
+    p1Display.classList.remove("winner", "loser");
+    p2Display.classList.remove("winner", "loser");
 }
-
-
 ```
-### 非同期なJavaScript
+
+### 非同期な JavaScript
+
 #### コールスタック
-インタープリター（ウェブブラウザ内のJavaScriptインタープリターなど）の仕組みの一つで、複数階層の関数を呼び出したスクリプト内の位置を追跡し続けること。
+
+インタープリター（ウェブブラウザ内の JavaScript インタープリターなど）の仕組みの一つで、複数階層の関数を呼び出したスクリプト内の位置を追跡し続けること。
 どの関数が現在実行されているのか、その関数の中でどの関数が呼び出されたかなど。
-#### JavaScriptはシングルスレッド
-JavaScriptでは一度に一つの作業しかできない
+
+#### JavaScript はシングルスレッド
+
+JavaScript では一度に一つの作業しかできない
 処理に長時間かかってしまうとどうなるか
+
 ```javascript
-const newTodo = input.value //ユーザーの入力値を取得
-saveTodoDatabace(new Todo); //長時間かかるかもしれない
-input.value = ''; //フォームをクリア
+const newTodo = input.value; //ユーザーの入力値を取得
+saveTodoDatabace(new Todo()); //長時間かかるかもしれない
+input.value = ""; //フォームをクリア
 ```
+
 コールバックを使って回避する
+
 ```javascript
-console.log('サーバーにリクエストを送信');
+console.log("サーバーにリクエストを送信");
 setTimeout(() => {
-    console.log('サーバーからレスポンスが来ました！！');
+    console.log("サーバーからレスポンスが来ました！！");
 }, 3000);
-console.log('ここがファイルの末端');
+console.log("ここがファイルの末端");
 ```
-・ブラウザはWeb APIと呼ばれるバックグラウンドで処理を実行してくれる機能（リクエストだったりsetTimeout）を提供してくれる
-・JavaScriptのコールスタックはこのWeb APIを認識すると、ブラウザに処理を依頼します
+
+・ブラウザは Web API と呼ばれるバックグラウンドで処理を実行してくれる機能（リクエストだったり setTimeout）を提供してくれる
+・JavaScript のコールスタックはこの Web API を認識すると、ブラウザに処理を依頼します
 ・ブラウザが処理を終えると、コールバックとしてスタックに積まれる
+
 ```javascript
-console.log('私が一番！');
+console.log("私が一番！");
 setTimeout(() => {
-    console.log('私は3秒後！');
+    console.log("私は3秒後！");
 }, 3000);
-console.log('私は2番！')
+console.log("私は2番！");
 ```
+
 #### コールバックを使ったダミーリクエスト
+
 ```javascript
-const fakeRequestCallback = (url, succes, faulue) =>{ //fakeRequestCallbackの役割は、urlと成功した時用のコールバック、失敗した時用のコールバックを受け取るようになっている
+const fakeRequestCallback = (url, succes, faulue) => {
+    //fakeRequestCallbackの役割は、urlと成功した時用のコールバック、失敗した時用のコールバックを受け取るようになっている
     const delay = Math.floor(Math.random() * 4500) + 500;
     setTimeout(() => {
-        if(delay > 4000) {
+        if (delay > 4000) {
         } else {
-                succes(`ダミーデータ(${url})`)
+            succes(`ダミーデータ(${url})`);
         }
-    }, delay)
-}
+    }, delay);
+};
 ```
-#### Promiseを使ったダミーリクエスト
-Promiseは非同期処理の最終的な完了もしくは失敗を表すオブジェクト。
-Promiseはコールバックを「関数に渡す」代わりに、関数が返したオブジェクトに対してコールバックを「登録する」ようにする、というもの。
-#### Promiseの真の力
+
+#### Promise を使ったダミーリクエスト
+
+Promise は非同期処理の最終的な完了もしくは失敗を表すオブジェクト。
+Promise はコールバックを「関数に渡す」代わりに、関数が返したオブジェクトに対してコールバックを「登録する」ようにする、というもの。
+
+#### Promise の真の力
+
 ```javascript
-fakeRequestPromise('yelp.com/api/coffee/page1')
+fakeRequestPromise("yelp.com/api/coffee/page1")
     .then(() => {
-        console.log('成功1！！！');
-        return fakeRequestPromise('yelp.com/api/coffee/page2')
+        console.log("成功1！！！");
+        return fakeRequestPromise("yelp.com/api/coffee/page2");
     })
     .then(() => {
-        console.log('成功2！！！');
-        return fakeRequestPromise('yelp.com/api/coffee/page3')
+        console.log("成功2！！！");
+        return fakeRequestPromise("yelp.com/api/coffee/page3");
     })
     .then(() => {
-        console.log('成功3！！！');
+        console.log("成功3！！！");
     })
     .catch(() => {
         console.log(`失敗！！！！`);
-    }) //1回目で失敗しても、2回目で失敗しても3回目で失敗しても、失敗した場合は必ずcatchの中の関数に入ってくる
+    }); //1回目で失敗しても、2回目で失敗しても3回目で失敗しても、失敗した場合は必ずcatchの中の関数に入ってくる
 ```
-Promiseが成功or失敗した時の値を用意する。
+
+Promise が成功 or 失敗した時の値を用意する。
 then:それから何をするかを指示できる
+
 ```javascript
-fakeRequestPromise('yelp.com/api/coffee/page1')
+fakeRequestPromise("yelp.com/api/coffee/page1")
     .then((data) => {
-        console.log('成功1！！！');
+        console.log("成功1！！！");
         console.log(data);
-        return fakeRequestPromise('yelp.com/api/coffee/page2')
+        return fakeRequestPromise("yelp.com/api/coffee/page2");
     })
     .then((data) => {
-        console.log('成功2！！！');
+        console.log("成功2！！！");
         console.log(data);
-        return fakeRequestPromise('yelp.com/api/coffee/page3')
+        return fakeRequestPromise("yelp.com/api/coffee/page3");
     })
     .then((data) => {
-        console.log('成功3！！！');
+        console.log("成功3！！！");
         console.log(data);
     })
     .catch((err) => {
         console.log(`失敗！！！！`);
         console.log(err);
-    }) //1回目で失敗しても、2回目で失敗しても3回目で失敗しても、失敗した場合は必ずcatchの中の関数に入ってくる
+    }); //1回目で失敗しても、2回目で失敗しても3回目で失敗しても、失敗した場合は必ずcatchの中の関数に入ってくる
 ```
-#### asyncキーワード
-・asyncな関数は必ずPromiseを返す
-・関数が値を返せば、Promiseはその値でresolveする
-・関数がエラーをthrowした場合、Promiseはそのエラーでrejectする
+
+#### async キーワード
+
+・async な関数は必ず Promise を返す
+・関数が値を返せば、Promise はその値で resolve する
+・関数がエラーを throw した場合、Promise はそのエラーで reject する
+
 ```javascript
 async function hello () { //asyncをつけることで必ずpromiseを返す
 
@@ -2687,86 +2976,104 @@ soncole.log('エラー！！')
 console.log(err);
 }); //Error：問題が起きました！！
 ```
-#### awaitキーワード
-awaitはasync関数の中でしか使えない
-・awaitはPromiseがresolveまたはrejectするまでasync関数の実行を一時的に停止する
+
+#### await キーワード
+
+await は async 関数の中でしか使えない
+・await は Promise が resolve または reject するまで async 関数の実行を一時的に停止する
+
 ```javascript
 async function rainbow() {
-    await delauedColorChange('red', 1000); //Promiseがresolveまたはrejectするまで待ってくれる。一気に反映されない
-    await delauedColorChange('orange', 1000);
-    await delauedColorChange('yellow', 1000);
-    await delauedColorChange('green', 1000);
-    await delauedColorChange('orange', 1000);
-    await delauedColorChange('indigo', 1000);
-    await delauedColorChange('violet', 1000);
+    await delauedColorChange("red", 1000); //Promiseがresolveまたはrejectするまで待ってくれる。一気に反映されない
+    await delauedColorChange("orange", 1000);
+    await delauedColorChange("yellow", 1000);
+    await delauedColorChange("green", 1000);
+    await delauedColorChange("orange", 1000);
+    await delauedColorChange("indigo", 1000);
+    await delauedColorChange("violet", 1000);
     // 1秒ごとに次の背景カラーが実行される
 }
 
-rainbow()
-.then(() => {
-    console.log('rainbow完了！');
+rainbow().then(() => {
+    console.log("rainbow完了！");
 }); //全てのカラーが反映されてから、rainbow完了！のログが出力される
 ```
-### AJAXとAPI
-#### ajax入門
-Webサイトを表示している裏側でリクエストを投げて情報を取得したり、情報を送信したりする
+
+### AJAX と API
+
+#### ajax 入門
+
+Web サイトを表示している裏側でリクエストを投げて情報を取得したり、情報を送信したりする
 ・ASYNCHRONOUS
 ・JavaScript
 ・AND
 ・XML→JSON
-#### JSONとは
+
+#### JSON とは
+
 ソフトウェア同士でデータのやり取りをするためのテキストベースの共通のフォーマット
-JSONにもキーと値があるが、キーは必ず””（ダブルクォート）で囲む必要がある。シングルはNG。
+JSON にもキーと値があるが、キーは必ず””（ダブルクォート）で囲む必要がある。シングルは NG。
+
 ```javascript
  {
     "squadName" : "Super hero squad" ,
     "homeTown" : "Metro City"
  }
 ```
-JSONとは、以下の略
+
+JSON とは、以下の略
 ・Java
 ・Script
 ・Object
 ・Notation
-#### HTTPメソッド
+
+#### HTTP メソッド
+
 GET：情報を取得してくるときに主に使うメソッド
 POST：何かしらのデータを送信するときに使うメソッド
 DELETE：何かを削除したいときに使うメソッド
-#### HTTPステータスコード
-2から始まるものは成功の際のステータスコード
+
+#### HTTP ステータスコード
+
+2 から始まるものは成功の際のステータスコード
 201 Created：ポストなどした時に、作成が成功したことを表すステータスコード
 
-3から始まるものはリダイレクトメッセージ
+3 から始まるものはリダイレクトメッセージ
 別の場所に移動させてくれる
 
-4から始まるものはクライアントエラーレスポンス
+4 から始まるものはクライアントエラーレスポンス
 クライアントエラーレスポンス：ユーザー側が、何か間違ったことをしていますよということを表すもの
 404 Not Found：サーバーがリクエストされたリソースを発見できないことを示す。
 405 Method Not Allowed：サーバーがリクエストメソッドを理解しているものの、無効にされており使用することができない。
 
-5から始まるものはサーバーエラーレスポンス
+5 から始まるものはサーバーエラーレスポンス
+
 #### クエリストリングについて
+
 どんなキーと値のペアでも大丈夫で、それぞれが&でくっつけられている
 エンドポイントはリクエストするときに、どんな時でもつけて良い
 ?sort=desc&color=blue
-#### fetchを使ってみよう
+
+#### fetch を使ってみよう
+
 Fetch API
-・JavaScriptでリクエストを投げるモダンなやり方
-・Promiseをサポートしている
-・Internet Explorerでは使えない
+・JavaScript でリクエストを投げるモダンなやり方
+・Promise をサポートしている
+・Internet Explorer では使えない
+
 ```javascript
 fetch("https://swapi.tech/api/people/1/") //これだけでリクエストが投げられる
-  .then((res) => {
-    console.log("RESOLVE!!!", res);　//この時点ではまだボディが読み込まれていない
-    return res.json();
-  })
-  .then((data) => {
-    console.log(data.result.properties);
-  })
-  .catch((e) => {
-    console.log("エラー！！！", e);
-  });
- 
+    .then((res) => {
+        console.log("RESOLVE!!!", res); //この時点ではまだボディが読み込まれていない
+        return res.json();
+    })
+    .then((data) => {
+        console.log(data.result.properties);
+    })
+    .catch((e) => {
+        console.log("エラー！！！", e);
+    });
+
 // fetch("https://swapi.tech/api/people/1/")
 //   .then((res) => {
 //     console.log("RESOLVE!!!", res);
@@ -2786,24 +3093,27 @@ fetch("https://swapi.tech/api/people/1/") //これだけでリクエストが投
 //   .catch((e) => {
 //     console.log("エラー！！！", e);
 //   });
- 
+
 const loadStarWarsPeople = async () => {
-  try {
-    const res = await fetch("https://swapi.tech/api/people/1/");
-    const data = await res.json();
-    console.log(data.result.properties);
-    const res2 = await fetch("https://swapi.tech/api/people/2/");
-    const data2 = await res2.json();
-    console.log(data2.result.properties);
-  } catch (e) {
-    console.log("エラー！！！", e);
-  }
+    try {
+        const res = await fetch("https://swapi.tech/api/people/1/");
+        const data = await res.json();
+        console.log(data.result.properties);
+        const res2 = await fetch("https://swapi.tech/api/people/2/");
+        const data2 = await res2.json();
+        console.log(data2.result.properties);
+    } catch (e) {
+        console.log("エラー！！！", e);
+    }
 };
- 
+
 loadStarWarsPeople();
 ```
-#### Axios入門
-axios：HTTPリクエスト用のライブラリ
+
+#### Axios 入門
+
+axios：HTTP リクエスト用のライブラリ
+
 ```javascript
 // axios
 //   .get("https://swapi.tech/api/people/1/")
@@ -2813,34 +3123,40 @@ axios：HTTPリクエスト用のライブラリ
 //   .catch((e) => {
 //     console.log("ERROR!!!", e);
 //   });
- 
+
 const getStarWarsPerson = async (id) => {
-  try {
-    const res = await axios.get(`https://swapi.tech/api/people/${id}/`);
-    console.log(res.data.result.properties);
-  } catch (e) {
-    console.log("ERROR", e);
-  }
+    try {
+        const res = await axios.get(`https://swapi.tech/api/people/${id}/`);
+        console.log(res.data.result.properties);
+    } catch (e) {
+        console.log("ERROR", e);
+    }
 };
- 
+
 getStarWarsPerson(5);
 getStarWarsPerson(10);
 ```
+
 ### プロトタイプ・クラス・オブジェクト指向プログラミング
+
 #### プロトタイプとは
-JavaScriptオブジェクトが互いに機能を継承するメカニズム
-継承機能を提供するため、オブジェクトはprotoptypeオブジェクトを持つことができる
+
+JavaScript オブジェクトが互いに機能を継承するメカニズム
+継承機能を提供するため、オブジェクトは protoptype オブジェクトを持つことができる
+
 #### ファクトリ関数
-基準とした色からrgbや16進数の表記を作れるオブジェクトが生成できるようになる
+
+基準とした色から rgb や 16 進数の表記を作れるオブジェクトが生成できるようになる
 ファクトリ関数を使うことで色を変換する機能を持ったオブジェクトを簡単に量産することができる
-#### JavaScriptのクラス
+
+#### JavaScript のクラス
 
 ```javascript
 class Color {
     constructor(r, g, b) {
-        this.r =r ;
-        this.g =g ;
-        this.b =b ;
+        this.r = r;
+        this.g = g;
+        this.b = b;
         this.name = name;
     }
 
@@ -2849,16 +3165,21 @@ class Color {
     }
 }
 
-const c1 = new Color(255, 67, 89, 'tomato');　//c1.greet() //tomatoからこんにちは！
-const c1 = new Color(255, 255, 255, 'white'); //c2.greet() //whiteからこんにちは！
+const c1 = new Color(255, 67, 89, "tomato"); //c1.greet() //tomatoからこんにちは！
+const c1 = new Color(255, 255, 255, "white"); //c2.greet() //whiteからこんにちは！
 ```
-#### 続・JavaScriptのクラス
-H：色相　S：彩度　L:明度
+
+#### 続・JavaScript のクラス
+
+H：色相　 S：彩度　 L:明度
 hsl(130, 50%, 80%)
-Hを使って180度足せば補色になる（色相環をもとに）
-#### 続・JavaScriptのクラス
+H を使って 180 度足せば補色になる（色相環をもとに）
+
+#### 続・JavaScript のクラス
+
 extends
-extendsで継承することができる。自分がconstructor関数を定義していなくても親クラスのconstructor関数が自動で呼ばれるようになっている。
+extends で継承することができる。自分が constructor 関数を定義していなくても親クラスの constructor 関数が自動で呼ばれるようになっている。
+
 ```javascript
 class Pet {
     constructor(name, age) {
@@ -2872,53 +3193,69 @@ class Pet {
 
 class Cat extends Pet {
     meow() {
-        return 'にゃー！！';
+        return "にゃー！！";
     }
 }
 
 class Dog extends Pet {
     bark() {
-        return 'わんわん！！';
+        return "わんわん！！";
     }
     eat() {
         return `${this.name}がご飯を食い散らかしている`;
     }
 }
 ```
+
 ### ターミナルを使いこなそう
+
 #### ターミナルについて
+
 GUI：グラフィカルユーザーインターフェース
 CUI：キャラクターユーザーインターフェース
+
 #### ターミナルを覚えた方がいい理由
+
 ・スピード　作業効率が上がる。マウスでいちいちドラッグ&ドロップするのとではスピードが全然違う
 ・アクセス範囲　普段見ることのない領域にアクセスすることもできる
 ・ツール　開発のためのツールのほとんどがターミナルを使う必要がある
 
 ターミナル：コンピュータを操作するためのテキストベースを操作するためのテキストベースなインターフェース。昔は物理的な端末だったが、今はターミナルソフトを使用するのが一般的。
 シェル：ユーザーから入力を受け取ってコマンドを実行するプログラムの一種。ターミナル上で動作する。
-例：　ターミナル→ここでATMの端末がターミナルを言える。　シェル→ATM上で動いているソフトウェアがシェルと言える
-BASH：広く使われているシェルの一種（少し前までMac標準のシェルだった）zshなど
-#### lsとpwd
-ターミナルを開くとデフォルトではホームディレクトリにいる。ホームディレクトリ→ユーザーアカウントのディレクトリ
+例：　ターミナル → ここで ATM の端末がターミナルを言える。　シェル →ATM 上で動いているソフトウェアがシェルと言える
+BASH：広く使われているシェルの一種（少し前まで Mac 標準のシェルだった）zsh など
+
+#### ls と pwd
+
+ターミナルを開くとデフォルトではホームディレクトリにいる。ホームディレクトリ → ユーザーアカウントのディレクトリ
+
 ```javascript
-ls //List 自分がアクセスしているディレクトリ内のファイル一覧を表示する
+ls; //List 自分がアクセスしているディレクトリ内のファイル一覧を表示する
 ```
+
 ```javascript
-pwd //自分が今いるディレクトリのパスを表示する
- // /Users/XXXXX/Desktop
+pwd; //自分が今いるディレクトリのパスを表示する
+// /Users/XXXXX/Desktop
 ```
+
 #### ディレクトリの移動
+
 ```javascript
-cd //ディレクトリを移動する　タブキーで補完出来る
+cd; //ディレクトリを移動する　タブキーで補完出来る
 ```
+
 ```javascript
 cd .. //一つ前のディレクトリに移動する
 ```
+
 ```javascript
 cd ~ //ホームディレクトリに移動
 ```
+
 #### 相対パスと絶対パス
+
 絶対パス：必ず/から始まるパス。あるファイルやディレクトリへの一番テッペンであるルートディレクトリからの完全なパス。どこからでも実行できる。
+
 ```javascript
 /Users/xxxxx　//どこからでも飛べるもの　絶対パス
 
@@ -2927,11 +3264,15 @@ cd /Users/xxxxx/xxxx　//今いるディレクトリの中にない場所にも�
 cd ../../Pets //2前のディレクトリにPetsディレクトリがあるとき
 
 ```
+
 相対パス
+
 ```javascript
 cd Users //今の場所から移動できところ
 ```
+
 #### mkdir
+
 ```javascript
 cd Pets
 mkdir Goats //Petsディレクトリの中にGoatsというディレクトリを作成
@@ -2939,139 +3280,185 @@ cd Goats
 mkdir DwarfGoats StandardGoats //Goatsディレクトリの中に、DwarfGoatsとStandardGoatsの二つのディレクトリを同時に作成
 mkdir ../Frogs //Goatsディレクトリに居ながら一つ前のディレクトリ（この場合Pets）にFrogsディレクトリを追加することができる
 ```
-#### manとフラグについて
+
+#### man とフラグについて
+
 man=マニュアル
 コマンドにフラグを持たすことで、挙動を変えることができる。
-フラグの種類はman lsで確認できる。（ls -l（フラグ）でより多くのディレクトリ情報を観れるなど）
+フラグの種類は man ls で確認できる。（ls -l（フラグ）でより多くのディレクトリ情報を観れるなど）
+
 ```javascript
 man ls //lsコマンドの説明書を見る
 q //もとに戻る
 ls -a //.から始まるディレクトリも表示できる
 ```
-#### touchコマンド
+
+#### touch コマンド
+
 空のファイルを作成することができる
-touchコマンド：すでにあるファイルのアクセス日時や更新日時を変更するものとして作られたコマンド。ただ、存在しないファイルだった場合、作成される。
+touch コマンド：すでにあるファイルのアクセス日時や更新日時を変更するものとして作られたコマンド。ただ、存在しないファイルだった場合、作成される。
+
 ```javascript
 touch Shiro.html //Shiroのhtmlファイルを作成する
 ```
+
 #### ファイルやディレクトリの削除
+
 rm ファイルやディレクトリを完全に削除する（やり直せないので注意）
 ファイルを削除する
+
 ```javascript
 rm app.css //app.cssファイルは削除する
 ```
+
 空のディレクトリを削除する
+
 ```javascript
 rmdir newProject //newProjectディレクトリを削除する（ディレクトリが空の場合のみ削除される）
 ```
+
 中身のあるディレクトリを削除する
 `rfフラグ`
-r=recursive　連続して削除する　ディレクトリの中に何かがあっても連続して消すことができる
-f=force　強制的　ディレクトリの中に何かあっても削除するかをいちいち聞かずに一気に強制削除する
+r=recursive 　連続して削除する　ディレクトリの中に何かがあっても連続して消すことができる
+f=force 　強制的　ディレクトリの中に何かあっても削除するかをいちいち聞かずに一気に強制削除する
+
 ```javascript
 rm -rf Plants //Plantsディレクトリを削除する（ディレクトリに中身があっても削除できる）
 ```
-### Node.js入門
-#### Node.js入門
-JavaScriptのランタイム
-Webブラウザの外でJavaScriptを実行できるランタイム
-#### Node.jsは何に使われているか
-・Webサーバー（ネトフリ、ウーバー、NASAでも）
+
+### Node.js 入門
+
+#### Node.js 入門
+
+JavaScript のランタイム
+Web ブラウザの外で JavaScript を実行できるランタイム
+
+#### Node.js は何に使われているか
+
+・Web サーバー（ネトフリ、ウーバー、NASA でも）
 ・コマンドラインツール
-・ネイティブアプリ（VScodeも）
+・ネイティブアプリ（VScode も）
 ・ゲーム
 ・ドローンのソフトウェア　など
-#### Node.jsのREPL
+
+#### Node.js の REPL
+
 `REPL`
 読んで評価して出力してループする
-documentやwindowはNode.jsの世界にはない
-#### processとargv
+document や window は Node.js の世界にはない
+
+#### process と argv
+
 nvm = Node version manager
 `process`
-Node.js自体に関する情報を持っている
+Node.js 自体に関する情報を持っている
+
 ```javascript
-process.version //'v22.13.0'
-process.release //v22.13.0に紐づいているリリースの情報が出力される
+process.version; //'v22.13.0'
+process.release; //v22.13.0に紐づいているリリースの情報が出力される
 ```
+
 `argv`
 ターミナルで実行された時の引数の情報を配列で返す
-#### fsモジュール
+
+#### fs モジュール
+
 ファイルを扱うためのモジュールで、ファイルから書き出したり、ファイルに書き込んだりするときに役立つ。
-```javascript
-fs.mkdirSync
 
-Sync //同期版にはSyncがつき、非同期版にはSyncがつかない
+```javascript
+fs.mkdirSync;
+
+Sync; //同期版にはSyncがつき、非同期版にはSyncがつかない
 ```
-```javascript
-const fs = require('fs');
 
-fs.mkdir('/tmp/a/apple', { recursive: true }, (err) => {
-    if(err) throw err;
+```javascript
+const fs = require("fs");
+
+fs.mkdir("/tmp/a/apple", { recursive: true }, (err) => {
+    if (err) throw err;
 });
 ```
-### HTML入門
-ショートカットキー⌘+左右上下のキーで一気にカーソル位置を移動できる
-#### mdnについて
-html,css,JavaScriptでわからなくなったときにmdnをつけて検索すると答えが見つかる
+
+### HTML 入門
+
+ショートカットキー ⌘+左右上下のキーで一気にカーソル位置を移動できる
+
+#### mdn について
+
+html,css,JavaScript でわからなくなったときに mdn をつけて検索すると答えが見つかる
+
 ```javascript
 html form mdn //htmlのformについて調べる
 ```
+
 #### 見出し要素
-h1はページに1つが望ましい。
-文字の太さや強調することはcssで操作できるので、h1〜h6を大きくしたり太くしたいために使うようなことはNG。
+
+h1 はページに 1 つが望ましい。
+文字の太さや強調することは css で操作できるので、h1〜h6 を大きくしたり太くしたいために使うようなことは NG。
+
 #### リスト要素の演習問題
+
 順序なしリスト
 ・あああ
 ・いいい
-```javascript
 
-        <ul>
-            <li>あああ</li>
-            <li>いいい</li>
-        </ul>
+```javascript
+<ul>
+    <li>あああ</li>
+    <li>いいい</li>
+</ul>
 ```
 
-順序ありリスト
-1.あああ
-2.いいい
-```javascript
+順序ありリスト 1.あああ 2.いいい
 
-        <ol>
-            <li>あああ</li>
-            <li>いいい</li>
-        </ol>
+```javascript
+<ol>
+    <li>あああ</li>
+    <li>いいい</li>
+</ol>
 ```
+
 #### アンカー要素
+
 文章中にも使える
+
 ```javascript
-<a href="https://urlxxxx">ここはGoogleへのリンクです</a> 
+<a href="https://urlxxxx">ここはGoogleへのリンクです</a>
 <a href="xxxx.html">ホームへ</a>
 ```
 
 #### 画像要素
-アクセシビリティのためにもaltはつけるべき（スクリーンリーダーでも読み上げられる）
-imgタグ：終了タグがない
+
+アクセシビリティのためにも alt はつけるべき（スクリーンリーダーでも読み上げられる）
+img タグ：終了タグがない
 
 ```javascript
 <img src="xxxx.png" alt="ニワトリ" />
 ```
 
 #### ブロックとインライン要素
+
 ・インライン要素はコンテンツの流れを分断しない
 ・ブロックレベル要素はコンテンツの流れを分断して幅を占有する
-#### hr,br,sup,sub要素など
+
+#### hr,br,sup,sub 要素など
+
 `<hr>`：水平線を作る
 `<br>`：改行要素（改行入れたい行の末尾に書く）
 `<sup>2</sup>`：上付き文字要素（二乗の数字など）
 `<sub>2</sub>`：下付き文字要素（化学式などで使用）
 `<h2>私はH<sub>2</sub>Oが好きです</h2>`
-### HTMLフォームとテーブル
 
-#### テーブルのtr,td,th要素について
-#### テーブルのthead,tbody,tfootについて
+### HTML フォームとテーブル
+
+#### テーブルの tr,td,th 要素について
+
+#### テーブルの thead,tbody,tfoot について
+
 `<td>`:テーブルデータ
 `<tr>`:セルの行を定義する
 `<th>`:テーブルヘッダー
+
 ```javascript
         <h1>世界一重い鳥一覧</h1>
         <table>
@@ -3098,21 +3485,27 @@ imgタグ：終了タグがない
         </table>
 </table>
 ```
-#### テーブルのcolspanとrowspanについて
-rowspan：指定行分使用する（2の場合、2行分として扱う）
-colspan：指定列分使用する（2の場合、2列分として扱う）
+
+#### テーブルの colspan と rowspan について
+
+rowspan：指定行分使用する（2 の場合、2 行分として扱う）
+colspan：指定列分使用する（2 の場合、2 列分として扱う）
+
 ```javascript
 <tr>
-                    <th rowspan="2">Animal</th>
-                    <th colspan="2">Average mass [kg (lb)]</th>
-                    <th rowspan="2">Flighted</th>
-                </tr>
+    <th rowspan="2">Animal</th>
+    <th colspan="2">Average mass [kg (lb)]</th>
+    <th rowspan="2">Flighted</th>
+</tr>
 ```
-#### よく使われるinput要素の種類
+
+#### よく使われる input 要素の種類
+
 text:文字列の入力
 password:画面には・・・・と表示されるパスワードの入力欄になる
 number:数値のみ入力される
 placeholder：入力前に何を入力するか明示できる
+
 ```javascript
 <form action="/tacos">
     <input type="text" placeholder="ユーザー名">
