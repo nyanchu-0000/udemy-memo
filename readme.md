@@ -3513,3 +3513,9 @@ placeholder：入力前に何を入力するか明示できる
     <input type="number">
 </form>
 ```
+#### ラベルの使い方
+1ページの中に同じラベル名を使えない
+```javascript
+<label for="username">ユーザー名</label>
+<input id="username" type="text" placeholder="ユーザー名">
+```
