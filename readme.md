@@ -3519,3 +3519,34 @@ placeholder：入力前に何を入力するか明示できる
 <label for="username">ユーザー名</label>
 <input id="username" type="text" placeholder="ユーザー名">
 ```
+#### ラジオボタン・チェックボックスやセレクト
+チェックボックス：複数選択できる
+ラジオボタン：一つしか選択できない
+チェックボックス
+```javascript
+        <form action="/birds">
+            <input type="checkbox" name="agree_tos" id="agree">
+            <label for="agree">利用規約に同意します</label>
+        </form>
+```
+ラジオボタン
+```javascript
+        <label for="xs">XS:</label>
+        <input type="radio" name="size" id="xs" value="xs">
+        <label for="s">S:</label>
+        <input type="radio" name="size" id="s" value="s">
+        <label for="m">M:</label>
+        <input type="radio" name="size" id="m" value="m">
+```
+```javascript
+<form>
+    <label for="username">ユーザー名</label>
+    <input id="username" type="text" placeholder="ユーザー名">
+    <label for="password">パスワード</label>
+    <input id="password" type="password" placeholder="パスワード">
+    <button type="submit">登録</button>
+</form>
+```
+### CSS入門
+参考サイト
+https://developer.mozilla.org/ja/docs/Web/CSS/Reference

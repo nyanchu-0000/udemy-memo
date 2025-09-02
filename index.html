@@ -17,8 +17,17 @@
     </head>
     <body>
         <!-- ここにHTMLを入れて！！！ -->
-        <label for="username">ユーザー名</label>
-        <input id="username" type="text" placeholder="ユーザー名">
+        <form action="/birds">
+            <input type="checkbox" name="agree_tos" id="agree">
+            <label for="agree">利用規約に同意します</label>
+        </form>
+
+        <label for="xs">XS:</label>
+        <input type="radio" name="size" id="xs" value="xs">
+        <label for="s">S:</label>
+        <input type="radio" name="size" id="s" value="s">
+        <label for="m">M:</label>
+        <input type="radio" name="size" id="m" value="m">
         <!-- ここまでに入れて！！！ -->
         <script src="app.js"></script>
     </body>
