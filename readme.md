@@ -3550,3 +3550,14 @@ placeholder：入力前に何を入力するか明示できる
 ### CSS入門
 参考サイト
 https://developer.mozilla.org/ja/docs/Web/CSS/Reference
+#### IDセレクター
+```javascript
+<button id="signup">Sign Up</button>
+```
+```javascript
+
+            #signup{
+                color: #fff;
+                background-color: aqua;
+            }
+```
