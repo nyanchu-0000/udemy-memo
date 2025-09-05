@@ -3561,3 +3561,65 @@ https://developer.mozilla.org/ja/docs/Web/CSS/Reference
                 background-color: aqua;
             }
 ```
+```javascript
+li{
+    color: blue;
+}　//要素
+.done{
+    color: gray;
+} //クラスは.から始まる
+#clear{
+    background-color: red;
+    color: white;
+} //IDは＃から始まる
+```
+#### 子孫セレクター
+▼headerの中のアンカー要素
+フォントサイズを30px
+テキストの色をティール（teal）
+
+▼dislikesのIDを持つ段落要素の中のアンカー要素：
+太字
+テキストの色を赤（red）
+```javascript
+header a{
+    font-size: 30px;
+    color: teal;
+}
+#dislikes a{
+    font-weight: bold;
+    color: red;
+}
+```
+#### 隣接セレクター
+同じ親要素の子同士で`<h1>`の直後の`<p>`を選択
+```javascript
+h1 + p {
+    coler: red;
+}
+```
+#### 直下セレクター
+`<div>`の直下にある`<li>`を選択
+```javascript
+div > li {
+    color: white;
+}
+```
+#### 擬似クラス
+```javascript
+button:hover {
+    background-coler: red;
+}
+```
+偶数には黒の背景、奇数には赤の背景
+```javascript
+.square:nth-of-type(2n) {
+background-color: black;
+}
+.square:nth-of-type(2n + 1) {
+background-color: red;
+}
+```
+#### 
+```javascript
+```
