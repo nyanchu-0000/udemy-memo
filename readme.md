@@ -3620,6 +3620,17 @@ background-color: black;
 background-color: red;
 }
 ```
-#### 
+#### 不透明度とアルファチャンネル
 ```javascript
+rgba(0,209,112,0.5) //0.5はalphaチャンネルで不透明度を意味する
 ```
+#### ポートフォリオサイト
+calc();の中に式をかいて
+```javascript
+img{
+    width:30%;
+    margin: calc(10%6);
+}
+```
+
+
