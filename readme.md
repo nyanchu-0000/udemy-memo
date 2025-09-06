@@ -3632,5 +3632,51 @@ img{
     margin: calc(10%6);
 }
 ```
+#### フレックスアイテムの大きさに関するプロパティ
+flex-basis:フレックスコンテナ内のフレックスアイテムの基本はばを指定する
+flex-grow:フレックスコンテナ内の残りの空間のうち、どれだけがそのアイテムに割り当てられるかを設定する
+flex-shrink:フレックスアイテムがフレックスコンテナより大きい時、flex-shrinkに従って縮小する
+#### メディアクエリー
+▼widthが800pxの時だけpurpleを適用する
+```javascript
+@media(width: 800) {
+    h1 {
+        color: purple;
+    }
+}
+```
+▼widthが800px~それ以上の幅がある時だけpurpleを適用する
+```javascript
+@media(min-width: 800) {
+    h1 {
+        color: purple;
+    }
+}
+```
+▼widthが800pxより小さい幅になるとpurpleを適用する
+```javascript
+@media(max-width: 800) {
+    h1 {
+        color: purple;
+    }
+}
+```
+▼600px~800pxの間だけpurpleを適用する
+```javascript
+@media (min-width: 600px) and (max-width: 800) {
+    h1 {
+        color: purple;
+    }
+}
+```
+#### レスポンシブなナビバー
+▼760pxより小さい幅になったら4emに縮む
+```javascript
+@media(max-width: 768px) {
+    h1 {
+        font-size: 4em;
+    }
+}
+```
 
 
